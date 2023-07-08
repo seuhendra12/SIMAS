@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backoffice\AuthController;
 use App\Http\Controllers\Backoffice\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', [DashboardController::class, 'index']);
+Route::get('/login', [AuthController::class, 'index']);
