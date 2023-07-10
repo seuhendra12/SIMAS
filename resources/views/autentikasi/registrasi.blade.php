@@ -1,5 +1,5 @@
-@extends('layouts.login')
-@section('title','Login-Dashboard')
+@extends('layouts.auth')
+@section('title','Halaman Registrasi')
 @section('container')
 <div class="d-flex flex-column flex-root bg-secondary" id="kt_app_root">
 	<div class="d-flex flex-column flex-lg-row flex-column-fluid">
@@ -26,14 +26,22 @@
 					<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="/sesi-login" method="POST">
 					@csrf
 						<div class="mb-3">
-							<h1 class="text-dark fw-bolder mb-3">Masuk</h1>
-							<div class="text-gray-500 fw-semibold fs-6">Masuk dengan surel dan kata sandimu</div>
+							<h1 class="text-dark fw-bolder mb-3">Registrasi Akun</h1>
+							<div class="text-gray-500 fw-semibold fs-6">Daftarkan akun berdasarkan data diri Anda</div>
 						</div>
-						<div class="fv-row mb-8">
-						<label class="fw-bolder mb-1">Surel</label>
-							<input type="email" placeholder="Email" name="email" autocomplete="off" class="form-control bg-white" value="{{ old('email') ?? session('email') }}" required/>
+						<div class="fv-row">
+						<label class="fw-bolder mb-1">Nama Lengkap</label>
+							<input type="text" placeholder="Nama Lengkap" name="nama_lengkap" autocomplete="off" class="form-control bg-white" value="{{ old('nama_lengkap') ?? session('nama_lengkap') }}" required/>
 						</div>
-						<div class="fv-row mb-3">
+            <div class="fv-row">
+						<label class="fw-bolder mb-1">Username</label>
+							<input type="text" placeholder="Username" name="username" autocomplete="off" class="form-control bg-white" value="{{ old('username') ?? session('username') }}" required/>
+						</div>
+            <div class="fv-row">
+						<label class="fw-bolder mb-1">Email</label>
+							<input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-white" value="{{ old('email') ?? session('email') }}" required/>
+						</div>
+						<div class="fv-row">
 							<div class="row">
 								<div class="col-7">
 									<label class="fw-bolder mb-1">Kata Sandi</label>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backoffice\AuthController;
 use App\Http\Controllers\Backoffice\DashboardController;
+use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', [DashboardController::class, 'index']);
-Route::get('/login', [AuthController::class, 'index']);
+Route::get('/frontend', [FrontendController::class, 'index']);
+Route::get('/login', [AuthController::class, 'index_login']);
+Route::get('/registrasi', [AuthController::class, 'index_registrasi']);
