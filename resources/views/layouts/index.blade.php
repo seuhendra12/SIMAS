@@ -9,6 +9,7 @@
   <link href="{!! asset('/css/plugins.bundle.css') !!}" rel="stylesheet" type="text/css" />
   <link href="{!! asset('/css/style.bundle.css') !!}" rel="stylesheet" type="text/css" />
   <link href="{!! asset('/css/loading.css') !!}" rel="stylesheet" type="text/css" />
+  <link href="{!! asset('/css/background-login.css') !!}" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
   <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> -->
   <style>

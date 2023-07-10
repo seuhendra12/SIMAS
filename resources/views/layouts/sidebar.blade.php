@@ -1,5 +1,5 @@
 <!-- SIDEBAR -->
-<div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
+<div id="kt_app_sidebar" class="app-sidebar flex-column element-above" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
 	<div class="app-sidebar-logo  " id="kt_app_sidebar_logo">
 		<a href="#">
 			<img alt="Logo" src="{!! asset('/img/logo/logo_sim.png') !!}" class="h-50px app-sidebar-logo-default" />
@@ -34,44 +34,6 @@
 					<span class="menu-link">
 						<span class="menu-icon">
 							<span class="svg-icon svg-icon-2">
-								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<rect x="2" y="2" width="9" height="9" rx="2" fill="currentColor" />
-									<rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2" fill="currentColor" />
-									<rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2" fill="currentColor" />
-									<rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="currentColor" />
-								</svg>
-							</span>
-						</span>
-						<span class="menu-title ">Referensi</span>
-						<span class="menu-arrow"></span>
-					</span>
-					<div class="menu-sub menu-sub-accordion">
-						<div class="menu-item">
-							<a class="menu-link" href="#">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title">Tag</span>
-							</a>
-							<a class="menu-link" href="{{url('kategoris')}}">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title">Kategori</span>
-							</a>
-							<a class="menu-link" href="{{url('unitKerja')}}">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title">Unit Kerja</span>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-					<span class="menu-link">
-						<span class="menu-icon">
-							<span class="svg-icon svg-icon-2">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key" viewBox="0 0 16 16">
 									<path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
 									<path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
@@ -83,7 +45,7 @@
 					</span>
 					<div class="menu-sub menu-sub-accordion">
 						<div class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="{{url('data-pengguna')}}">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
@@ -114,7 +76,7 @@
 								</svg>
 							</span>
 						</span>
-						<span class="menu-title ">Manajemen Konten</span>
+						<span class="menu-title ">Manajemen Sampah</span>
 						<span class="menu-arrow"></span>
 					</span>
 					<div class="menu-sub menu-sub-accordion">
@@ -142,6 +104,44 @@
 									<span class="bullet bullet-dot"></span>
 								</span>
 								<span class="menu-title ">Agenda</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+					<span class="menu-link">
+						<span class="menu-icon">
+							<span class="svg-icon svg-icon-2">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<rect x="2" y="2" width="9" height="9" rx="2" fill="currentColor" />
+									<rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2" fill="currentColor" />
+									<rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2" fill="currentColor" />
+									<rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="currentColor" />
+								</svg>
+							</span>
+						</span>
+						<span class="menu-title ">Manajemen Berita</span>
+						<span class="menu-arrow"></span>
+					</span>
+					<div class="menu-sub menu-sub-accordion">
+						<div class="menu-item">
+							<a class="menu-link" href="#">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">Tag</span>
+							</a>
+							<a class="menu-link" href="{{url('kategoris')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">Kategori</span>
+							</a>
+							<a class="menu-link" href="{{url('unitKerja')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">Unit Kerja</span>
 							</a>
 						</div>
 					</div>
