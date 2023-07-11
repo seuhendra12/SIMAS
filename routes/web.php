@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backoffice\AuthController;
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\Backoffice\PenggunaController;
+use App\Http\Controllers\Backoffice\RoleController;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,14 +21,22 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
-Route::get('/login', [AuthController::class, 'index_login'])->name('login')->middleware('guest');
-Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
-Route::post('logout', [AuthController::class,'logout'])->middleware('auth');
-Route::get('/registrasi', [AuthController::class, 'index_registrasi']);
 
-// Manajemen Pengguna
-Route::resource('/data-pengguna', PenggunaController::class)->middleware('auth');
 
-// FRONTEND
-Route::get('/sistem-informasi-manajemen-sampah', [FrontendController::class, 'index']);
+
+Route::middleware(['afterLogin'])->group(function () {
+  Route::get('/login', [AuthController::class, 'index_login'])->name('login');
+  Route::post('/login', [AuthController::class, 'login']);
+  Route::get('/registrasi', [AuthController::class, 'index_registrasi']);
+});
+Route::post('logout', [AuthController::class, 'logout']);
+
+Route::middleware(['role:pengelola', 'auth'])->group(function () {
+  // Manajemen Pengguna
+  Route::resource('/data-pengguna', PenggunaController::class);
+  Route::resource('/data-role', RoleController::class);
+  Route::get('/dashboard', [DashboardController::class, 'index']);
+});
+
+Route::get('/', [FrontendController::class, 'index']);
+

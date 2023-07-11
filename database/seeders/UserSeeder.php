@@ -9,28 +9,28 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        User::create([
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		User::create([
 			'name' => 'Super Admin',
 			'email' => 'superadmin@gmail.com',
-			'role' => 'Admin',
+			'role' => 'pengelola',
 			'password' => Hash::make('Admin12345'),
 			'created_at' => \Carbon\Carbon::now(),
 			'updated_at' => \Carbon\Carbon::now(),
 		]);
-        User::create([
+		User::create([
 			'name' => 'Seuhendra Setiawan',
 			'email' => 'seuhendra12@gmail.com',
-			'role' => 'User',
+			'role' => 'warga',
 			'password' => Hash::make('Admin12345'),
 			'created_at' => \Carbon\Carbon::now(),
 			'updated_at' => \Carbon\Carbon::now(),
 		]);
-    }
+	}
 }

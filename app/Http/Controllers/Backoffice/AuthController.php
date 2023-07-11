@@ -40,10 +40,10 @@ class AuthController extends Controller
     if (Auth::attempt($credentials)) {
       $user = Auth::user();
 
-      if ($user->role == 'Admin') {
+      if ($user->role == 'pengelola') {
+        return redirect()->intended('/dashboard');
+      } elseif ($user->role == 'warga') {
         return redirect()->intended('/');
-      } elseif ($user->role == 'User') {
-        return redirect()->intended('/sistem-informasi-manajemen-sampah');
       }
     }
 
@@ -56,7 +56,7 @@ class AuthController extends Controller
     Auth::logout();
     $request->session()->invalidate();
     $request->session()->regenerateToken();
-    return redirect('/login');
+    return redirect('/');
   }
   public function index_registrasi()
   {
