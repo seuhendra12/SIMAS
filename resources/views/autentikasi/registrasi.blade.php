@@ -9,45 +9,52 @@
 			</div>
 			<div class="d-flex flex-center flex-column flex-lg-row-fluid">
 				<div class="w-lg-500px p-10 bg-white rounded-3">
-					@if($errors->any())
-					@foreach($errors->all() as $err)
-					<div class="alert alert-danger alert-dismissible fade show" role="alert">
-						<i class="fa fa-exclamation-triangle"></i> {{ $err }}
-						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+					<!-- NOTIFIKASI ERROR -->
+					@if ($errors->any())
+					<div id="notification" class="alert alert-danger" style="display: none;">
+						<ul>
+							@foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+							@endforeach
+						</ul>
 					</div>
-					@endforeach
+					<script>
+						// Tampilkan notifikasi saat halaman dimuat
+						document.addEventListener('DOMContentLoaded', function() {
+							document.getElementById('notification').style.display = 'block';
+
+							// Atur waktu penghilangan notifikasi setelah 3 detik
+							setTimeout(function() {
+								document.getElementById('notification').style.display = 'none';
+							}, 5000);
+						});
+					</script>
 					@endif
-					@if(session()->has('errorLogin'))
-					<div class="alert alert-danger alert-dismissible fade show" role="alert">
-						<i class="fa fa-exclamation-triangle"></i> {{session('errorLogin')}}
-						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-					</div>
-					@endif
-					<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="/sesi-login" method="POST">
+					<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="{{url('registrasi')}}" method="POST">
 						@csrf
 						<div class="mb-3">
 							<h1 class="text-dark fw-bolder">Registrasi Akun</h1>
 							<div class="text-gray-500 fw-semibold fs-6">Daftarkan akun berdasarkan data diri Anda</div>
 						</div>
 						<div class="fv-row">
+							<label class="fw-bolder mb-1">NIK</label>
+							<input type="text" placeholder="Masukkan NIK Kepala Keluarga" name="nik" autocomplete="off" class="form-control bg-white" value="{{ old('nik') ?? session('nik') }}" required />
+						</div>
+						<div class="fv-row mt-2">
 							<label class="fw-bolder mb-1">Nama Lengkap</label>
-							<input type="text" placeholder="Nama Lengkap" name="nama_lengkap" autocomplete="off" class="form-control bg-white" value="{{ old('nama_lengkap') ?? session('nama_lengkap') }}" required />
+							<input type="text" placeholder="Masukkan Nama Lengkap" name="name" autocomplete="off" class="form-control bg-white" value="{{ old('name') ?? session('name') }}" required />
 						</div>
-						<div class="fv-row">
-							<label class="fw-bolder mb-1">Username</label>
-							<input type="text" placeholder="Username" name="username" autocomplete="off" class="form-control bg-white" value="{{ old('username') ?? session('username') }}" required />
-						</div>
-						<div class="fv-row">
+						<div class="fv-row mt-2">
 							<label class="fw-bolder mb-1">Email</label>
-							<input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-white" value="{{ old('email') ?? session('email') }}" required />
+							<input type="text" placeholder="Masukkan Email" name="email" autocomplete="off" class="form-control bg-white" value="{{ old('email') ?? session('email') }}" required />
 						</div>
-						<div class="fv-row">
+						<div class="fv-row mt-2">
 							<div class="row">
 								<div class="col-7">
 									<label class="fw-bolder mb-1">Kata Sandi</label>
 								</div>
 							</div>
-							<input type="password" placeholder="Password" name="password" autocomplete="off" class="form-password bg-white" required />
+							<input type="password" placeholder="Masukkan Kata Sandi" name="password" autocomplete="off" class="form-password bg-white" required />
 						</div>
 						<div class="row">
 							<div class="col-1 mt-1">

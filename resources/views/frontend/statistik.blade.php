@@ -1,4 +1,4 @@
-<section class="container-fluid py-5 bg-young_green" id="whyus">
+<section class="container-fluid py-5 bg-young_green" id="statistik">
   <div class="row">
     <div class="col-12 text-center">
       <h1 class="mb-1 fw-bold mb-5">Statistik</h1>

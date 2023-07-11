@@ -28,6 +28,7 @@ Route::middleware(['afterLogin'])->group(function () {
   Route::get('/login', [AuthController::class, 'index_login'])->name('login');
   Route::post('/login', [AuthController::class, 'login']);
   Route::get('/registrasi', [AuthController::class, 'index_registrasi']);
+  Route::post('/registrasi', [AuthController::class, 'register']);
 });
 Route::post('logout', [AuthController::class, 'logout']);
 

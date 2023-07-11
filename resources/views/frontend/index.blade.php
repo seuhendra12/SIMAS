@@ -39,9 +39,9 @@
         margin: 30,
         center: true,
         nav: true,
-        navText: ["<img src='images/left.svg'>", "<img src='images/right.svg'>"],
+        navText: ["<img class='mt-5 me-3' src={!! asset('/img/icon/left.svg') !!}>", "<img class='mt-5' src={!! asset('/img/icon/right.svg') !!}>"],
         autoplay: true, // Menambahkan opsi autoplay
-        autoplayTimeout: 2000, // Menentukan waktu perpindahan slide (dalam milidetik)
+        autoplayTimeout: 3000, // Menentukan waktu perpindahan slide (dalam milidetik)
         responsive: {
           0: {
             items: 1

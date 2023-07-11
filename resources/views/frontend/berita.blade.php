@@ -1,4 +1,4 @@
-<section class="container-fluid py-5 rounded text-center p-4 bg-white">
+<section class="container-fluid py-5 rounded text-center p-4 bg-white" id="berita">
   <div class="row">
     <div class="col-12 text-center">
       <h1 class="mb-1 fw-bold mb-5">Berita</h1>
@@ -74,7 +74,7 @@
           </div>
         </div>
         <div class="mt-3">
-          <a href="#" class="btn btn-success">Lainnya</a>
+          <a href="#" class="btn btn-success rounded-0">Lainnya</a>
         </div>
       </div>
     </div>
