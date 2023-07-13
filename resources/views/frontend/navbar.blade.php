@@ -29,23 +29,12 @@
           <a class="nav-link text-white fw-bold" href="#kontak">Kontak</a>
         </li>
         @if (Auth::check())
-        <div class="dropdown pt-2 mt-1 ms-3">
-          <div class="d-flex align-items-center" role="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
+        <!-- Button trigger modal -->
+        <div class="d-flex align-items-center ms-3">
+          <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profile">
             <img src="{!! asset('/img/icon/icon_user.jpg') !!}" alt="User Image" class="rounded-circle me-2" style="width: 30px; height: 30px;">
             <span class="text-white fw-bold">{{ Auth::user()->name }}</span>
-          </div>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Profil</a></li>
-            <li>
-              <form action="/logout" method="POST">
-                @csrf
-                <button type="submit" class="dropdown-item" onclick="return confirmLogout()">Logout</button>
-              </form>
-            </li>
-          </ul>
+          </button>
         </div>
         @else
         <li class="nav-item">
@@ -65,8 +54,67 @@
     </div>
   </div>
 </nav>
+
+@if (Auth::check())
+<!-- Modal -->
+<div class="modal fade mt-4" id="profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-green">
+        <h1 class="modal-title fs-5 fw-bold text-white" id="exampleModalLabel">Profile</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body bg-aliceblue">
+        <div class="row">
+          <div class="col-4 mx-auto text-center">
+            <img src="{!! asset('/img/icon/icon_user.jpg') !!}" alt="User Image" class="rounded-circle me-2" style="width: 130px; height: 130px;">
+            <!-- <form action="/logout" method="POST">
+              @csrf
+              <div class="mt-2">
+                <button class="btn btn-danger rounded-circle" type="submit" onclick="return confirm('Apakah yakin ingin keluar ?')"><i class="fas fa-power-off"></i></button>
+              </div>
+            </form> -->
+          </div>
+          <div class="col-8 pt-2">
+            <table>
+              <tr>
+                <td>
+                  <h5 class="text-dark fw-bold">{{ Auth::user()->name }}</h5>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="{!! asset('/img/icon/koin.png') !!}" alt="User Image" class="rounded-circle me-2" style="width: 30px; height: 30px;">
+                  <span class="fw-bold">0 Points</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="{!! asset('/img/icon/sampah.png') !!}" alt="User Image" class="rounded-circle me-2" style="width: 30px; height: 30px;">
+                  <span class="fw-bold">0 Kg Sampah Dikumpulkan</span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col text-center">
+            <div class="btn-group">
+              <a href="/profile" class="btn btn-success rounded-0 fw-semibold me-3"><i class="fas fa-eye me-2"></i>Detail</a>
+              <form action="/logout" method="POST">
+                @csrf
+                <button class="btn btn-danger rounded-0 fw-semibold" type="submit" onclick="return confirm('Apakah yakin ingin keluar ?')"><i class="fas fa-power-off me-2"></i>Keluar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endif
 <script>
-function confirmLogout() {
+  function confirmLogout() {
     return confirm('Yakin ingin keluar?');
-}
+  }
 </script>

@@ -44,14 +44,13 @@ class User extends Authenticatable
     ];
 
     public function scopeFilter($query, array $filters)
-	{
-		$query->when($filters['search'] ?? false, function ($query, $search) {
-			return $query->where('name', 'like', '%' . $search . '%');
-		});
-	}
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        });
+    }
     public function profile()
-{
-    return $this->hasOne(Profile::class);
-}
-
+    {
+        return $this->hasOne(Profile::class);
+    }
 }

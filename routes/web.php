@@ -32,7 +32,7 @@ Route::middleware(['afterLogin'])->group(function () {
 });
 Route::post('logout', [AuthController::class, 'logout']);
 
-Route::middleware(['role:pengelola', 'auth'])->group(function () {
+Route::middleware(['role:Pengelola', 'auth'])->group(function () {
   // Manajemen Pengguna
   Route::resource('/data-pengguna', PenggunaController::class);
   Route::resource('/data-role', RoleController::class);
@@ -40,4 +40,5 @@ Route::middleware(['role:pengelola', 'auth'])->group(function () {
 });
 
 Route::get('/', [FrontendController::class, 'index']);
+Route::get('/profile', [FrontendController::class, 'profile'])->middleware('auth');
 

@@ -1,4 +1,4 @@
-<section class="container-fluid bg-dark text-white py-5">
+<section class="container-fluid bg-dark text-white py-5" id="kontak">
   <div class="container">
     <h1 class="fw-bold">Sistem Informasi Manajemen Sampah</h1>
     <h1 class="fw-bold">Kelurahan Koto Luar</h1>

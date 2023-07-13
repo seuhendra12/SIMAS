@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('profiles', function (Blueprint $table) {
+        Schema::create('rws', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('nik')->unique();
-            $table->string('no_telepon')->nullable();
-            $table->text('alamat')->nullable();
-            $table->string('rt')->nullable();
-            $table->string('rw')->nullable();
+            $table->string('name')->unique()->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('rts');
     }
 };
