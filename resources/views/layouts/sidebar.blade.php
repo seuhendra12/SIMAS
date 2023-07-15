@@ -57,6 +57,12 @@
 								</span>
 								<span class="menu-title">Data RW</span>
 							</a>
+							<a class="menu-link" href="{{url('kategori-sampah')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">Kategori Sampah</span>
+							</a>
 						</div>
 					</div>
 				</div>

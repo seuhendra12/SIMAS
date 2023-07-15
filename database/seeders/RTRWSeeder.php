@@ -17,7 +17,7 @@ class RTRWSeeder extends Seeder
   public function run()
   {
     // Mengisi tabel dengan data RT
-    RT::create([
+    $rtData = [
       ['name' => '01'],
       ['name' => '02'],
       ['name' => '03'],
@@ -28,16 +28,20 @@ class RTRWSeeder extends Seeder
       ['name' => '08'],
       ['name' => '09'],
       ['name' => '10'],
-    ]);
+    ];
+
+    DB::table('rts')->insert($rtData);
 
     // Mengisi tabel dengan data RW
-    RW::create([
+    $rwData = [
       ['name' => 'I'],
       ['name' => 'II'],
       ['name' => 'III'],
       ['name' => 'IV'],
       ['name' => 'V'],
       ['name' => 'VI'],
-    ]);
+    ];
+
+    DB::table('rws')->insert($rwData);
   }
 }

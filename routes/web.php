@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backoffice\AuthController;
 use App\Http\Controllers\Backoffice\DashboardController;
+use App\Http\Controllers\Backoffice\KategoriSampahController;
 use App\Http\Controllers\Backoffice\PenggunaController;
 use App\Http\Controllers\Backoffice\RoleController;
 use App\Http\Controllers\Backoffice\RTController;
@@ -42,6 +43,7 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
   // Data Referensi
   Route::resource('/data-rt', RTController::class);
   Route::resource('/data-rw', RWController::class);
+  Route::resource('/kategori-sampah', KategoriSampahController::class);
 
   // Manajemen Pengguna
   Route::resource('/data-pengguna', PenggunaController::class);
