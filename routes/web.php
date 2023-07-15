@@ -5,6 +5,7 @@ use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\Backoffice\PenggunaController;
 use App\Http\Controllers\Backoffice\RoleController;
 use App\Http\Controllers\Backoffice\RTController;
+use App\Http\Controllers\Backoffice\RWController;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,7 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
   
   // Data Referensi
   Route::resource('/data-rt', RTController::class);
+  Route::resource('/data-rw', RWController::class);
 
   // Manajemen Pengguna
   Route::resource('/data-pengguna', PenggunaController::class);

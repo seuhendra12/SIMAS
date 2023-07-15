@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
+use App\Models\RW;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class RWController extends Controller
 {
@@ -12,9 +14,13 @@ class RWController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $perPage = $request->query('perPage', 10);
+        return view('backoffice.data-referensi.data-rw.index', [
+            'rws' => RW::filter(request(['search']))->paginate($perPage),
+            'perPage' => $perPage
+        ]);
     }
 
     /**
@@ -24,7 +30,7 @@ class RWController extends Controller
      */
     public function create()
     {
-        //
+        return view('backoffice.data-referensi.data-rw.create');
     }
 
     /**
@@ -35,7 +41,22 @@ class RWController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:rts',
+        ], [
+            'name.required' => 'Kolom nama wajib diisi',
+            'name.unique' => 'RT tersebut sudah ada',
+        ]);
+
+        $rw = new RW([
+            'name' => $request->input('name'),
+        ]);
+
+        $rw->save();
+        // Set flash message berhasil
+        Session::flash('success', 'Data RW berhasil ditambah');
+
+        return redirect('/data-rw');
     }
 
     /**
@@ -57,7 +78,10 @@ class RWController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rw = RW::findOrFail($id);
+        return view('backoffice.data-referensi.data-rw.edit', [
+            'rw' => $rw
+        ]);
     }
 
     /**
@@ -69,7 +93,20 @@ class RWController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rw = RW::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|unique:rws',
+        ]);
+
+        $rw->update([
+            'name' => $request->input('name'),
+        ]);
+
+        // Set flash message berhasil
+        Session::flash('success', 'Data RW berhasil diubah');
+
+        return redirect('/data-rw');
     }
 
     /**
@@ -80,6 +117,14 @@ class RWController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rw = RW::findOrFail($id);
+
+        // Hapus data RW
+        $rw->delete();
+
+        // Set flash message berhasil
+        Session::flash('success', 'Data RW berhasil dihapus');
+
+        return redirect('/data-rw');
     }
 }
