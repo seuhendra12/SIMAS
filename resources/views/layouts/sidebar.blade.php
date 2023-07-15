@@ -17,7 +17,7 @@
 	<div class="app-sidebar-menu overflow-hidden flex-column-fluid">
 		<div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer" data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true">
 			<div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
-				<a href="/" class="menu-item active">
+				<a href="/dashboard" class="menu-item active">
 					<span class="menu-link">
 						<span class="menu-icon">
 							<span class="svg-icon svg-icon-2">
@@ -27,7 +27,7 @@
 								</svg>
 							</span>
 						</span>
-						<span class="menu-title">Dasbor</span>
+						<span class="menu-title {{ Route::currentRouteName() === 'dashboard' ? 'text-white' : '' }}">Dasbor</span>
 					</span>
 				</a>
 				<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
@@ -49,7 +49,7 @@
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title">Pengguna</span>
+								<span class="menu-title {{ Request::is('data-pengguna')?'text-white' : '' }}">Pengguna</span>
 							</a>
 							<a class="menu-link" href="{{url('data-role')}}">
 								<span class="menu-bullet">

@@ -36,7 +36,7 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
   // Manajemen Pengguna
   Route::resource('/data-pengguna', PenggunaController::class);
   Route::resource('/data-role', RoleController::class);
-  Route::get('/dashboard', [DashboardController::class, 'index']);
+  Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::get('/', [FrontendController::class, 'index']);

@@ -50,6 +50,27 @@
                 </div>
               </div>
               <div class="mb-3 row">
+                <label for="tempat_lahir" class="col-sm-4 col-form-label">Tempat Lahir</label>
+                <div class="col-sm-7">
+                  <input type="text" value="{{ Auth::user()->profile->tempat_lahir }}" placeholder="Tambahkan Tempat Lahir" class="form-control" id="tempat_lahir">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="tanggal_lahir" class="col-sm-4 col-form-label">Tanggal Lahir</label>
+                <div class="col-sm-7">
+                  <input type="date" value="{{ Auth::user()->profile->tanggal_lahir }}" placeholder="Tambahkan Tanggal Lahir" class="form-control" id="tanggal_lahir">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Jenis Kelamin</label>
+                <div class="col-sm-7">
+                  <select class="form-select" data-control="select2" data-hide-search="true" name="jenis_kelamin">
+                    <option value="L" {{ (Auth::user()->profile->jenis_kelamin === 'L') ? 'selected' : '' }}>Laki-laki</option>
+                    <option value="P" {{ (Auth::user()->profile->jenis_kelamin === 'P') ? 'selected' : '' }}>Perempuan</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-3 row">
                 <label for="email" class="col-sm-4 col-form-label">Email</label>
                 <div class="col-sm-7">
                   <input type="text" value="{{ Auth::user()->email }}" class="form-control" id="email">
@@ -81,7 +102,7 @@
                       <div class="mb-3 row">
                         <label for="rt" class="col-sm-4 col-form-label">RT</label>
                         <div class="col-sm-8">
-                          <input type="text" value="{{ Auth::user()->profile->rt }}" class="form-control" id="rt" placeholder="00">
+                        <input type="text" value="{{ optional(Auth::user()->profile->rt)->name }}" class="form-control" id="rt" placeholder="00">
                         </div>
                       </div>
                     </div>
@@ -89,7 +110,7 @@
                       <div class="mb-3 row">
                         <label for="rw" class="col-sm-4 col-form-label">RW</label>
                         <div class="col-sm-8">
-                          <input type="text" value="{{ Auth::user()->profile->rw }}" class="form-control" id="rw" placeholder="00">
+                        <input type="text" value="{{ optional(Auth::user()->profile->rw)->name }}" class="form-control" id="rt" placeholder="00">
                         </div>
                       </div>
                     </div>

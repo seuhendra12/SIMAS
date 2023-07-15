@@ -19,17 +19,17 @@
             <div class="card card-flush h-md-100">
               <div class="card-body d-flex flex-column justify-content-between bgi-no-repeat bgi-size-cover bgi-position-x-center pb-0">
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-8">
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                       <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Data Pengguna</h1>
                       <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <li class="breadcrumb-item text-muted">
-                          <p class="text-muted text-hover-primary">Data Pengguna Kementerian Komunikasi dan Informatika</p>
+                          <p class="text-muted text-hover-primary">Data Pengguna Pada Sistem Informasi Manajemen Sampah (SIMAS) Kelurahan Koto Luar</p>
                         </li>
                       </ul>
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <div class="d-grid d-md-flex justify-content-md-end">
                       <a href="data-pengguna/create" class="btn btn-sm fw-bold btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-square" viewBox="0 0 16 16">
@@ -41,19 +41,31 @@
                   </div>
                 </div>
                 <div>
-                  @if(session()->has('success'))
-                  <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <i class="fa fa-check"></i> {{session('success')}}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                  @if(Session::has('success'))
+                  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered  w-25">
+                      <div class="modal-content text-center">
+                        <div class="modal-body">
+                          <div class="mb-5">
+                            <img alt="Logo" src="{!! asset('/img/icon/success.png') !!}" class="h-60px h-lg-75px" />
+                            <H5 class="mt-1 fw-bold">SUKSES</H5>
+                          </div class="mb-2">
+                          {{ Session::get('success') }}
+                          <div>
+                            <button type="button" class="btn btn-primary mt-2" data-bs-dismiss="modal" aria-label="Close">
+                              OK
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  @endif
-                  @if($errors->any())
-                  @foreach($errors->all() as $err)
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <i class="fa fa-exclamation-triangle"></i> {{ $err }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                  </div>
-                  @endforeach
+                  <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                      var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+                      myModal.show();
+                    });
+                  </script>
                   @endif
                   <div class="mt-3">
                     <div class="row">
@@ -99,6 +111,14 @@
                           <td>{{$user->email}}</td>
                           <td>{{$user->role}}</td>
                           <td>
+                            <a href="data-pengguna/{{$user->id}}" class="btn btn-purple btn-sm" title="Detail" data-bs-toggle="tooltip">
+                              <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye icon-large" viewBox="0 0 16 16">
+                                  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                </svg>
+                              </span>
+                            </a>
                             <a href="data-pengguna/{{$user->id}}/edit" class="btn btn-yellow btn-sm">
                               <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -132,5 +152,45 @@
       </div>
     </div>
   </div>
+
+
+  <!-- MODAL HAPUS BARU -->
+
+  <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirm-delete-modal-label">Hapus Pengguna</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Apakah kamu yakin ingin menghapus pengguna ini?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <form id="delete-form" action="{{ url('data-pengguna/' . $user->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Hapus</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script Modal Hapus -->
+  <script>
+    // Tangkap id pengguna dari atribut data-user-id saat modal ditampilkan
+    $('#confirm-delete-modal').on('show.bs.modal', function(event) {
+      var button = $(event.relatedTarget);
+      var userId = button.data('user-id');
+
+      // Mengatur id pengguna pada form hapus
+      var deleteForm = document.getElementById('delete-form');
+      deleteForm.action = deleteForm.action.replace('__user_id', userId);
+    });
+  </script>
+
+
 </div>
 @endsection
