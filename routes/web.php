@@ -45,7 +45,7 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
 
   // Manajemen Pengguna
   Route::resource('/data-pengguna', PenggunaController::class);
-  Route::resource('/data-role', RoleController::class);
+  Route::get('/data-role', [RoleController::class,'index']);
 });
 
 Route::get('/', [FrontendController::class, 'index']);

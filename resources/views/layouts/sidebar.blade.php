@@ -85,13 +85,7 @@
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title">Role</span>
-							</a>
-							<a class="menu-link" href="">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title">Permission</span>
+								<span class="menu-title {{ Request::is('data-role')?'text-white' : '' }}">Role</span>
 							</a>
 						</div>
 					</div>
@@ -115,25 +109,37 @@
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title">Halaman</span>
+								<span class="menu-title">Jenis Sampah</span>
 							</a>
-							<a class="menu-link" href="{{url('konten')}}">
+							<a class="menu-link" href="#">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title">Konten</span>
+								<span class="menu-title">Sampah Dikumpulkan</span>
 							</a>
-							<a class="menu-link" href="{{url('galeri')}}">
+							<a class="menu-link" href="#">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title">Galeri</span>
+								<span class="menu-title">Sampah Dimanfaatkan</span>
 							</a>
-							<a class="menu-link" href="{{url('agenda')}}">
+							<a class="menu-link" href="#">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title ">Agenda</span>
+								<span class="menu-title ">Sampah Diolah Internal</span>
+							</a>
+							<a class="menu-link" href="#">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title ">Sampah Diolah Eksternal</span>
+							</a>
+							<a class="menu-link" href="#">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title ">Sampah Dibuang TPA</span>
 							</a>
 						</div>
 					</div>
