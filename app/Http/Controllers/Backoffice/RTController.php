@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
+use App\Models\RT;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class RTController extends Controller
 {
@@ -12,9 +14,13 @@ class RTController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $perPage = $request->query('perPage', 10);
+        return view('backoffice.data-referensi.data-rt.index', [
+            'rts' => RT::filter(request(['search']))->paginate($perPage),
+            'perPage' => $perPage
+        ]);
     }
 
     /**
@@ -24,7 +30,7 @@ class RTController extends Controller
      */
     public function create()
     {
-        //
+        return view('backoffice.data-referensi.data-rt.create');
     }
 
     /**
@@ -35,7 +41,22 @@ class RTController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:rts',
+        ], [
+            'name.required' => 'Kolom nama wajib diisi',
+            'name.unique' => 'RT tersebut sudah ada',
+        ]);
+
+        $rt = new RT([
+            'name' => $request->input('name'),
+        ]);
+
+        $rt->save();
+        // Set flash message berhasil
+        Session::flash('success', 'Data RT berhasil ditambah');
+
+        return redirect('/data-rt');
     }
 
     /**
@@ -57,7 +78,10 @@ class RTController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rt = RT::findOrFail($id);
+        return view('backoffice.data-referensi.data-rt.edit', [
+            'rt' => $rt
+        ]);
     }
 
     /**
@@ -69,7 +93,20 @@ class RTController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rt = RT::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|unique:rts',
+        ]);
+
+        $rt->update([
+            'name' => $request->input('name'),
+        ]);
+
+        // Set flash message berhasil
+        Session::flash('success', 'Data RT berhasil diubah');
+
+        return redirect('/data-rt');
     }
 
     /**
@@ -80,6 +117,14 @@ class RTController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rt = RT::findOrFail($id);
+
+        // Hapus data RT
+        $rt->delete();
+
+        // Set flash message berhasil
+        Session::flash('success', 'Data RT berhasil dihapus');
+
+        return redirect('/data-rt');
     }
 }

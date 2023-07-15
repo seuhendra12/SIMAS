@@ -4,6 +4,7 @@ use App\Http\Controllers\Backoffice\AuthController;
 use App\Http\Controllers\Backoffice\DashboardController;
 use App\Http\Controllers\Backoffice\PenggunaController;
 use App\Http\Controllers\Backoffice\RoleController;
+use App\Http\Controllers\Backoffice\RTController;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,11 +33,17 @@ Route::middleware(['afterLogin'])->group(function () {
 });
 Route::post('logout', [AuthController::class, 'logout']);
 
+
+
 Route::middleware(['role:Pengelola', 'auth'])->group(function () {
+  Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+  
+  // Data Referensi
+  Route::resource('/data-rt', RTController::class);
+
   // Manajemen Pengguna
   Route::resource('/data-pengguna', PenggunaController::class);
   Route::resource('/data-role', RoleController::class);
-  Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::get('/', [FrontendController::class, 'index']);

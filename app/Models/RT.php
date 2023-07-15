@@ -17,4 +17,10 @@ class RT extends Model
         return $this->hasMany(Profile::class, 'rt_id');
     }
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        });
+    }
 }
