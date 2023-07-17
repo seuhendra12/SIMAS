@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
+use App\Models\JenisSampah;
 use App\Models\KategoriSampah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class KategoriSampahController extends Controller
+class JenisSampahController extends Controller
 {
   /**
    * Display a listing of the resource.
@@ -17,9 +18,11 @@ class KategoriSampahController extends Controller
   public function index(Request $request)
   {
     $perPage = $request->query('perPage', 10);
-    return view('backoffice.data-referensi.kategori-sampah.index', [
-      'kategoriSampahs' => KategoriSampah::filter(request(['search']))->paginate($perPage),
-      'perPage' => $perPage
+    $kategoriSampah = KategoriSampah::get();
+    return view('backoffice.manajemen-sampah.jenis-sampah.index', [
+      'jenisSampahs' => JenisSampah::filter(request(['search']))->paginate($perPage),
+      'perPage' => $perPage,
+      'kategoriSampahs' => $kategoriSampah,
     ]);
   }
 
@@ -30,7 +33,10 @@ class KategoriSampahController extends Controller
    */
   public function create()
   {
-    return view('backoffice.data-referensi.kategori-sampah.create');
+    $kategoriSampahs = KategoriSampah::get();
+    return view('backoffice.manajemen-sampah.jenis-sampah.create', [
+      'kategoriSampahs' => $kategoriSampahs
+    ]);
   }
 
   /**
@@ -42,24 +48,23 @@ class KategoriSampahController extends Controller
   public function store(Request $request)
   {
     $request->validate([
-      'name' => 'required|unique:kategori_sampahs',
-      'deskripsi' => 'required',
+      'name' => 'required|unique:jenis_sampahs',
+      'kategori_sampah' => 'required',
     ], [
       'name.required' => 'Kolom nama wajib diisi',
       'name.unique' => 'RT tersebut sudah ada',
-      'deskripsi.required' => 'Kolom deskripsi wajib diisi',
     ]);
 
-    $kategoriSampah = new KategoriSampah([
+    $jenisSampah = new JenisSampah([
       'name' => $request->input('name'),
-      'deskripsi' => $request->input('deskripsi'),
+      'kategori_sampah_id' => $request->input('kategori_sampah'),
     ]);
 
-    $kategoriSampah->save();
+    $jenisSampah->save();
     // Set flash message berhasil
-    Session::flash('success', 'Data kategori sampah berhasil ditambah');
+    Session::flash('success', 'Data jenis sampah berhasil ditambah');
 
-    return redirect('/kategori-sampah');
+    return redirect('/jenis-sampah');
   }
 
   /**
@@ -70,7 +75,7 @@ class KategoriSampahController extends Controller
    */
   public function show($id)
   {
-    // 
+    //
   }
 
   /**
@@ -81,9 +86,10 @@ class KategoriSampahController extends Controller
    */
   public function edit($id)
   {
-    $kategoriSampah = KategoriSampah::findOrFail($id);
-    return view('backoffice.data-referensi.kategori-sampah.edit', [
-      'kategoriSampah' => $kategoriSampah
+    $jenisSampah = JenisSampah::findOrFail($id);
+    return view('backoffice.manajemen-sampah.jenis-sampah.edit', [
+      'jenisSampah' => $jenisSampah,
+      'kategoriSampahs' => KategoriSampah::get()
     ]);
   }
 
@@ -96,22 +102,21 @@ class KategoriSampahController extends Controller
    */
   public function update(Request $request, $id)
   {
-    $kategoriSampah = KategoriSampah::findOrFail($id);
-
+    $jenisSampah = JenisSampah::findOrFail($id);
     $request->validate([
       'name' => 'required',
-      'deskripsi' => 'required',
+      'kategori_sampah' => 'required',
     ]);
 
-    $kategoriSampah->update([
+    $jenisSampah->update([
       'name' => $request->input('name'),
-      'deskripsi' => $request->input('deskripsi'),
+      'kategori_sampah_id' => $request->input('kategori_sampah'),
     ]);
 
     // Set flash message berhasil
-    Session::flash('success', 'Data kategori sampah berhasil diubah');
+    Session::flash('success', 'Data jenis sampah berhasil diubah');
 
-    return redirect('/kategori-sampah');
+    return redirect('/jenis-sampah');
   }
 
   /**
@@ -122,14 +127,14 @@ class KategoriSampahController extends Controller
    */
   public function destroy($id)
   {
-    $kategoriSampah = KategoriSampah::findOrFail($id);
+    $jenisSampah = JenisSampah::findOrFail($id);
 
     // Hapus data Kategori Sampah
-    $kategoriSampah->delete();
+    $jenisSampah->delete();
 
     // Set flash message berhasil
-    Session::flash('success', 'Data kategori sampah berhasil dihapus');
+    Session::flash('success', 'Data jenis sampah berhasil dihapus');
 
-    return redirect('/kategori-sampah');
+    return redirect('/jenis-sampah');
   }
 }

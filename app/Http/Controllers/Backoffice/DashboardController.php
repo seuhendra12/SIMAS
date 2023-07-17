@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
+use App\Models\JenisSampah;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
   public function index()
   {
-    return view('backoffice.index');
+    return view('backoffice.index',[
+      'jenis_sampah' => JenisSampah::get()
+    ]);
   }
 }

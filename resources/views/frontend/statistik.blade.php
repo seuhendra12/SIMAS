@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h3 class="card-title mt-3 fw-bold">13</h3>
+                <h3 class="card-title mt-3 fw-bold">{{$jenis_sampah->count()}}</h3>
                 <p class="card-text fw-bold text-white">Jenis Sampah</p>
               </div>
             </div>

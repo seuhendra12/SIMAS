@@ -55,13 +55,13 @@
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title">Data RW</span>
+								<span class="menu-title {{ Request::is('data-rw')?'text-white' : '' }}">Data RW</span>
 							</a>
 							<a class="menu-link" href="{{url('kategori-sampah')}}">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title">Kategori Sampah</span>
+								<span class="menu-title {{ Request::is('kategori-sampah')?'text-white' : '' }}">Kategori Sampah</span>
 							</a>
 						</div>
 					</div>
@@ -111,11 +111,11 @@
 					</span>
 					<div class="menu-sub menu-sub-accordion">
 						<div class="menu-item">
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="{{url('jenis-sampah')}}">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title">Jenis Sampah</span>
+								<span class="menu-title {{ Request::is('jenis-sampah')?'text-white' : '' }}">Jenis Sampah</span>
 							</a>
 							<a class="menu-link" href="#">
 								<span class="menu-bullet">

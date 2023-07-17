@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backoffice\AuthController;
 use App\Http\Controllers\Backoffice\DashboardController;
+use App\Http\Controllers\Backoffice\JenisSampahController;
 use App\Http\Controllers\Backoffice\KategoriSampahController;
 use App\Http\Controllers\Backoffice\PenggunaController;
 use App\Http\Controllers\Backoffice\RoleController;
@@ -48,6 +49,7 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
   // Manajemen Pengguna
   Route::resource('/data-pengguna', PenggunaController::class);
   Route::get('/data-role', [RoleController::class,'index']);
+  Route::resource('/jenis-sampah', JenisSampahController::class);
 });
 
 Route::get('/', [FrontendController::class, 'index']);
