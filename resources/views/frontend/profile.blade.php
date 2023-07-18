@@ -31,7 +31,55 @@
         <span class="fw-bold text-white">Profile User</span>
       </div>
       <div class="card-body bg-light px-3">
-        <form action="">
+        @if(Session::has('success'))
+        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered  w-25">
+            <div class="modal-content text-center">
+              <div class="modal-body">
+                <div class="mb-5">
+                  <img alt="Logo" src="{!! asset('/img/icon/success.png') !!}" class="h-60px h-lg-75px" style="width: 100px; height: 120px;"/>
+                  <H5 class="mt-1 fw-bold">SUKSES</H5>
+                </div class="">
+                {{ Session::get('success') }}
+                <div>
+                  <button type="button" class="btn btn-primary mt-2" data-bs-dismiss="modal" aria-label="Close">
+                    OK
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+            myModal.show();
+          });
+        </script>
+        @endif
+        @if ($errors->any())
+        <div id="notification" class="alert alert-danger" style="display: none;">
+          <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+        <script>
+          // Tampilkan notifikasi saat halaman dimuat
+          document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('notification').style.display = 'block';
+
+            // Atur waktu penghilangan notifikasi setelah 3 detik
+            setTimeout(function() {
+              document.getElementById('notification').style.display = 'none';
+            }, 5000);
+          });
+        </script>
+        @endif
+        <form action="/simpan_profile/{{ Auth::user()->id }}" method="POST">
+          @method('put')
+          @csrf
           <div class="row">
             <div class="col-4 mx-auto text-center">
               <img src="{!! asset('/img/icon/icon_user.jpg') !!}" alt="User Image" class="rounded-circle me-2" style="width: 150px; height: 150px;">
@@ -40,25 +88,25 @@
               <div class="mb-3 row">
                 <label for="nik" class="col-sm-4 col-form-label">NIK</label>
                 <div class="col-sm-7">
-                  <input type="text" value="{{ Auth::user()->profile->nik ? Auth::user()->profile->nik : '' }}" class="form-control" id="nik" placeholder="Tambahkan NIK">
+                  <input type="text" value="{{ Auth::user()->profile->nik ? Auth::user()->profile->nik : '' }}" class="form-control" id="nik" placeholder="Tambahkan NIK" name="nik">
                 </div>
               </div>
               <div class="mb-3 row">
                 <label for="name" class="col-sm-4 col-form-label">Nama Lengkap</label>
                 <div class="col-sm-7">
-                  <input type="text" value="{{ Auth::user()->name }}" class="form-control" id="name">
+                  <input type="text" name="name" value="{{ Auth::user()->name }}" class="form-control" id="name">
                 </div>
               </div>
               <div class="mb-3 row">
                 <label for="tempat_lahir" class="col-sm-4 col-form-label">Tempat Lahir</label>
                 <div class="col-sm-7">
-                  <input type="text" value="{{ Auth::user()->profile->tempat_lahir }}" placeholder="Tambahkan Tempat Lahir" class="form-control" id="tempat_lahir">
+                  <input type="text" value="{{ Auth::user()->profile->tempat_lahir }}" placeholder="Tambahkan Tempat Lahir" class="form-control" id="tempat_lahir" name="tempat_lahir">
                 </div>
               </div>
               <div class="mb-3 row">
                 <label for="tanggal_lahir" class="col-sm-4 col-form-label">Tanggal Lahir</label>
                 <div class="col-sm-7">
-                  <input type="date" value="{{ Auth::user()->profile->tanggal_lahir }}" placeholder="Tambahkan Tanggal Lahir" class="form-control" id="tanggal_lahir">
+                  <input type="date" value="{{ Auth::user()->profile->tanggal_lahir }}" placeholder="Tambahkan Tanggal Lahir" name="tanggal_lahir" class="form-control" id="tanggal_lahir">
                 </div>
               </div>
               <div class="row mb-3">
@@ -73,19 +121,13 @@
               <div class="mb-3 row">
                 <label for="email" class="col-sm-4 col-form-label">Email</label>
                 <div class="col-sm-7">
-                  <input type="text" value="{{ Auth::user()->email }}" class="form-control" id="email">
-                </div>
-              </div>
-              <div class="mb-3 row">
-                <label for="role" class="col-sm-4 col-form-label">Role</label>
-                <div class="col-sm-7">
-                  <input type="text" value="{{ Auth::user()->role }}" class="form-control" id="role">
+                  <input type="text" name="email" value="{{ Auth::user()->email }}" class="form-control" id="email">
                 </div>
               </div>
               <div class="mb-3 row">
                 <label for="no_telepon" class="col-sm-4 col-form-label">No telepon</label>
                 <div class="col-sm-7">
-                  <input type="text" value="{{ Auth::user()->profile->no_telepon }}" class="form-control" id="no_telepon" placeholder="Tambahkan No Telepon">
+                  <input type="text" value="{{ Auth::user()->profile->no_telepon }}" class="form-control" id="no_telepon" placeholder="Tambahkan No Telepon" name="no_telepon">
                 </div>
               </div>
               <div class="mb-3 row">
@@ -102,7 +144,11 @@
                       <div class="mb-3 row">
                         <label for="rt" class="col-sm-4 col-form-label">RT</label>
                         <div class="col-sm-8">
-                        <input type="text" value="{{ optional(Auth::user()->profile->rt)->name }}" class="form-control" id="rt" placeholder="00">
+                          <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih RT" name="rt">
+                            @foreach ($rts as $rt)
+                            <option value="{{$rt->id}}">{{$rt->name}}</option>
+                            @endforeach
+                          </select>
                         </div>
                       </div>
                     </div>
@@ -110,7 +156,11 @@
                       <div class="mb-3 row">
                         <label for="rw" class="col-sm-4 col-form-label">RW</label>
                         <div class="col-sm-8">
-                        <input type="text" value="{{ optional(Auth::user()->profile->rw)->name }}" class="form-control" id="rt" placeholder="00">
+                          <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih RW" name="rw">
+                            @foreach ($rws as $rw)
+                            <option value="{{$rw->id}}">{{$rw->name}}</option>
+                            @endforeach
+                          </select>
                         </div>
                       </div>
                     </div>

@@ -100,7 +100,7 @@
         <div class="row mt-4">
           <div class="col text-center">
             <div class="btn-group">
-              <a href="/profile" class="btn btn-success rounded-0 fw-semibold me-3"><i class="fas fa-eye me-2"></i>Detail</a>
+              <a href="/profile/{{ Auth::user()->id }}" class="btn btn-success rounded-0 fw-semibold me-3"><i class="fas fa-eye me-2"></i>Detail</a>
               <form action="/logout" method="POST">
                 @csrf
                 <button class="btn btn-danger rounded-0 fw-semibold" type="submit" onclick="return confirm('Apakah yakin ingin keluar ?')"><i class="fas fa-power-off me-2"></i>Keluar</button>

@@ -121,7 +121,7 @@
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title">Pengumpulan Sampah</span>
+								<span class="menu-title {{ Request::is('transaksi-sampah')?'text-white' : '' }}">Transaksi Sampah</span>
 							</a>
 							<a class="menu-link" href="#">
 								<span class="menu-bullet">

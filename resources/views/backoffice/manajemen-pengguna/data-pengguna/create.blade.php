@@ -113,7 +113,7 @@
 													<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 														<span class="required">RT</span>
 													</label>
-													<select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih Role Pengguna" name="rt">
+													<select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih RT" name="rt">
 														@foreach ($rts as $rt)
 														<option value="{{$rt->id}}">{{$rt->name}}</option>
 														@endforeach
@@ -123,7 +123,7 @@
 													<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 														<span class="required">RW</span>
 													</label>
-													<select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih Role Pengguna" name="rw">
+													<select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih RW" name="rw">
 														@foreach ($rws as $rw)
 														<option value="{{$rw->id}}">{{$rw->name}}</option>
 														@endforeach
