@@ -121,7 +121,7 @@
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title">Sampah Dikumpulkan</span>
+								<span class="menu-title">Pengumpulan Sampah</span>
 							</a>
 							<a class="menu-link" href="#">
 								<span class="menu-bullet">
