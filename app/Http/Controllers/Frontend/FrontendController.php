@@ -69,6 +69,6 @@ class FrontendController extends Controller
     // Set flash message berhasil
     Session::flash('success', 'Profile berhasil disimpan');
 
-    return redirect('/profile/'.$id);
+    return redirect('/');
   }
 }

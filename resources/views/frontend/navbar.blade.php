@@ -68,12 +68,6 @@
         <div class="row">
           <div class="col-4 mx-auto text-center">
             <img src="{!! asset('/img/icon/icon_user.jpg') !!}" alt="User Image" class="rounded-circle me-2" style="width: 130px; height: 130px;">
-            <!-- <form action="/logout" method="POST">
-              @csrf
-              <div class="mt-2">
-                <button class="btn btn-danger rounded-circle" type="submit" onclick="return confirm('Apakah yakin ingin keluar ?')"><i class="fas fa-power-off"></i></button>
-              </div>
-            </form> -->
           </div>
           <div class="col-8 pt-2">
             <table>

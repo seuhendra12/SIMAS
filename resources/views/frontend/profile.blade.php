@@ -31,32 +31,6 @@
         <span class="fw-bold text-white">Profile User</span>
       </div>
       <div class="card-body bg-light px-3">
-        @if(Session::has('success'))
-        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered  w-25">
-            <div class="modal-content text-center">
-              <div class="modal-body">
-                <div class="mb-5">
-                  <img alt="Logo" src="{!! asset('/img/icon/success.png') !!}" class="h-60px h-lg-75px" style="width: 100px; height: 120px;"/>
-                  <H5 class="mt-1 fw-bold">SUKSES</H5>
-                </div class="">
-                {{ Session::get('success') }}
-                <div>
-                  <button type="button" class="btn btn-primary mt-2" data-bs-dismiss="modal" aria-label="Close">
-                    OK
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            var myModal = new bootstrap.Modal(document.getElementById('successModal'));
-            myModal.show();
-          });
-        </script>
-        @endif
         @if ($errors->any())
         <div id="notification" class="alert alert-danger" style="display: none;">
           <ul>
@@ -144,9 +118,11 @@
                       <div class="mb-3 row">
                         <label for="rt" class="col-sm-4 col-form-label">RT</label>
                         <div class="col-sm-8">
-                          <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih RT" name="rt">
+                          <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih RT Pengguna" name="rt">
                             @foreach ($rts as $rt)
-                            <option value="{{$rt->id}}">{{$rt->name}}</option>
+                            <option value="{{ $rt->id }}" {{ (old('rt', Auth::user()->profile->rt_id) == $rt->id) ? 'selected' : '' }}>
+                              {{ $rt->name }}
+                            </option>
                             @endforeach
                           </select>
                         </div>
@@ -156,9 +132,11 @@
                       <div class="mb-3 row">
                         <label for="rw" class="col-sm-4 col-form-label">RW</label>
                         <div class="col-sm-8">
-                          <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih RW" name="rw">
+                          <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih RW Pengguna" name="rw">
                             @foreach ($rws as $rw)
-                            <option value="{{$rw->id}}">{{$rw->name}}</option>
+                            <option value="{{ $rw->id }}" {{ (old('rw', Auth::user()->profile->rw_id) == $rw->id) ? 'selected' : '' }}>
+                              {{ $rw->name }}
+                            </option>
                             @endforeach
                           </select>
                         </div>
