@@ -8,6 +8,7 @@ use App\Http\Controllers\Backoffice\PenggunaController;
 use App\Http\Controllers\Backoffice\RoleController;
 use App\Http\Controllers\Backoffice\RTController;
 use App\Http\Controllers\Backoffice\RWController;
+use App\Http\Controllers\Backoffice\TransaksiSampahController;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,7 +50,10 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
   // Manajemen Pengguna
   Route::resource('/data-pengguna', PenggunaController::class);
   Route::get('/data-role', [RoleController::class,'index']);
+
+  // Manajemen Sampah
   Route::resource('/jenis-sampah', JenisSampahController::class);
+  Route::resource('/transaksi-sampah', TransaksiSampahController::class);
 });
 
 Route::get('/', [FrontendController::class, 'index']);

@@ -99,6 +99,7 @@
                           <th scope="col">No</th>
                           <th scope="col">Jenis Sampah</th>
                           <th scope="col">Kategori Sampah</th>
+                          <th scope="col">Point per Kilogram</th>
                           <th scope="col">Aksi</th>
                         </tr>
                       </thead>
@@ -108,6 +109,7 @@
                           <td class="align-top">{{$loop->iteration}}</td>
                           <td class="align-top">{{$jenisSampah->name}}</td>
                           <td class="align-middle">{{$jenisSampah->kategoriSampah->name}}</td>
+                          <td class="align-middle">{{$jenisSampah->point_perkg}}</td>
                           <td>
                             <a href="jenis-sampah/{{$jenisSampah->id}}/edit" class="btn btn-yellow btn-sm">
                               <span>
@@ -126,7 +128,7 @@
                           </td>
                         </tr>
                         @empty
-                        <td colspan="4" class="text-center bg-danger">-- Data Tidak Ada --</td>
+                        <td colspan="5" class="text-center bg-danger">-- Data Tidak Ada --</td>
                         @endforelse
                       </tbody>
                     </table>
