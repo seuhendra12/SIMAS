@@ -8,6 +8,15 @@
       <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
           <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Data Jenis Sampah</h1>
+          <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7">
+            <li class="breadcrumb-item text-muted">
+              <a href="{{url('jenis-sampah')}}" class="text-muted text-hover-primary">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <span class="bullet bg-gray-400 w-5px h-2px"></span>
+            </li>
+            <li class="breadcrumb-item text-muted">Tambah Data Jenis Sampah</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -18,7 +27,7 @@
             <div class="card card-flush h-md-100">
               <div class="card-body d-flex flex-column justify-content-between bgi-no-repeat bgi-size-cover bgi-position-x-center pb-0">
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-                  <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Tambah Data Jenis Sampah</h1>
+                  <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0 text-center">Form Tambah Data Jenis Sampah</h1>
                 </div>
                 <hr>
                 <div>
@@ -64,11 +73,11 @@
                       </label>
                       <input type="text" class="form-control" placeholder="Masukkan Jenis Sampah" name="name" />
                     </div>
-                    <div class="d-flex flex-column mb-3 fv-row">
+                    <div class="d-flex flex-column mb-8 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span class="required">Point Per Kilogram</span>
                       </label>
-                      <input type="text" class="form-control" placeholder="Masukkan jumlah point per kilogram" name="point_perkg" />
+                      <input type="text" class="form-control" placeholder="Masukkan Jumlah Point per Kilogram" name="point_perkg" />
                     </div>
                     <div class="mb-10">
                       <button type="submit" class="btn btn-primary btn-sm">

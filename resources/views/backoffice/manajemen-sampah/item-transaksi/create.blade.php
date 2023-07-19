@@ -8,6 +8,15 @@
       <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
           <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Data Item Transaksi</h1>
+          <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7">
+            <li class="breadcrumb-item text-muted">
+              <a href="{{url('transaksi-sampah')}}" class="text-muted text-hover-primary">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <span class="bullet bg-gray-400 w-5px h-2px"></span>
+            </li>
+            <li class="breadcrumb-item text-muted">Tambah Data Item Transaksi</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -18,7 +27,7 @@
             <div class="card card-flush h-md-100">
               <div class="card-body d-flex flex-column justify-content-between bgi-no-repeat bgi-size-cover bgi-position-x-center pb-0">
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-                  <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Tambah Data Item Transaksi</h1>
+                  <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0 text-center">Form Tambah Data Item Transaksi</h1>
                 </div>
                 <hr>
                 <div>
@@ -64,7 +73,7 @@
                         @endforeach
                       </select>
                     </div>
-                    <div class="d-flex flex-column mb-3 fv-row">
+                    <div class="d-flex flex-column mb-8 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span class="required">Berat Sampah</span>
                       </label>

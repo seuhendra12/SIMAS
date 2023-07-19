@@ -9,6 +9,7 @@ use App\Models\KategoriSampah;
 use App\Models\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class TransaksiSampahController extends Controller
@@ -85,18 +86,23 @@ class TransaksiSampahController extends Controller
     {
         $transaksiSampah = Transaksi::findOrFail($id);
         $perPage = $request->query('perPage', 10);
-
-        // Mengambil hanya item transaksi yang sesuai dengan ID transaksi yang diberikan
-        $itemTransaksis = ItemTransaksi::where('transaksi_id', $id)
-            ->orderBy('created_at', 'desc')
+        // Mengambil item transaksi dan melakukan agregasi berat berdasarkan jenis sampah
+        $itemTransaksis = ItemTransaksi::with('jenisSampah')
+            ->where('transaksi_id', $id)
+            ->select('jenis-sampah_id')
+            ->selectRaw('SUM(berat) as jumlah_berat')
+            ->selectRaw('SUM(point) as jumlah_point')
+            ->groupBy('jenis-sampah_id')
+            ->orderBy('jenis-sampah_id') // Urutkan berdasarkan jenis_sampah_id
             ->paginate($perPage);
 
         return view('backoffice.manajemen-sampah.item-transaksi.index', [
             'transaksiSampahs' => $transaksiSampah,
-            'perPage' => $perPage,
             'itemTransaksis' => $itemTransaksis,
+            'perPage' => $perPage
         ]);
     }
+
 
 
     /**
