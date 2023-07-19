@@ -11,11 +11,11 @@ class Transaksi extends Model
     protected $guarded = [];
 
     public function scopeFilter($query, array $filters)
-    {
-        $query->when($filters['search'] ?? false, function ($query, $search) {
-            return $query->where('name', 'like', '%' . $search . '%');
-        });
-    }
+{
+    $query->when($filters['search'] ?? false, function ($query, $tanggalTransaksi) {
+        $query->whereDate('tanggal_transaksi', $tanggalTransaksi);
+    });
+}
 
     public function user()
     {
@@ -23,4 +23,9 @@ class Transaksi extends Model
     }
 
     protected $dates = ['tanggal_transaksi'];
+
+    public function items()
+    {
+        return $this->hasOne(ItemTransaksi::class);
+    }
 }

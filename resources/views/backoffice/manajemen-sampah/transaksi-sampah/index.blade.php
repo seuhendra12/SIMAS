@@ -82,12 +82,15 @@
                       </div>
                       <div class="col-6 d-grid d-md-flex justify-content-md-end mb-3">
                         <form class="form" action="/transaksi-sampah">
-                          <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="search" class="form-control float-right rounded-0" id="search" placeholder="Search" value="{{ request('search') }}">
-                            <div class="input-group-append">
-                              <button type="submit" class="btn btn-secondary rounded-0">
-                                <i class="fas fa-search"></i>
-                              </button>
+                          <div class="d-flex d-inline">
+                            <span class="fw-bold mt-4 me-2">Tanggal Transaksi : </span>
+                            <div class="input-group input-group-sm" style="width: 180px;">
+                              <input type="date" name="search" class="form-control float-right rounded-0" id="search" placeholder="Search" value="{{ request('search') }}">
+                              <div class="input-group-append">
+                                <button type="submit" class="btn btn-secondary rounded-0">
+                                  <i class="fas fa-search"></i>
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </form>
@@ -121,7 +124,15 @@
                             {{ $transaksiSampah->total_point !== null ? $transaksiSampah->total_point : 0 }} Point
                           </td>
                           <td>
-                            <a href="item-transaksi/create" class="btn btn-yellow btn-sm">
+                            <a href="transaksi-sampah/{{$transaksiSampah->id}}" class="btn btn-purple btn-sm" title="Detail" data-bs-toggle="tooltip">
+                              <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye icon-large" viewBox="0 0 16 16">
+                                  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 shh0 0 1-7 0z" />
+                                </svg>
+                              </span>
+                            </a>
+                            <a href="item-transaksi/{{$transaksiSampah->id}}/create" class="btn btn-info btn-sm">
                               <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
                                   <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z" />

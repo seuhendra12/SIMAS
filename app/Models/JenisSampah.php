@@ -18,7 +18,7 @@ class JenisSampah extends Model
   }
 
   public function kategoriSampah()
-    {
-        return $this->belongsTo(KategoriSampah::class, 'kategori_sampah_id');
-    }
+  {
+    return $this->belongsTo(KategoriSampah::class, 'kategori_sampah_id');
+  }
 }

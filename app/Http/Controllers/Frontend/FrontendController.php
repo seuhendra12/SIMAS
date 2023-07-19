@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\JenisSampah;
 use App\Models\RT;
 use App\Models\RW;
+use App\Models\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -16,7 +17,8 @@ class FrontendController extends Controller
   public function index()
   {
     return view('frontend.index',[
-      'jenis_sampah' => JenisSampah::get()
+      'jenis_sampah' => JenisSampah::get(),
+      'transaksi_sampah' =>Transaksi::get(),
     ]);
   }
   public function profile()

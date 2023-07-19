@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
+use App\Models\ItemTransaksi;
 use App\Models\JenisSampah;
 use App\Models\KategoriSampah;
 use App\Models\Transaksi;
@@ -21,12 +22,14 @@ class TransaksiSampahController extends Controller
     {
         $perPage = $request->query('perPage', 10);
 
-
         return view('backoffice.manajemen-sampah.transaksi-sampah.index', [
-            'transaksiSampahs' => Transaksi::filter(request(['search']))->paginate($perPage),
+            'transaksiSampahs' => Transaksi::filter(request(['search']))
+                ->orderBy('transaksis.created_at', 'desc') // Menampilkan data terbaru berdasarkan tanggal transaksi di tabel Transaksi
+                ->paginate($perPage),
             'perPage' => $perPage,
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -53,23 +56,23 @@ class TransaksiSampahController extends Controller
             'kode_transaksi' => 'required|unique:transaksis',
             'user_id' => 'required',
             'tanggal_transaksi' => 'required',
-          ], [
+        ], [
             'kode_transaksi.required' => 'Kolom kode transaksi wajib diisi',
             'user_id.required' => 'Kolom user id wajib diisi',
             'tanggal_transaksi.required' => 'Kolom tanggal wajib diisi',
-          ]);
-      
-          $transaksiSampah = new Transaksi([
+        ]);
+
+        $transaksiSampah = new Transaksi([
             'kode_transaksi' => $request->input('kode_transaksi'),
             'user_id' => $request->input('user_id'),
             'tanggal_transaksi' => $request->input('tanggal_transaksi'),
-          ]);
-      
-          $transaksiSampah->save();
-          // Set flash message berhasil
-          Session::flash('success', 'Data  sampah berhasil ditambah');
-      
-          return redirect('/transaksi-sampah');
+        ]);
+
+        $transaksiSampah->save();
+        // Set flash message berhasil
+        Session::flash('success', 'Data transaksi berhasil ditambah');
+
+        return redirect('/transaksi-sampah');
     }
 
     /**
@@ -78,10 +81,23 @@ class TransaksiSampahController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        $transaksiSampah = Transaksi::findOrFail($id);
+        $perPage = $request->query('perPage', 10);
+
+        // Mengambil hanya item transaksi yang sesuai dengan ID transaksi yang diberikan
+        $itemTransaksis = ItemTransaksi::where('transaksi_id', $id)
+            ->orderBy('created_at', 'desc')
+            ->paginate($perPage);
+
+        return view('backoffice.manajemen-sampah.item-transaksi.index', [
+            'transaksiSampahs' => $transaksiSampah,
+            'perPage' => $perPage,
+            'itemTransaksis' => $itemTransaksis,
+        ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
