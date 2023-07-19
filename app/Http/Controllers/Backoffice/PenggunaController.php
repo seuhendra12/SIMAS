@@ -229,14 +229,26 @@ class PenggunaController extends Controller
   public function destroy($id)
   {
     $user = User::findOrFail($id);
-    
+
     // Lakukan aksi penghapusan pengguna
-    
+
     $user->delete();
-    
+
     // Set flash message berhasil
     Session::flash('success', 'Pengguna berhasil dihapus');
 
     return redirect('/data-pengguna');
+  }
+
+  public function getUserName(Request $request)
+  {
+    $userId = $request->input('user_id');
+    $user = User::find($userId);
+
+    if ($user) {
+      return response()->json(['name' => $user->name]);
+    } else {
+      return response()->json(['name' => null]);
+    }
   }
 }

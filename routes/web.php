@@ -48,6 +48,7 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
   Route::resource('/kategori-sampah', KategoriSampahController::class);
 
   // Manajemen Pengguna
+  Route::get('/get-user-name', [PenggunaController::class,'getUserName'])->name('getUserName');
   Route::resource('/data-pengguna', PenggunaController::class);
   Route::get('/data-role', [RoleController::class,'index']);
 

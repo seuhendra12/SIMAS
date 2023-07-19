@@ -117,7 +117,7 @@
 								</span>
 								<span class="menu-title {{ Request::is('jenis-sampah')?'text-white' : '' }}">Jenis Sampah</span>
 							</a>
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="{{url('transaksi-sampah')}}">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>

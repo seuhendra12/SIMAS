@@ -15,7 +15,14 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_transaksi')->unique()->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->date('tanggal_transaksi')->nullable();
+            $table->bigInteger('total_berat')->nullable();
+            $table->bigInteger('total_point')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
