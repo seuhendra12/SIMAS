@@ -69,7 +69,7 @@
           <div class="col-4 mx-auto text-center">
             <img src="{!! asset('/img/icon/icon_user.jpg') !!}" alt="User Image" class="rounded-circle me-2" style="width: 130px; height: 130px;">
           </div>
-          <div class="col-8 pt-2">
+          <div class="col-8">
             <table>
               <tr>
                 <td>
@@ -95,11 +95,12 @@
         <div class="row mt-4">
           <div class="col text-center">
             <div class="btn-group">
-              <a href="/profile/{{ Auth::user()->id }}" class="btn btn-success rounded-0 fw-semibold me-3"><i class="fas fa-eye me-2"></i>Detail</a>
+              <a href="/profile/{{ Auth::user()->id }}" class="btn btn-success rounded-0 fw-semibold"><i class="fas fa-eye me-2"></i>Detail</a>
               <form action="/logout" method="POST">
                 @csrf
-                <button class="btn btn-danger rounded-0 fw-semibold" type="submit" onclick="return confirm('Apakah yakin ingin keluar ?')"><i class="fas fa-power-off me-2"></i>Keluar</button>
+                <button class="btn btn-danger rounded-0 fw-semibold mx-3" type="submit" onclick="return confirm('Apakah yakin ingin keluar ?')"><i class="fas fa-power-off me-2"></i>Keluar</button>
               </form>
+              <a href="#" class="btn btn-warning text-white rounded-0 fw-semibold"><i class="fa-solid fa-coins me-2"></i>Tukar Poin</a>
             </div>
           </div>
         </div>

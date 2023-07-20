@@ -31,14 +31,14 @@
 									<div class="fs-2hx fw-bold text-gray-800 text-center mb-13">
 										<div class="row">
 											<div class="col-3">
-												<div class="card card-flush" style="background-color: #F1416C">
+												<a href="{{url('jenis-sampah')}}" class="card card-flush" style="background-color: #F1416C">
 													<div class="card-header pt-5">
 														<div class="card-title d-flex flex-column">
 															<span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{$jenis_sampah->count()}}</span>
 															<span class="text-white opacity-75 pb-10 fw-semibold fs-6">Jenis Sampah</span>
 														</div>
 													</div>
-												</div>
+												</a>
 											</div>
 											<div class="col-3">
 												<div class="card card-flush" style="background-color: #00CED1">
