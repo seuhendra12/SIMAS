@@ -54,12 +54,6 @@
                   @endif
                   <form class="form" action="{{url('transaksi-sampah')}}" method="POST">
                     @csrf
-                    <!-- <div class="d-flex flex-column mb-3 fv-row">
-                      <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                        <span>Kode Transaksi</span>
-                      </label>
-                      <input type="text" class="form-control bg-secondary" id="kode_transaksi" name="kode_transaksi" readonly="true" />
-                    </div> -->
                     <div class="d-flex flex-column mb-3 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span class="required">Kode Aplikasi SIMAS</span>
@@ -94,20 +88,6 @@
                     </div>
                   </form>
 
-                  <!-- Tambahkan bagian berikut di bawah formulir atau di bagian head tampilan jika Anda meletakkan skrip di bagian head
-                  <script>
-                    // Function untuk menghasilkan kode unik secara acak
-                    function generateUniqueCode() {
-                      var uniqueCode = Math.random().toString(36).substr(2, 6);
-                      document.getElementById('kode_transaksi').value = uniqueCode;
-                    }
-
-                    // Panggil fungsi generateUniqueCode() saat halaman selesai dimuat
-                    document.addEventListener('DOMContentLoaded', function() {
-                      generateUniqueCode();
-                    });
-                  </script> -->
-
                   <script>
                     document.getElementById('kode_simas').addEventListener('input', function() {
                       var kodeSimas = this.value;
@@ -117,8 +97,8 @@
                         .then(response => response.json())
                         .then(data => {
                           // Set data nama ke input "Nama Pengguna"
-                          document.getElementById('user_id').value = data.user_id || '';
-                          document.getElementById('name').value = data.name || '';
+                          document.getElementById('user_id').value = data.user_id || 'ID Tidak Tersedia';
+                          document.getElementById('name').value = data.name || 'Nama Pengguna Tidak Tersedia';
                         });
                     });
                   </script>

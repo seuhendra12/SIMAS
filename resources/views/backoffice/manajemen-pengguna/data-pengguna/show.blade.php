@@ -43,7 +43,7 @@
                           </label>
                         </div>
                         <div class="col-8">
-                          <h4 class="fw-bold">: {{$user->profile->id_transaksi ?? ''}}</h4>
+                          <h4 class="fw-bold">: {{$user->profile->kode_simas ?? ''}}</h4>
                         </div>
                         <div class="col-4">
                           <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
@@ -99,7 +99,7 @@
                           </label>
                         </div>
                         <div class="col-8">
-                          <h4 class="fw-bold">: {{ $user->profile->alamat ?? ' ' }}
+                          <h4 class="fw-bold">: {{ $user->profile->alamat ?? ' ' }} No. {{ $user->profile->no_rumah ?? ' ' }} 
                             RT {{ $user->profile->rt->name ?? '' }}
                             / RW {{ $user->profile->rw->name ?? '' }}</h4>
                         </div>

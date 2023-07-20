@@ -74,6 +74,7 @@
               <tr>
                 <td>
                   <h5 class="text-dark fw-bold">{{ Auth::user()->name }}</h5>
+                  <p class="text-dark fw-bold">ID : {{ Auth::user()->profile->kode_simas ?? 'Belum Tersedia' }}</p>
                 </td>
               </tr>
               <tr>

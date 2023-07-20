@@ -111,6 +111,12 @@
                 </div>
               </div>
               <div class="mb-3 row">
+                <label for="no_rumah" class="col-sm-4 col-form-label">No Rumah</label>
+                <div class="col-sm-7">
+                  <input type="text" value="{{ Auth::user()->profile->no_rumah }}" class="form-control" id="no_rumah" placeholder="00" name="no_rumah">
+                </div>
+              </div>
+              <div class="mb-3 row">
                 <label for="alamat" class="col-sm-4 col-form-label"></label>
                 <div class="col-sm-7">
                   <div class="row">

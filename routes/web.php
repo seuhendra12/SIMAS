@@ -67,3 +67,4 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/profile/{id}', [FrontendController::class, 'profile'])->middleware('auth');
 Route::put('/simpan_profile/{id}', [FrontendController::class, 'simpan_profile'])->middleware('auth');
+

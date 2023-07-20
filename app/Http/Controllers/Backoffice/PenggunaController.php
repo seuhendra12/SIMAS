@@ -253,7 +253,11 @@ class PenggunaController extends Controller
     // Set flash message berhasil
     Session::flash('success', 'Pengguna berhasil diubah');
 
-    return redirect('/data-pengguna');
+    if ($user->role == 'Pengelola') {
+      return redirect()->intended('/dashboard');
+    } elseif ($user->role == 'Warga') {
+      return redirect()->intended('/');
+    }
   }
 
   /**

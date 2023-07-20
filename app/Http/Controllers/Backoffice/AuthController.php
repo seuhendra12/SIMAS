@@ -19,6 +19,7 @@ class AuthController extends Controller
   {
     return view("autentikasi.login");
   }
+  
   public function login(Request $request)
   {
     $messages = [
