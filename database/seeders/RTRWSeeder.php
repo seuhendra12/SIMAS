@@ -34,12 +34,12 @@ class RTRWSeeder extends Seeder
 
     // Mengisi tabel dengan data RW
     $rwData = [
-      ['name' => 'I'],
-      ['name' => 'II'],
-      ['name' => 'III'],
-      ['name' => 'IV'],
-      ['name' => 'V'],
-      ['name' => 'VI'],
+      ['name' => '01'],
+      ['name' => '02'],
+      ['name' => '03'],
+      ['name' => '04'],
+      ['name' => '05'],
+      ['name' => '06'],
     ];
 
     DB::table('rws')->insert($rwData);

@@ -75,6 +75,7 @@ class PenggunaController extends Controller
       'role' => 'required',
       'no_telepon' => 'required',
       'alamat' => 'required',
+      'no_rumah' => 'required',
       'rt' => 'required',
       'rw' => 'required',
       'password' => [
@@ -84,6 +85,22 @@ class PenggunaController extends Controller
         'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
       ],
     ], $messages);
+
+    // Ambil data RT, RW, dan nomor rumah dari input request
+    $rtId = $request->input('rt');
+    $rwId = $request->input('rw');
+    $nomorRumah = $request->input('no_rumah');
+
+    // Cari data RT dan RW berdasarkan ID-nya
+    $rt = RT::find($rtId);
+    $rw = RW::find($rwId);
+
+    // Dapatkan nama RT dari data RT yang ditemukan
+    $namaRT = $rt->name;
+    $namaRW = $rw->name;
+
+    // Gabungkan data RT, RW, dan nomor rumah untuk membentuk kode_transaksi
+    $kodeTransaksi = $namaRT.$namaRW.$nomorRumah;
 
     if ($validator->fails()) {
       return redirect('/data-pengguna/create')
@@ -112,6 +129,8 @@ class PenggunaController extends Controller
         'alamat' => $request->input('alamat'),
         'rt_id' => $request->input('rt'),
         'rw_id' => $request->input('rw'),
+        'no_rumah' => $request->input('no_rumah'),
+        'kode_simas' => $kodeTransaksi, // Set nilai kode_transaksi
       ]
     );
 
@@ -191,6 +210,22 @@ class PenggunaController extends Controller
       ],
     ]);
 
+     // Ambil data RT, RW, dan nomor rumah dari input request
+     $rtId = $request->input('rt');
+     $rwId = $request->input('rw');
+     $nomorRumah = $request->input('no_rumah');
+ 
+     // Cari data RT dan RW berdasarkan ID-nya
+     $rt = RT::find($rtId);
+     $rw = RW::find($rwId);
+ 
+     // Dapatkan nama RT dari data RT yang ditemukan
+     $namaRT = $rt->name;
+     $namaRW = $rw->name;
+ 
+     // Gabungkan data RT, RW, dan nomor rumah untuk membentuk kode_transaksi
+     $kodeTransaksi = $namaRT.$namaRW.$nomorRumah;
+
     if ($validator->fails()) {
       return redirect()->back()
         ->withErrors($validator)
@@ -212,6 +247,7 @@ class PenggunaController extends Controller
       'alamat' => $request->input('alamat'),
       'rt_id' => $request->input('rt'),
       'rw_id' => $request->input('rw'),
+      'kode_simas' => $kodeTransaksi, // Set nilai kode_transaksi
     ]);
 
     // Set flash message berhasil

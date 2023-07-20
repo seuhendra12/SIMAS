@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_simas')->unique()->nullable();
             $table->bigInteger('nik')->unique()->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('jenis_kelamin')->nullable();
             $table->string('no_telepon')->nullable();
             $table->text('alamat')->nullable();
+            $table->integer('no_rumah')->nullable();
             $table->unsignedBigInteger('rt_id')->nullable();
             $table->unsignedBigInteger('rw_id')->nullable();
             $table->timestamps();

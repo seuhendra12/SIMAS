@@ -10,14 +10,14 @@
 				<div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
 					<h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Data Pengguna</h1>
 					<ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7">
-            <li class="breadcrumb-item text-muted">
-              <a href="{{url('data-pengguna')}}" class="text-muted text-hover-primary">Home</a>
-            </li>
-            <li class="breadcrumb-item">
-              <span class="bullet bg-gray-400 w-5px h-2px"></span>
-            </li>
-            <li class="breadcrumb-item text-muted">Tambah Data Pengguna</li>
-          </ul>
+						<li class="breadcrumb-item text-muted">
+							<a href="{{url('data-pengguna')}}" class="text-muted text-hover-primary">Home</a>
+						</li>
+						<li class="breadcrumb-item">
+							<span class="bullet bg-gray-400 w-5px h-2px"></span>
+						</li>
+						<li class="breadcrumb-item text-muted">Tambah Data Pengguna</li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -65,7 +65,7 @@
 											<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 												<span class="required">Nama Lengkap</span>
 											</label>
-											<input type="text" class="form-control" placeholder="Masukkan Nama Lengkap" name="name" value="{{ old('name') }}"  />
+											<input type="text" class="form-control" placeholder="Masukkan Nama Lengkap" name="name" value="{{ old('name') }}" />
 										</div>
 										<div class="d-flex flex-column mb-3 fv-row">
 											<div class="row">
@@ -79,7 +79,7 @@
 													<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 														<span class="required">Tanggal Lahir</span>
 													</label>
-													<input type="date" class="form-control" placeholder="Masukkan Tempat Lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}"/>
+													<input type="date" class="form-control" placeholder="Masukkan Tempat Lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" />
 												</div>
 											</div>
 										</div>
@@ -94,7 +94,7 @@
 											<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 												<span class="required">Email</span>
 											</label>
-											<input type="email" class="form-control" placeholder="Masukkan Alamat Email" name="email" value="{{ old('email') }}"/>
+											<input type="email" class="form-control" placeholder="Masukkan Alamat Email" name="email" value="{{ old('email') }}" />
 										</div>
 										<div class="g-9 mb-3">
 											<label class="required fs-6 fw-semibold mb-2">Role</label>
@@ -108,7 +108,7 @@
 											<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 												<span class="required">No Telepon</span>
 											</label>
-											<input type="text" class="form-control" placeholder="Masukan No Telepon" name="no_telepon" value="{{ old('no_telepon') }}"/>
+											<input type="text" class="form-control" placeholder="Masukan No Telepon" name="no_telepon" value="{{ old('no_telepon') }}" />
 										</div>
 										<div class="d-flex flex-column mb-3 fv-row">
 											<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
@@ -118,6 +118,12 @@
 										</div>
 										<div class="d-flex flex-column mb-8 fv-row">
 											<div class="row">
+												<div class="col-2">
+													<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+														<span class="required">No Rumah</span>
+													</label>
+													<input type="number" class="form-control" placeholder="00" name="no_rumah" value="{{ old('no_rumah') }}" />
+												</div>
 												<div class="col-2">
 													<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 														<span class="required">RT</span>
@@ -144,7 +150,7 @@
 											<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 												<span class="required">Kata Sandi</span>
 											</label>
-											<input type="password" class="form-password" placeholder="Minimal 8 karakter" name="password" value="{{ old('password') }}"/>
+											<input type="password" class="form-password" placeholder="Minimal 8 karakter" name="password" value="{{ old('password') }}" />
 										</div>
 										<div class="row">
 											<div class="col-auto mt-1">

@@ -37,6 +37,14 @@
                     </div>
                     <div class="col-7">
                       <div class="row">
+                      <div class="col-4">
+                          <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                            <h4 class="fw-bold">Kode Pengguna</h4>
+                          </label>
+                        </div>
+                        <div class="col-8">
+                          <h4 class="fw-bold">: {{$user->profile->id_transaksi ?? ''}}</h4>
+                        </div>
                         <div class="col-4">
                           <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                             <h4 class="fw-bold">Nama Lengkap</h4>

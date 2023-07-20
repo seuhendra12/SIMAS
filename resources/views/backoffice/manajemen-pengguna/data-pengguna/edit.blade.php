@@ -120,6 +120,12 @@
                       <div class="row">
                         <div class="col-2">
                           <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                            <span class="required">No Rumah</span>
+                          </label>
+                          <input type="number" class="form-control" placeholder="00" name="no_rumah" value="{{ old('no_rumah', $user->profile->no_rumah) }}" />
+                        </div>
+                        <div class="col-2">
+                          <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                             <span class="required">RT</span>
                           </label>
                           <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih RT Pengguna" name="rt">
