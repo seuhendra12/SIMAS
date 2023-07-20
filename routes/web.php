@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Backoffice\AuthController;
 use App\Http\Controllers\Backoffice\DashboardController;
+use App\Http\Controllers\Backoffice\HistoriTransaksi;
+use App\Http\Controllers\Backoffice\HistoriTransaksiController;
 use App\Http\Controllers\Backoffice\ItemTransaksiController;
 use App\Http\Controllers\Backoffice\JenisSampahController;
 use App\Http\Controllers\Backoffice\KategoriSampahController;
@@ -59,6 +61,7 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
   Route::get('/item-transaksi/{id}', [ItemTransaksiController::class, 'indexWithId']);
   Route::get('/item-transaksi/{id}/create', [ItemTransaksiController::class, 'create']);
   Route::post('/item-transaksi/store', [ItemTransaksiController::class, 'store']);
+  Route::get('/histori-transaksi/{id}', [HistoriTransaksiController::class, 'histori']);
 });
 
 Route::get('/', [FrontendController::class, 'index']);

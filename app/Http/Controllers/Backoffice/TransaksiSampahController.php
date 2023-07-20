@@ -55,11 +55,12 @@ class TransaksiSampahController extends Controller
     {
         $request->validate([
             'kode_transaksi' => 'required|unique:transaksis',
-            'user_id' => 'required',
+            'user_id' => 'required|unique:transaksis',
             'tanggal_transaksi' => 'required',
         ], [
             'kode_transaksi.required' => 'Kolom kode transaksi wajib diisi',
             'user_id.required' => 'Kolom user id wajib diisi',
+            'user_id.unique' => 'Data tersebut sudah ada',
             'tanggal_transaksi.required' => 'Kolom tanggal wajib diisi',
         ]);
 

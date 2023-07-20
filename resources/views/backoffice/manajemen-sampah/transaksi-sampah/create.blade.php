@@ -92,7 +92,7 @@
                   <script>
                     // Function untuk menghasilkan kode unik secara acak
                     function generateUniqueCode() {
-                      var uniqueCode = Math.random().toString(36).substr(2, 4);
+                      var uniqueCode = Math.random().toString(36).substr(2, 6);
                       document.getElementById('kode_transaksi').value = uniqueCode;
                     }
 

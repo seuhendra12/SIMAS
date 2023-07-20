@@ -86,6 +86,7 @@ class ItemTransaksiController extends Controller
     $transaksi = Transaksi::find($request->input('transaksi_id'));
     $transaksi->total_berat = $transaksi->items()->sum('berat');
     $transaksi->total_point = $transaksi->items()->sum('point');
+    $transaksi->tanggal_transaksi = now();
     $transaksi->save();
 
     // Set flash message berhasil

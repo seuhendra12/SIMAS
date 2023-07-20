@@ -11,11 +11,11 @@ class Transaksi extends Model
     protected $guarded = [];
 
     public function scopeFilter($query, array $filters)
-{
-    $query->when($filters['search'] ?? false, function ($query, $tanggalTransaksi) {
-        $query->whereDate('tanggal_transaksi', $tanggalTransaksi);
-    });
-}
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where('kode_transaksi', 'like', '%' . $search . '%');
+        });
+    }
 
     public function user()
     {

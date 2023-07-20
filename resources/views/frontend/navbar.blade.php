@@ -79,13 +79,13 @@
               <tr>
                 <td>
                   <img src="{!! asset('/img/icon/koin.png') !!}" alt="User Image" class="rounded-circle me-2" style="width: 30px; height: 30px;">
-                  <span class="fw-bold">{{ Auth::user()->transaksi->total_point }} Points</span>
+                  <span class="fw-bold">{{ Auth::user()->transaksi->total_point ?? '0' }} Points</span>
                 </td>
               </tr>
               <tr>
                 <td>
                   <img src="{!! asset('/img/icon/sampah.png') !!}" alt="User Image" class="rounded-circle me-2" style="width: 30px; height: 30px;">
-                  <span class="fw-bold">{{ Auth::user()->transaksi->total_berat }} Kg Sampah Dikumpulkan</span>
+                  <span class="fw-bold">{{ Auth::user()->transaksi->total_berat ?? '0' }} Kg Sampah Dikumpulkan</span>
                 </td>
               </tr>
             </table>
