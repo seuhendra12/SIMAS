@@ -107,7 +107,7 @@
                           <th scope="col">No</th>
                           <th scope="col">Kode Transaksi</th>
                           <th scope="col">Nama Nasabah</th>
-                          <th scope="col">Tanggal Transaksi</th>
+                          <th scope="col">Terakhir Transaksi</th>
                           <th scope="col">Total Berat</th>
                           <th scope="col">Total Point</th>
                           <th scope="col">Aksi</th>

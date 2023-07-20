@@ -92,7 +92,7 @@ class ItemTransaksiController extends Controller
     // Set flash message berhasil
     Session::flash('success', 'Data item berhasil ditambah');
 
-    return redirect('/transaksi-sampah/' . $request->input('transaksi_id'));
+    return redirect('/transaksi-sampah');
   }
 
   /**

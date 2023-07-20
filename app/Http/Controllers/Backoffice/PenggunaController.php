@@ -100,7 +100,7 @@ class PenggunaController extends Controller
     $namaRW = $rw->name;
 
     // Gabungkan data RT, RW, dan nomor rumah untuk membentuk kode_transaksi
-    $kodeTransaksi = $namaRT.$namaRW.$nomorRumah;
+    $kodeTransaksi = $namaRT . $namaRW . $nomorRumah;
 
     if ($validator->fails()) {
       return redirect('/data-pengguna/create')
@@ -210,21 +210,21 @@ class PenggunaController extends Controller
       ],
     ]);
 
-     // Ambil data RT, RW, dan nomor rumah dari input request
-     $rtId = $request->input('rt');
-     $rwId = $request->input('rw');
-     $nomorRumah = $request->input('no_rumah');
- 
-     // Cari data RT dan RW berdasarkan ID-nya
-     $rt = RT::find($rtId);
-     $rw = RW::find($rwId);
- 
-     // Dapatkan nama RT dari data RT yang ditemukan
-     $namaRT = $rt->name;
-     $namaRW = $rw->name;
- 
-     // Gabungkan data RT, RW, dan nomor rumah untuk membentuk kode_transaksi
-     $kodeTransaksi = $namaRT.$namaRW.$nomorRumah;
+    // Ambil data RT, RW, dan nomor rumah dari input request
+    $rtId = $request->input('rt');
+    $rwId = $request->input('rw');
+    $nomorRumah = $request->input('no_rumah');
+
+    // Cari data RT dan RW berdasarkan ID-nya
+    $rt = RT::find($rtId);
+    $rw = RW::find($rwId);
+
+    // Dapatkan nama RT dari data RT yang ditemukan
+    $namaRT = $rt->name;
+    $namaRW = $rw->name;
+
+    // Gabungkan data RT, RW, dan nomor rumah untuk membentuk kode_transaksi
+    $kodeTransaksi = $namaRT . $namaRW . $nomorRumah;
 
     if ($validator->fails()) {
       return redirect()->back()
@@ -278,13 +278,21 @@ class PenggunaController extends Controller
 
   public function getUserName(Request $request)
   {
-    $userId = $request->input('user_id');
-    $user = User::find($userId);
+    $kodeSimas = $request->query('kode_simas');
 
-    if ($user) {
-      return response()->json(['name' => $user->name]);
-    } else {
-      return response()->json(['name' => null]);
+    // Lakukan query ke database untuk mencari data profil berdasarkan kode_simas
+    $profile = Profile::where('kode_simas', $kodeSimas)->first();
+
+    if ($profile) {
+      // Ambil data pengguna (nama) melalui relasi "user"
+      $name = $profile->user ? $profile->user->name : null;
+      $user_id = $profile->user ? $profile->user->id : null;
+      return response()->json([
+        'name' => $name,
+        'user_id' => $user_id
+      ]);
     }
+
+    return response()->json(['name' => null]);
   }
 }

@@ -58,7 +58,7 @@
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span class="required">ID Transaksi</span>
                       </label>
-                      <input type="text" class="form-control bg-secondary" value="{{old('id',$transaksiId->id)}}" name="transaksi_id" readonly="true" />
+                      <input type="text" class="form-control bg-secondary" value="{{old('kode_transaksi',$transaksiId->id)}}" name="transaksi_id" readonly="true" />
                     </div>
                     <div class="d-flex flex-column mb-3 fv-row">
                       <label for="jenisSampah" class="fs-6 fw-semibold mb-2 required">Jenis Sampah</label>

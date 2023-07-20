@@ -54,18 +54,30 @@ class TransaksiSampahController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kode_transaksi' => 'required|unique:transaksis',
-            'user_id' => 'required|unique:transaksis',
+            'user_id' => 'unique:transaksis',
             'tanggal_transaksi' => 'required',
         ], [
-            'kode_transaksi.required' => 'Kolom kode transaksi wajib diisi',
-            'user_id.required' => 'Kolom user id wajib diisi',
             'user_id.unique' => 'Data tersebut sudah ada',
             'tanggal_transaksi.required' => 'Kolom tanggal wajib diisi',
         ]);
 
+        // Ambil kode_aplikasi dari tabel Profile berdasarkan user_id
+        $user = User::find($request->input('user_id'));
+
+        if (!$user) {
+            return redirect('/transaksi-sampah')->withErrors(['user_id' => 'User tidak ditemukan']);
+        }
+    
+        $profile = $user->profile;
+        if (!$profile) {
+            return redirect('/transaksi-sampah')->withErrors(['user_id' => 'Profile tidak ditemukan']);
+        }
+
+        $kode_simas = $profile->kode_simas;
+        $kode_transaksi = 'TRA'.$kode_simas;
+
         $transaksiSampah = new Transaksi([
-            'kode_transaksi' => $request->input('kode_transaksi'),
+            'kode_transaksi' => $kode_transaksi,
             'user_id' => $request->input('user_id'),
             'tanggal_transaksi' => $request->input('tanggal_transaksi'),
         ]);

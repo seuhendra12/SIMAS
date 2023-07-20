@@ -54,23 +54,29 @@
                   @endif
                   <form class="form" action="{{url('transaksi-sampah')}}" method="POST">
                     @csrf
-                    <div class="d-flex flex-column mb-3 fv-row">
+                    <!-- <div class="d-flex flex-column mb-3 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span>Kode Transaksi</span>
                       </label>
                       <input type="text" class="form-control bg-secondary" id="kode_transaksi" name="kode_transaksi" readonly="true" />
+                    </div> -->
+                    <div class="d-flex flex-column mb-3 fv-row">
+                      <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                        <span class="required">Kode Aplikasi SIMAS</span>
+                      </label>
+                      <input type="text" class="form-control" name="kode_simas" id="kode_simas" />
                     </div>
                     <div class="d-flex flex-column mb-3 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                        <span class="required">ID Pengguna</span>
+                        <span>ID Pengguna</span>
                       </label>
-                      <input type="text" class="form-control" name="user_id" id="user_id" />
+                      <input type="text" class="form-control bg-secondary" name="user_id" id="user_id" readonly="true"/>
                     </div>
                     <div class="d-flex flex-column mb-3 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span>Nama Pengguna</span>
                       </label>
-                      <input type="text" class="form-control bg-secondary" name="name" id="name" readonly="true"/>
+                      <input type="text" class="form-control bg-secondary"id="name" readonly="true"/>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
@@ -88,7 +94,7 @@
                     </div>
                   </form>
 
-                  <!-- Tambahkan bagian berikut di bawah formulir atau di bagian head tampilan jika Anda meletakkan skrip di bagian head -->
+                  <!-- Tambahkan bagian berikut di bawah formulir atau di bagian head tampilan jika Anda meletakkan skrip di bagian head
                   <script>
                     // Function untuk menghasilkan kode unik secara acak
                     function generateUniqueCode() {
@@ -100,17 +106,18 @@
                     document.addEventListener('DOMContentLoaded', function() {
                       generateUniqueCode();
                     });
-                  </script>
+                  </script> -->
 
                   <script>
-                    document.getElementById('user_id').addEventListener('input', function() {
-                      var userId = this.value;
+                    document.getElementById('kode_simas').addEventListener('input', function() {
+                      var kodeSimas = this.value;
 
                       // Lakukan permintaan AJAX ke server untuk mendapatkan data nama berdasarkan ID pengguna
-                      fetch(`/get-user-name?user_id=${userId}`)
+                      fetch(`/get-user-name?kode_simas=${kodeSimas}`)
                         .then(response => response.json())
                         .then(data => {
                           // Set data nama ke input "Nama Pengguna"
+                          document.getElementById('user_id').value = data.user_id || '';
                           document.getElementById('name').value = data.name || '';
                         });
                     });
