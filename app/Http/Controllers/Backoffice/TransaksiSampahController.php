@@ -23,7 +23,7 @@ class TransaksiSampahController extends Controller
     {
         $perPage = $request->query('perPage', 10);
 
-        return view('backoffice.manajemen-sampah.transaksi-sampah.index', [
+        return view('backoffice.manajemen-transaksi.transaksi-sampah.index', [
             'transaksiSampahs' => Transaksi::filter(request(['search']))
                 ->orderBy('transaksis.created_at', 'desc') // Menampilkan data terbaru berdasarkan tanggal transaksi di tabel Transaksi
                 ->paginate($perPage),
@@ -39,7 +39,7 @@ class TransaksiSampahController extends Controller
      */
     public function create()
     {
-        return view('backoffice.manajemen-sampah.transaksi-sampah.create', [
+        return view('backoffice.manajemen-transaksi.transaksi-sampah.create', [
             'jenisSampah' => JenisSampah::get(),
             'nasabah' => User::get(),
         ]);
@@ -109,7 +109,7 @@ class TransaksiSampahController extends Controller
             ->orderBy('jenis-sampah_id') // Urutkan berdasarkan jenis_sampah_id
             ->paginate($perPage);
 
-        return view('backoffice.manajemen-sampah.item-transaksi.index', [
+        return view('backoffice.manajemen-transaksi.item-transaksi.index', [
             'transaksiSampahs' => $transaksiSampah,
             'itemTransaksis' => $itemTransaksis,
             'perPage' => $perPage
@@ -128,7 +128,7 @@ class TransaksiSampahController extends Controller
     {
         $nasabah = User::findOrFail($id);
 
-        return view('backoffice.manajemen-sampah.transaksi-sampah.create', [
+        return view('backoffice.manajemen-transaksi.transaksi-sampah.create', [
             'kategoriSampah' => KategoriSampah::get(),
             'jenisSampah' => JenisSampah::get(),
             'nasabah' => $nasabah

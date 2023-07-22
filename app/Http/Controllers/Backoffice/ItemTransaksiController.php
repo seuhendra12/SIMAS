@@ -25,7 +25,7 @@ class ItemTransaksiController extends Controller
   {
     $transaksiSampah = Transaksi::find($id);
     $perPage = $request->query('perPage', 10);
-    return view('backoffice.manajemen-sampah.item-transaksi.index', [
+    return view('backoffice.manajemen-transaksi.item-transaksi.index', [
       'itemTransaksis' => ItemTransaksi::filter(request(['search']))->paginate($perPage),
       'perPage' => $perPage,
       'transakasiSampah' => $transaksiSampah,
@@ -40,7 +40,7 @@ class ItemTransaksiController extends Controller
   public function create($id)
   {
     $transaksiId = Transaksi::findOrFail($id);
-    return view('backoffice.manajemen-sampah.item-transaksi.create', [
+    return view('backoffice.manajemen-transaksi.item-transaksi.create', [
       'jenisSampahs' => JenisSampah::get(),
       'transaksiId' => $transaksiId
     ]);

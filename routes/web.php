@@ -7,12 +7,15 @@ use App\Http\Controllers\Backoffice\HistoriTransaksiController;
 use App\Http\Controllers\Backoffice\ItemTransaksiController;
 use App\Http\Controllers\Backoffice\JenisSampahController;
 use App\Http\Controllers\Backoffice\KategoriSampahController;
+use App\Http\Controllers\Backoffice\NilaiKonversiController;
 use App\Http\Controllers\Backoffice\PenggunaController;
 use App\Http\Controllers\Backoffice\RoleController;
 use App\Http\Controllers\Backoffice\RTController;
 use App\Http\Controllers\Backoffice\RWController;
 use App\Http\Controllers\Backoffice\TransaksiSampahController;
+use App\Http\Controllers\Backoffice\TukarPoinController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Models\TukarPoin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,11 +60,15 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
 
   // Manajemen Sampah
   Route::resource('/jenis-sampah', JenisSampahController::class);
+
+  // Manajemen Transaksi
   Route::resource('/transaksi-sampah', TransaksiSampahController::class);
   Route::get('/item-transaksi/{id}', [ItemTransaksiController::class, 'indexWithId']);
   Route::get('/item-transaksi/{id}/create', [ItemTransaksiController::class, 'create']);
   Route::post('/item-transaksi/store', [ItemTransaksiController::class, 'store']);
   Route::get('/histori-transaksi/{id}', [HistoriTransaksiController::class, 'histori']);
+  Route::resource('/konversi-poin', NilaiKonversiController::class);
+  Route::resource('/tukar-poin', TukarPoinController::class);
 });
 
 Route::get('/', [FrontendController::class, 'index']);
