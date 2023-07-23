@@ -9,10 +9,6 @@
   <!-- Styling tampilan dengan bootstrap-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
-  <!-- Styling untuk owl carousel -->
-  <link rel="stylesheet" href="{!! asset('/owlcarousel/dist/assets/owl.carousel.min.css ') !!}">
-  <link rel="stylesheet" href="{!! asset('/owlcarousel/dist/assets/owl.theme.default.min.css ') !!}">
-
   <!-- Styling buatan sendiri -->
   <link href="{!! asset('/css/style.css') !!}" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />

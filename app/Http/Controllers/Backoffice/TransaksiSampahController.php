@@ -25,7 +25,7 @@ class TransaksiSampahController extends Controller
 
         return view('backoffice.manajemen-transaksi.transaksi-sampah.index', [
             'transaksiSampahs' => Transaksi::filter(request(['search']))
-                ->orderBy('transaksis.created_at', 'desc') // Menampilkan data terbaru berdasarkan tanggal transaksi di tabel Transaksi
+                ->orderBy('transaksis.updated_at', 'desc') // Menampilkan data terbaru berdasarkan tanggal transaksi di tabel Transaksi
                 ->paginate($perPage),
             'perPage' => $perPage,
         ]);

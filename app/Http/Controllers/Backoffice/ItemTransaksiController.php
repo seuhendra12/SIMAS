@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ItemTransaksi;
 use App\Models\JenisSampah;
 use App\Models\Transaksi;
+use App\Models\TukarPoin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -54,46 +55,55 @@ class ItemTransaksiController extends Controller
    */
   public function store(Request $request)
   {
-    $request->validate([
-      'transaksi_id' => 'required',
-      'jenis_sampah' => 'required',
-      'berat' => 'required',
-    ], [
-      'berat.required' => 'Kolom berat wajib diisi',
-    ]);
+      $request->validate([
+          'transaksi_id' => 'required',
+          'jenis_sampah' => 'required',
+          'berat' => 'required',
+      ], [
+          'berat.required' => 'Kolom berat wajib diisi',
+      ]);
+  
+      // Dapatkan data jenis sampah berdasarkan ID
+      $jenisSampah = JenisSampah::find($request->input('jenis_sampah'));
+  
+      if (!$jenisSampah) {
+          // Jenis sampah tidak ditemukan, berikan respon atau tindakan sesuai kebutuhan
+          return redirect()->back()->with('error', 'Jenis sampah tidak ditemukan. Silakan pilih jenis sampah yang valid.');
+      }
+  
+      // Hitung poin berdasarkan berat dan point pada tabel jenis sampah
+      $poin = $jenisSampah->point_perkg * $request->input('berat');
+  
+      $itemTransaksi = new ItemTransaksi([
+          'transaksi_id' => $request->input('transaksi_id'),
+          'jenis-sampah_id' => $request->input('jenis_sampah'), // Simpan ID jenis sampah yang terkait
+          'berat' => $request->input('berat'),
+          'point' => $poin, // Simpan hasil perhitungan poin ke kolom jumlah_point
+      ]);
+  
+      $itemTransaksi->save();
+  
+      $transaksi = Transaksi::find($request->input('transaksi_id'));
+      $transaksi->total_berat = $transaksi->items()->sum('berat');
 
-    // Dapatkan data jenis sampah berdasarkan ID
-    $jenisSampah = JenisSampah::find($request->input('jenis_sampah'));
-
-    if (!$jenisSampah) {
-      // Jenis sampah tidak ditemukan, berikan respon atau tindakan sesuai kebutuhan
-      return redirect()->back()->with('error', 'Jenis sampah tidak ditemukan. Silakan pilih jenis sampah yang valid.');
-  }
-
-    // Hitung poin berdasarkan berat dan point pada tabel jenis sampah
-    $poin = $jenisSampah->point_perkg * $request->input('berat');
-
-    $itemTransaksi = new ItemTransaksi([
-      'transaksi_id' => $request->input('transaksi_id'),
-      'jenis-sampah_id' => $request->input('jenis_sampah'), // Simpan ID jenis sampah yang terkait
-      'berat' => $request->input('berat'),
-      'point' => $poin, // Simpan hasil perhitungan poin ke kolom jumlah_point
-    ]);
-
-    $itemTransaksi->save();
-
-    // Update total berat dan total point pada tabel transaksi
-    $transaksi = Transaksi::find($request->input('transaksi_id'));
-    $transaksi->total_berat = $transaksi->items()->sum('berat');
-    $transaksi->total_point = $transaksi->items()->sum('point');
-    $transaksi->tanggal_transaksi = now();
-    $transaksi->save();
-
-    // Set flash message berhasil
-    Session::flash('success', 'Data item berhasil ditambah');
-
-    return redirect('/transaksi-sampah');
-  }
+      $totalPointSebelumnya = $transaksi->items()->sum('point');
+  
+      // Dapatkan total poin yang telah dikonversikan berdasarkan id_transaksi pada tabel TukarPoin
+      $totalPoinDitukarkan = TukarPoin::where('transaksi_id', $request->input('transaksi_id'))->sum('total_konversi');
+  
+      // Hitung total poin yang tersisa (total_poin - total_poin yang sudah dikonversikan)
+      $sisaTotalPoin  = $totalPointSebelumnya - $totalPoinDitukarkan;
+  
+      // Simpan total poin yang tersisa ke dalam kolom total_point pada tabel Transaksi
+      $transaksi->total_point = $sisaTotalPoin;
+      $transaksi->tanggal_transaksi = now();
+      $transaksi->save();
+  
+      // Set flash message berhasil
+      Session::flash('success', 'Data item berhasil ditambah');
+  
+      return redirect('/transaksi-sampah');
+  }  
 
   /**
    * Display the specified resource.

@@ -28,4 +28,9 @@ class Transaksi extends Model
     {
         return $this->hasOne(ItemTransaksi::class);
     }
+
+    public function tukarPoin()
+    {
+        return $this->hasMany(TukarPoin::class);
+    }
 }

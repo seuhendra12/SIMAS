@@ -3,34 +3,40 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\ItemTransaksi;
 use App\Models\JenisSampah;
+use App\Models\NilaiKonversi;
 use App\Models\RT;
 use App\Models\RW;
 use App\Models\Transaksi;
+use App\Models\TukarPoin;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Dompdf\Dompdf;
+
 
 class FrontendController extends Controller
 {
   public function index()
   {
-    return view('frontend.index',[
+    return view('frontend.index', [
       'jenis_sampah' => JenisSampah::get(),
-      'transaksi_sampah' =>Transaksi::get(),
+      'transaksi_sampah' => Transaksi::get(),
     ]);
   }
   public function profile()
   {
-
     return view('frontend.profile', [
       'rts' => RT::get(),
       'rws' => RW::get(),
     ]);
   }
 
-  public function simpan_profile(Request $request, $id){
+  public function simpan_profile(Request $request, $id)
+  {
     $user = User::find($id);
 
     $validator = Validator::make($request->all(), [
@@ -91,5 +97,94 @@ class FrontendController extends Controller
     Session::flash('success', 'Profile berhasil disimpan');
 
     return redirect('/');
+  }
+
+  public function tukar_poin()
+  {
+    $user = Auth::user();
+
+    $tukarPoins = TukarPoin::join('transaksis', 'tukar_poins.transaksi_id', '=', 'transaksis.id')
+      ->where('transaksis.user_id', $user->id)
+      ->orderBy('tukar_poins.updated_at', 'desc')
+      ->get();
+
+    return view('frontend.tukar_poin', [
+      'konversiPoin' => NilaiKonversi::all(),
+      'tukarPoins' => $tukarPoins,
+    ]);
+  }
+
+  public function simpan_tukar_poin(Request $request, $id)
+  {
+    // Mendapatkan nilai "konversPoin" dari input form
+    $konversiPoinId = $request->input('konversiPoin');
+
+    // Dapatkan nilai dari model KonversiPoin berdasarkan "id" yang dipilih
+    $konversiPoin = NilaiKonversi::find($konversiPoinId);
+
+    // Dapatkan data transaksi dari tabel "transaksi" berdasarkan "user_id"
+    $transaksi = Transaksi::where('user_id', $id)->first();
+
+    $totalPoinTransaksi = $transaksi->total_point;
+    $nilaiPoin = $konversiPoin->nilai_konversi;
+
+    // Validasi apakah total poin pengguna cukup untuk dikonversi
+    if ($totalPoinTransaksi < $nilaiPoin) {
+      return redirect()->back()->withErrors('Total poin tidak mencukupi untuk dikonversi.');
+    }
+
+    // Simpan data baru ke dalam tabel tukar_poin dengan membawa id_transaksi (id_transaksi dari tabel transaksi)
+    $tukarPoin = new TukarPoin();
+    $tukarPoin->transaksi_id = $transaksi->id;
+    $tukarPoin->nilai_konversi_id = $konversiPoinId;
+    $tukarPoin->tanggal_transaksi = now();
+    $tukarPoin->total_konversi = $konversiPoin->nilai_konversi;
+    $tukarPoin->save();
+
+    // Kurangi total_poin dalam transaksi berdasarkan poin yang dikonversi
+    $transaksi->total_point -= $nilaiPoin;
+    $transaksi->save();
+
+    // Set flash message berhasil
+    Session::flash('success', 'Konversi poin berhasil disimpan');
+
+    return redirect('/');
+  }
+
+  public function histori(Request $request)
+  {
+    $perPage = $request->query('perPage', 10);
+    // Ambil data user yang sedang login
+    $user = Auth::user();
+
+    // Ambil data item_transaksi berdasarkan user yang login melalui join dengan tabel transaksi
+    $historiTransaksi = ItemTransaksi::join('transaksis', 'item_transaksis.transaksi_id', '=', 'transaksis.id')
+      ->where('transaksis.user_id', $user->id)
+      ->orderBy('item_transaksis.updated_at', 'desc') // Menampilkan data terbaru berdasarkan tanggal transaksi pada tabel item_transaksi
+      ->paginate($perPage);
+
+    return view('frontend.histori', [
+      'historiTransaksis' => $historiTransaksi,
+      'perPage' => $perPage,
+    ]);
+  }
+
+  public function cetak_struk($id)
+  {
+    $tukarPoin = TukarPoin::findOrFail($id); // Ambil data tukar poin berdasarkan ID
+
+    $pdf = new Dompdf(); // Buat instance baru dari Dompdf
+
+    // Kirim data tukarPoin ke view
+    $pdf->loadHtml(view('frontend.cetak_struk', compact('tukarPoin')));
+
+    // (Opsional) Set ukuran kertas dan orientasi
+    $pdf->setPaper('A4', 'portrait');
+
+    // Render PDF
+    $pdf->render();
+
+    // Tampilkan PDF yang dihasilkan langsung di browser
+    $pdf->stream('struk_tukar_poin_' . $tukarPoin->id . '.pdf');
   }
 }

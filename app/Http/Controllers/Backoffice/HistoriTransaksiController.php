@@ -18,7 +18,7 @@ class HistoriTransaksiController extends Controller
       ->where('transaksi_id', $id)// Urutkan berdasarkan jenis_sampah_id
       ->paginate($perPage);
 
-    return view('backoffice.manajemen-sampah.transaksi-sampah.histori', [
+    return view('backoffice.manajemen-transaksi.transaksi-sampah.histori', [
       'transaksiSampahs' => $transaksiSampah,
       'itemTransaksis' => $itemTransaksis,
       'perPage' => $perPage

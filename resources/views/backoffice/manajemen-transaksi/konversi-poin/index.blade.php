@@ -86,7 +86,7 @@
                         </form>
                       </div>
                       <div class="col-6 d-grid d-md-flex justify-content-md-end mb-3">
-                        <form class="form" action="/konversi-sampah">
+                        <form class="form" action="/konversi-poin">
                           <div class="input-group input-group-sm" style="width: 150px;">
                             <input type="text" name="search" class="form-control float-right rounded-0" id="search" placeholder="Search" value="{{ request('search') }}">
                             <div class="input-group-append">
@@ -102,6 +102,7 @@
                       <thead class="fw-bold">
                         <tr>
                           <th scope="col">No</th>
+                          <th scope="col">Angka Konversi</th>
                           <th scope="col">Nilai Konversi</th>
                           <th scope="col">Aksi</th>
                         </tr>
@@ -110,7 +111,8 @@
                         @forelse ($konversiPoins as $konversiPoin)
                         <tr>
                           <td class="align-top">{{$loop->iteration}}</td>
-                          <td class="align-top">{{$konversiPoin->nilai}}</td>
+                          <td class="align-top">{{$konversiPoin->angka_konversi}}</td>
+                          <td class="align-top">{{$konversiPoin->nilai_konversi}}</td>
                           <td>
                             <a href="konversi-poin/{{$konversiPoin->id}}/edit" class="btn btn-yellow btn-sm">
                               <span>

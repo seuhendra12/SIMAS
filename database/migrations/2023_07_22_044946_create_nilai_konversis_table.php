@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('nilai_konversis', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('nilai')->nullable();
+            $table->integer('angka_konversi')->nullable();
+            $table->bigInteger('nilai_konversi')->nullable();
             $table->timestamps();
         });
     }

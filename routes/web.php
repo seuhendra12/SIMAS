@@ -68,10 +68,15 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
   Route::post('/item-transaksi/store', [ItemTransaksiController::class, 'store']);
   Route::get('/histori-transaksi/{id}', [HistoriTransaksiController::class, 'histori']);
   Route::resource('/konversi-poin', NilaiKonversiController::class);
-  Route::resource('/tukar-poin', TukarPoinController::class);
+  Route::resource('/tukar-poin-admin', TukarPoinController::class);
 });
 
 Route::get('/', [FrontendController::class, 'index']);
-Route::get('/profile/{id}', [FrontendController::class, 'profile'])->middleware('auth');
-Route::put('/simpan_profile/{id}', [FrontendController::class, 'simpan_profile'])->middleware('auth');
-
+Route::middleware('auth')->group(function () {
+  Route::get('/profile/{id}', [FrontendController::class, 'profile']);
+  Route::put('/simpan_profile/{id}', [FrontendController::class, 'simpan_profile']);
+  Route::get('/tukar-poin/{id}', [FrontendController::class, 'tukar_poin']);
+  Route::post('/simpan-tukar-poin/{id}', [FrontendController::class, 'simpan_tukar_poin']);
+  Route::get('/histori-transaksi', [FrontendController::class, 'histori']);
+  Route::get('/cetak-struk/{id}', [FrontendController::class, 'cetak_struk'])->name('cetak.struk');
+});

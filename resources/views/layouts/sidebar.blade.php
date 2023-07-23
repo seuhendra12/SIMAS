@@ -172,6 +172,12 @@
 								</span>
 								<span class="menu-title {{ Request::is('konversi-poin')?'text-white' : '' }}">Konversi Poin Sampah</span>
 							</a>
+							<a class="menu-link" href="{{url('tukar-poin-admin')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title {{ Request::is('tukar-poin-admin')?'text-white' : '' }}">Tukar Poin Sampah</span>
+							</a>
 						</div>
 					</div>
 				</div>

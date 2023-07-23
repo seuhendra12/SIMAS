@@ -42,18 +42,21 @@ class NilaiKonversiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'angka' => 'required',
             'nilai' => 'required',
         ], [
+            'angka.required' => 'Kolom angka wajib diisi',
             'nilai.required' => 'Kolom nilai wajib diisi',
         ]);
 
         $konversiPoin = new NilaiKonversi([
-            'nilai' => $request->input('nilai'),
+            'angka_konversi' => $request->input('angka'),
+            'nilai_konversi' => $request->input('nilai'),
         ]);
 
         $konversiPoin->save();
         // Set flash message berhasil
-        Session::flash('success', 'Data Konversi Poin berhasil ditambah');
+        Session::flash('success', 'Data konversi poin berhasil ditambah');
 
         return redirect('/konversi-poin');
     }
@@ -95,16 +98,19 @@ class NilaiKonversiController extends Controller
         $konversiPoin = NilaiKonversi::findOrFail($id);
         $request->validate([
             'nilai' => 'required',
+            'angka' => 'required',
         ], [
             'nilai.required' => 'Kolom nilai wajib diisi',
+            'angka.required' => 'Kolom angka wajib diisi',
         ]);
 
         $konversiPoin->update([
-            'nilai' => $request->input('nilai'),
+            'angka_konversi' => $request->input('angka'),
+            'nilai_konversi' => $request->input('nilai'),
         ]);
 
         // Set flash message berhasil
-        Session::flash('success', 'Data Konversi Poin berhasil diubah');
+        Session::flash('success', 'Data konversi poin berhasil diubah');
 
         return redirect('/konversi-poin');
     }
