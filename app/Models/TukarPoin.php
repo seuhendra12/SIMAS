@@ -13,9 +13,12 @@ class TukarPoin extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {
-            return $query->where('kode_transaksi', 'like', '%' . $search . '%');
+            return $query->whereHas('transaksi', function ($query) use ($search) {
+                $query->where('kode_transaksi', 'like', '%' . $search . '%');
+            });
         });
     }
+
 
     protected $dates = ['tanggal_transaksi'];
 
