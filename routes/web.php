@@ -7,14 +7,17 @@ use App\Http\Controllers\Backoffice\HistoriTransaksiController;
 use App\Http\Controllers\Backoffice\ItemTransaksiController;
 use App\Http\Controllers\Backoffice\JenisSampahController;
 use App\Http\Controllers\Backoffice\KategoriSampahController;
+use App\Http\Controllers\Backoffice\LaporanController;
 use App\Http\Controllers\Backoffice\NilaiKonversiController;
 use App\Http\Controllers\Backoffice\PenggunaController;
 use App\Http\Controllers\Backoffice\RoleController;
 use App\Http\Controllers\Backoffice\RTController;
 use App\Http\Controllers\Backoffice\RWController;
+use App\Http\Controllers\Backoffice\SampahDikumpulkanController;
 use App\Http\Controllers\Backoffice\TransaksiSampahController;
 use App\Http\Controllers\Backoffice\TukarPoinController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Models\ItemTransaksi;
 use App\Models\TukarPoin;
 use Illuminate\Support\Facades\Route;
 
@@ -46,8 +49,6 @@ Route::post('logout', [AuthController::class, 'logout']);
 
 
 Route::middleware(['role:Pengelola', 'auth'])->group(function () {
-  Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
   // Data Referensi
   Route::resource('/data-rt', RTController::class);
   Route::resource('/data-rw', RWController::class);
@@ -60,6 +61,7 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
 
   // Manajemen Sampah
   Route::resource('/jenis-sampah', JenisSampahController::class);
+  Route::get('/sampah-dikumpulkan', [SampahDikumpulkanController::class,'index']);
 
   // Manajemen Transaksi
   Route::resource('/transaksi-sampah', TransaksiSampahController::class);
@@ -69,6 +71,12 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
   Route::get('/histori-transaksi/{id}', [HistoriTransaksiController::class, 'histori']);
   Route::resource('/konversi-poin', NilaiKonversiController::class);
   Route::resource('/tukar-poin-admin', TukarPoinController::class);
+});
+
+Route::middleware(['role:Pengelola,Kelurahan', 'auth'])->group(function () {
+  Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+  Route::get('/laporan-sampah-dikumpulkan', [LaporanController::class,'index']);
+  Route::get('/cetak-sampah-dikumpulkan', [LaporanController::class,'cetak_sampah_dikumpulkan']);
 });
 
 Route::get('/', [FrontendController::class, 'index']);

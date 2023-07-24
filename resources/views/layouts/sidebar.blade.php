@@ -30,6 +30,7 @@
 						<span class="menu-title {{ Route::currentRouteName() === 'dashboard' ? 'text-white' : '' }}">Dasbor</span>
 					</span>
 				</a>
+				@if(Auth::user()->role === 'Pengelola')
 				<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 					<span class="menu-link">
 						<span class="menu-icon">
@@ -116,6 +117,12 @@
 									<span class="bullet bullet-dot"></span>
 								</span>
 								<span class="menu-title {{ Request::is('jenis-sampah')?'text-white' : '' }}">Jenis Sampah</span>
+							</a>
+							<a class="menu-link" href="{{url('sampah-dikumpulkan')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title {{ Request::is('sampah-dikumpulkan')?'text-white' : '' }}">Sampah Dikumpulkan</span>
 							</a>
 							<a class="menu-link" href="#">
 								<span class="menu-bullet">
@@ -219,6 +226,57 @@
 						</div>
 					</div>
 				</div>
+				@endif
+				<!-- Halaman khusus admin dan kelurahan -->
+				@if(Auth::user()->role === 'Pengelola' || Auth::user()->role === 'Kelurahan')
+				<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+					<span class="menu-link">
+						<span class="menu-icon">
+							<span class="svg-icon svg-icon-2">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark" viewBox="0 0 16 16">
+									<path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z" />
+								</svg>
+							</span>
+						</span>
+						<span class="menu-title ">Laporan</span>
+						<span class="menu-arrow"></span>
+					</span>
+					<div class="menu-sub menu-sub-accordion">
+						<div class="menu-item">
+							<a class="menu-link" href="{{url('laporan-sampah-dikumpulkan')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title {{ Request::is('laporan-sampah-dikumpulkan')?'text-white' : '' }}">Sampah Dikumpulkan</span>
+							</a>
+							<a class="menu-link" href="#">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title">Sampah Dimanfaatkan</span>
+							</a>
+							<a class="menu-link" href="#">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title ">Sampah Diolah Internal</span>
+							</a>
+							<a class="menu-link" href="#">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title ">Sampah Diolah Eksternal</span>
+							</a>
+							<a class="menu-link" href="#">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title ">Sampah Dibuang TPA</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				@endif
 			</div>
 		</div>
 	</div>
