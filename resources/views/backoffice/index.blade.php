@@ -54,7 +54,7 @@
 												<div class="card card-flush" style="background-color: #90EE90">
 													<div class="card-header pt-5">
 														<div class="card-title d-flex flex-column">
-															<span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">0</span>
+															<span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{$sampah_dimanfaatkan->sum('berat')}} Kg</span>
 															<span class="text-white opacity-75 pb-10 fw-semibold fs-6">Sampah Dimanfaatkan</span>
 														</div>
 													</div>
