@@ -23,36 +23,50 @@
     th {
       background-color: #f2f2f2;
     }
+    /* Tambahkan style untuk footer */
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 12px;
+      color: #888;
+    }
   </style>
 </head>
 
 <body>
-  <h2 style="text-align: center;">Laporan Sampah Dikumpulkan Per RW</h2>
+  <h3 style="text-align: center;">Laporan Sampah Dikumpulkan Per RW</h3>
+  <hr>
   @foreach ($dataPerRW as $rwId => $dataRW)
-  <h3 style="margin-top: 20px;">RW {{ $rwId }}</h3>
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">No</th>
-        <th scope="col">Nama RT</th>
-        <th scope="col">Total Berat Sampah (Kg)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php $no = 1; ?>
-      @foreach ($dataRW as $rtId => $data)
-      <?php
-      $totalBerat = $data->sum('total_berat');
-      ?>
-      <tr>
-        <td>{{ $no++ }}</td>
-        <td>RT {{ $rtId }}</td>
-        <td>{{ $totalBerat }}</td>
-      </tr>
-      @endforeach
-    </tbody>
-  </table>
-  @endforeach
+  <h4 style="margin-top: 20px;">RW {{ $rwId }}</h3>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Nama RT</th>
+          <th scope="col">Total Berat Sampah (Kg)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php $no = 1; ?>
+        @foreach ($dataRW as $rtId => $data)
+        <?php
+        $totalBerat = $data->sum('total_berat');
+        ?>
+        <tr>
+          <td>{{ $no++ }}</td>
+          <td>RT {{ $rtId }}</td>
+          <td>{{ $totalBerat }}</td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+    @endforeach
+    <!-- Tampilkan tanggal di footer -->
+    <footer>
+      Laporan ini dihasilkan pada: {{ date('d F Y') }}
+    </footer>
 </body>
 
 </html>
