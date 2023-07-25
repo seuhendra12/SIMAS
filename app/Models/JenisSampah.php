@@ -26,4 +26,9 @@ class JenisSampah extends Model
   {
     return $this->hasMany(SampahDimanfaatkan::class);
   }
+
+  public function sampahDiolahInternal()
+  {
+    return $this->hasMany(SampahDiolahInternal::class);
+  }
 }

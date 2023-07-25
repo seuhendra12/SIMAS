@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SampahDimanfaatkan extends Model
+class SampahDiolahInternal extends Model
 {
   use HasFactory;
   protected $guarded = [];
@@ -13,9 +13,9 @@ class SampahDimanfaatkan extends Model
   public function scopeFilter($query, array $filters)
   {
     $query->when($filters['search'] ?? false, function ($query, $search) {
-      return $query->join('jenis_sampahs', 'sampah_dimanfaatkans.jenis_sampah_id', '=', 'jenis_sampahs.id')
+      return $query->join('jenis_sampahs', 'sampah_diolah_internals.jenis_sampah_id', '=', 'jenis_sampahs.id')
         ->where('jenis_sampahs.name', 'like', '%' . $search . '%')
-        ->orWhere('sampah_dimanfaatkans.keterangan', 'like', '%' . $search . '%'); // Contoh tambahan pencarian berdasarkan kolom keterangan
+        ->orWhere('sampah_diolah_internals.keterangan', 'like', '%' . $search . '%'); // Contoh tambahan pencarian berdasarkan kolom keterangan
     });
   }
 
@@ -29,5 +29,5 @@ class SampahDimanfaatkan extends Model
     return $this->belongsTo(JenisSampah::class, 'jenis_sampah_id');
   }
 
-  protected $dates = ['tanggal_dimanfaatkan'];
+  protected $dates = ['tanggal_diolah'];
 }

@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
 use App\Models\JenisSampah;
-use App\Models\SampahDimanfaatkan;
+use App\Models\SampahDiolahInternal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class SampahDimanfaatkanController extends Controller
+class SampahDiolahInternalController extends Controller
 {
   /**
    * Display a listing of the resource.
@@ -19,9 +19,9 @@ class SampahDimanfaatkanController extends Controller
   {
     $perPage = $request->query('perPage', 10);
 
-    return view('backoffice.manajemen-sampah.sampah-dimanfaatkan.index', [
-      'sampahDimanfaatkans' => SampahDimanfaatkan::filter(request(['search']))
-        ->orderBy('sampah_dimanfaatkans.updated_at', 'desc') // Sebutkan tabelnya dengan jelas
+    return view('backoffice.manajemen-sampah.sampah-diolah-internal.index', [
+      'sampahDiolahInternals' => SampahDiolahInternal::filter(request(['search']))
+        ->latest() // Urutkan berdasarkan tanggal terbaru
         ->paginate($perPage),
       'perPage' => $perPage
     ]);
@@ -35,7 +35,7 @@ class SampahDimanfaatkanController extends Controller
    */
   public function create()
   {
-    return view('backoffice.manajemen-sampah.sampah-dimanfaatkan.create', [
+    return view('backoffice.manajemen-sampah.sampah-diolah-internal.create', [
       'jenisSampahs' => JenisSampah::get(),
     ]);
   }
@@ -52,28 +52,31 @@ class SampahDimanfaatkanController extends Controller
       'petugas' => 'required',
       'jenis_sampah' => 'required',
       'berat' => 'required',
-      'tanggal_dimanfaatkan' => 'required',
+      'tanggal_diolah' => 'required',
+      'lokasi' => 'required',
       'keterangan' => 'required',
     ], [
       'jenis_sampah.required' => 'Kolom jenis sampah wajib diisi',
       'berat.required' => 'Kolom berat wajib diisi',
-      'tanggal_dimanfaatkan.required' => 'Kolom tanggal wajib diisi',
+      'tanggal_diolah.required' => 'Kolom tanggal wajib diisi',
       'keterangan.required' => 'Kolom keterangan wajib diisi',
+      'lokasi.required' => 'Kolom lokasi wajib diisi',
     ]);
 
-    $sampahDimanfaatkan = new SampahDimanfaatkan([
+    $sampahDiolahInternal = new SampahDiolahInternal([
       'petugas_id' => $request->input('petugas'),
       'jenis_sampah_id' => $request->input('jenis_sampah'),
       'berat' => $request->input('berat'),
-      'tanggal_dimanfaatkan' => $request->input('tanggal_dimanfaatkan'),
+      'tanggal_diolah' => $request->input('tanggal_diolah'),
       'keterangan' => $request->input('keterangan'),
+      'lokasi_diolah' => $request->input('lokasi'),
     ]);
 
-    $sampahDimanfaatkan->save();
+    $sampahDiolahInternal->save();
     // Set flash message berhasil
     Session::flash('success', 'Data ini berhasil ditambah');
 
-    return redirect('sampah-dimanfaatkan');
+    return redirect('sampah-diolah-internal');
   }
 
   /**
@@ -95,9 +98,9 @@ class SampahDimanfaatkanController extends Controller
    */
   public function edit($id)
   {
-    $sampahDimanfaatkan = SampahDimanfaatkan::findOrFail($id);
-    return view('backoffice.manajemen-sampah.sampah-dimanfaatkan.edit', [
-      'sampahDimanfaatkan' => $sampahDimanfaatkan,
+    $sampahDiolahInternal = SampahDiolahInternal::findOrFail($id);
+    return view('backoffice.manajemen-sampah.sampah-diolah-internal.edit', [
+      'sampahDiolahInternal' => $sampahDiolahInternal,
       'jenisSampahs' => JenisSampah::get()
     ]);
   }
@@ -111,28 +114,31 @@ class SampahDimanfaatkanController extends Controller
    */
   public function update(Request $request, $id)
   {
-    $sampahDimanfaatkan = SampahDimanfaatkan::findOrFail($id);
+    $sampahDiolahInternal = SampahDiolahInternal::findOrFail($id);
 
     $request->validate([
       'petugas' => 'required',
       'jenis_sampah' => 'required',
       'berat' => 'required',
-      'tanggal_dimanfaatkan' => 'required',
+      'tanggal_diolah' => 'required',
       'keterangan' => 'required',
+      'lokasi' => 'required',
       'status' => 'required',
     ], [
       'jenis_sampah.required' => 'Kolom jenis sampah wajib diisi',
       'berat.required' => 'Kolom berat wajib diisi',
-      'tanggal_dimanfaatkan.required' => 'Kolom tanggal wajib diisi',
+      'tanggal_diolah.required' => 'Kolom tanggal wajib diisi',
       'keterangan.required' => 'Kolom keterangan wajib diisi',
+      'lokasi.required' => 'Kolom lokasi wajib diisi',
       'status.required' => 'Kolom status wajib diisi',
     ]);
 
-    $sampahDimanfaatkan->update([
+    $sampahDiolahInternal->update([
       'petugas_id' => $request->input('petugas'),
       'jenis_sampah_id' => $request->input('jenis_sampah'),
       'berat' => $request->input('berat'),
-      'tanggal_dimanfaatkan' => $request->input('tanggal_dimanfaatkan'),
+      'tanggal_diolah' => $request->input('tanggal_diolah'),
+      'lokasi_diolah' => $request->input('lokasi'),
       'keterangan' => $request->input('keterangan'),
       'status' => $request->input('status'),
     ]);
@@ -140,7 +146,7 @@ class SampahDimanfaatkanController extends Controller
     // Set flash message berhasil
     Session::flash('success', 'Data ini berhasil diubah');
 
-    return redirect('sampah-dimanfaatkan');
+    return redirect('sampah-diolah-internal');
   }
 
   /**
@@ -151,14 +157,14 @@ class SampahDimanfaatkanController extends Controller
    */
   public function destroy($id)
   {
-    $sampahDimanfaatkan = SampahDimanfaatkan::findOrFail($id);
+    $sampahDiolahInternal = SampahDiolahInternal::findOrFail($id);
 
     // Hapus data RW
-    $sampahDimanfaatkan->delete();
+    $sampahDiolahInternal->delete();
 
     // Set flash message berhasil
     Session::flash('success', 'Data ini berhasil dihapus');
 
-    return redirect('/sampah-dimanfaatkan');
+    return redirect('/sampah-diolah-internal');
   }
 }

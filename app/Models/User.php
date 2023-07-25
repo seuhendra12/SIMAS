@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(SampahDimanfaatkan::class);
     }
+
+    public function sampahDiolahInternal()
+    {
+        return $this->hasMany(SampahDiolahInternal::class);
+    }
 }

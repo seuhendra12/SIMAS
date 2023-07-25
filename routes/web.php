@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Backoffice\AuthController;
 use App\Http\Controllers\Backoffice\DashboardController;
-use App\Http\Controllers\Backoffice\HistoriTransaksi;
 use App\Http\Controllers\Backoffice\HistoriTransaksiController;
 use App\Http\Controllers\Backoffice\ItemTransaksiController;
 use App\Http\Controllers\Backoffice\JenisSampahController;
@@ -15,11 +14,10 @@ use App\Http\Controllers\Backoffice\RTController;
 use App\Http\Controllers\Backoffice\RWController;
 use App\Http\Controllers\Backoffice\SampahDikumpulkanController;
 use App\Http\Controllers\Backoffice\SampahDimanfaatkanController;
+use App\Http\Controllers\Backoffice\SampahDiolahInternalController;
 use App\Http\Controllers\Backoffice\TransaksiSampahController;
 use App\Http\Controllers\Backoffice\TukarPoinController;
 use App\Http\Controllers\Frontend\FrontendController;
-use App\Models\ItemTransaksi;
-use App\Models\TukarPoin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,6 +62,7 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
   Route::resource('/jenis-sampah', JenisSampahController::class);
   Route::get('/sampah-dikumpulkan', [SampahDikumpulkanController::class,'index']);
   Route::resource('/sampah-dimanfaatkan', SampahDimanfaatkanController::class);
+  Route::resource('/sampah-diolah-internal', SampahDiolahInternalController::class);
 
   // Manajemen Transaksi
   Route::resource('/transaksi-sampah', TransaksiSampahController::class);

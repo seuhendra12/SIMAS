@@ -1,5 +1,5 @@
 @extends('layouts.index')
-@section('title','Ubah Data Sampah Dimanfaatkan')
+@section('title','Tambah Data Sampah Diolah Internal')
 @section('container')
 
 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
@@ -7,15 +7,15 @@
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
       <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-          <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Data Sampah Dimanfaatkan</h1>
+          <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Data Sampah Diolah Internal</h1>
           <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7">
             <li class="breadcrumb-item text-muted">
-              <a href="{{url('sampah-dimanfaatkan')}}" class="text-muted text-hover-primary">Home</a>
+              <a href="{{url('sampah-diolah-internal')}}" class="text-muted text-hover-primary">Home</a>
             </li>
             <li class="breadcrumb-item">
               <span class="bullet bg-gray-400 w-5px h-2px"></span>
             </li>
-            <li class="breadcrumb-item text-muted">Ubah Data Sampah Dimanfaatkan</li>
+            <li class="breadcrumb-item text-muted">Tambah Data Sampah Diolah Internal</li>
           </ul>
         </div>
       </div>
@@ -27,7 +27,7 @@
             <div class="card card-flush h-md-100">
               <div class="card-body d-flex flex-column justify-content-between bgi-no-repeat bgi-size-cover bgi-position-x-center pb-0">
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-                  <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0 text-center">Form Ubah Data Sampah Dimanfaatkan</h1>
+                  <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0 text-center">Form Tambah Data Sampah Diolah Internal</h1>
                 </div>
                 <hr>
                 <div>
@@ -52,8 +52,7 @@
                     });
                   </script>
                   @endif
-                  <form class="form" action="/sampah-dimanfaatkan/{{$sampahDimanfaatkan->id}}" method="POST">
-                    @method('PUT')
+                  <form class="form" action="{{url('sampah-diolah-internal')}}" method="POST">
                     @csrf
                     <div class="d-flex flex-column mb-3 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
@@ -65,9 +64,11 @@
                       <label for="jenisSampah" class="fs-6 fw-semibold mb-2 required">Jenis Sampah</label>
                       <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih Jenis Sampah" name="jenis_sampah" id="jenisSampah">
                         @foreach ($jenisSampahs as $jenisSampah)
-                        <option value="{{$jenisSampah->id}}" {{ $jenisSampah->jenis_sampah_id == $jenisSampah->id ? 'selected' : '' }}>
-                          {{$jenisSampah->name}}
-                        </option>
+                        @if (old('jenisSampah_id')==$jenisSampah->id)
+                        <option value="{{$jenisSampah->id}}" selected>{{$jenisSampah->name}}</option>
+                        @else
+                        <option value="{{$jenisSampah->id}}">{{$jenisSampah->name}}</option>
+                        @endif
                         @endforeach
                       </select>
                     </div>
@@ -75,39 +76,25 @@
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span class="required">Berat (Kg)</span>
                       </label>
-                      <input type="number" class="form-control" placeholder="00" name="berat" value="{{old('berat',$sampahDimanfaatkan->berat)}}" />
+                      <input type="number" class="form-control" placeholder="00" name="berat" value="{{ old('berat') }}" />
                     </div>
                     <div class="d-flex flex-column mb-3 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                        <span class="required">Tanggal Dimanfaatkan</span>
+                        <span class="required">Tanggal Diolah</span>
                       </label>
-                      <input type="date" class="form-control" name="tanggal_dimanfaatkan" value="{{ date('Y-m-d') }}" />
+                      <input type="date" class="form-control" name="tanggal_diolah" value="{{ old('tanggal_diolah') }}" />
+                    </div>
+                    <div class="d-flex flex-column mb-8 fv-row">
+                      <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                        <span class="required">Lokasi</span>
+                      </label>
+                      <textarea name="lokasi" id="lokasi" cols="10" rows="10" class="form-control" placeholder="Tambahkan lokasi">{{ old('lokasi') }}</textarea>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span class="required">Keterangan</span>
                       </label>
-                      <textarea name="keterangan" id="keterangan" cols="10" rows="10" class="form-control" placeholder="Tambahkan Keterangan">{{old('keterangan',$sampahDimanfaatkan->keterangan)}}</textarea>
-                    </div>
-                    <div class="d-flex flex-column mb-8 fv-row">
-                      <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                        <span class="required">Status</span>
-                      </label>
-                      <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih Status Sampah" name="status" id="status">
-                        @if (old('status', $sampahDimanfaatkan->status) == 'Dalam proses')
-                        <option value="Dalam proses" selected>Dalam proses</option>
-                        <option value="Ditolak">Ditolak</option>
-                        <option value="Selesai">Selesai</option>
-                        @elseif (old('status', $sampahDimanfaatkan->status) == 'Proses')
-                        <option value="Dalam proses">Dalam proses</option>
-                        <option value="Ditolak" selected>Ditolak</option>
-                        <option value="Selesai">Selesai</option>
-                        @elseif (old('status', $sampahDimanfaatkan->status) == 'selesai')
-                        <option value="Dalam proses">Dalam proses</option>
-                        <option value="Ditolak">Ditolak</option>
-                        <option value="Selesai" selected>Selesai</option>
-                        @endif
-                      </select>
+                      <textarea name="keterangan" id="keterangan" cols="10" rows="10" class="form-control" placeholder="Tambahkan Keterangan">{{ old('keterangan') }}</textarea>
                     </div>
                     <div class="mb-10">
                       <button type="submit" class="btn btn-primary btn-sm">
