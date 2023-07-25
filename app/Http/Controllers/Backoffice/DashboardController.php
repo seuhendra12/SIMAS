@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backoffice;
 use App\Http\Controllers\Controller;
 use App\Models\JenisSampah;
 use App\Models\SampahDimanfaatkan;
+use App\Models\SampahDiolahEksternal;
 use App\Models\SampahDiolahInternal;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class DashboardController extends Controller
       'transaksi_sampah' => Transaksi::get(),
       'sampah_dimanfaatkan' => SampahDimanfaatkan::get(),
       'sampah_diolah_internal' => SampahDiolahInternal::get(),
+      'sampah_diolah_eksternal' => SampahDiolahEksternal::get(),
     ]);
   }
 }

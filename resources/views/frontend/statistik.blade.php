@@ -74,7 +74,7 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h3 class="card-title mt-3 fw-bold">0 Kg</h3>
+                <h3 class="card-title mt-3 fw-bold">{{$sampah_diolah_eksternal->sum('berat')}} Kg</h3>
                 <p class="card-text fw-bold text-white">Sampah Diolah Eksternal</p>
               </div>
             </div>
