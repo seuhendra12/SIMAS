@@ -102,11 +102,11 @@ class TransaksiSampahController extends Controller
         // Mengambil item transaksi dan melakukan agregasi berat berdasarkan jenis sampah
         $itemTransaksis = ItemTransaksi::with('jenisSampah')
             ->where('transaksi_id', $id)
-            ->select('jenis-sampah_id')
+            ->select('jenis_sampah_id')
             ->selectRaw('SUM(berat) as jumlah_berat')
             ->selectRaw('SUM(point) as jumlah_point')
-            ->groupBy('jenis-sampah_id')
-            ->orderBy('jenis-sampah_id') // Urutkan berdasarkan jenis_sampah_id
+            ->groupBy('jenis_sampah_id')
+            ->orderBy('jenis_sampah_id') // Urutkan berdasarkan jenis_sampah_id
             ->paginate($perPage);
 
         return view('backoffice.manajemen-transaksi.item-transaksi.index', [

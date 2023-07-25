@@ -142,11 +142,11 @@
 								</span>
 								<span class="menu-title {{ Request::is('sampah-diolah-eksternal')?'text-white' : '' }}">Sampah Diolah Eksternal</span>
 							</a>
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="{{url('sampah-dibuang')}}">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title ">Sampah Dibuang TPA</span>
+								<span class="menu-title {{ Request::is('sampah-dibuang')?'text-white' : '' }}">Sampah Dibuang TPA</span>
 							</a>
 						</div>
 					</div>
@@ -188,7 +188,7 @@
 						</div>
 					</div>
 				</div>
-				<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+				<!-- <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 					<span class="menu-link">
 						<span class="menu-icon">
 							<span class="svg-icon svg-icon-2">
@@ -225,7 +225,7 @@
 							</a>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				@endif
 				<!-- Halaman khusus admin dan kelurahan -->
 				@if(Auth::user()->role === 'Pengelola' || Auth::user()->role === 'Kelurahan')

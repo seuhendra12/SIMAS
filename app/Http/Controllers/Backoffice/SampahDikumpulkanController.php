@@ -14,9 +14,9 @@ class SampahDikumpulkanController extends Controller
     $perPage = $request->query('perPage', 10);
     return view('backoffice.manajemen-sampah.sampah-dikumpulkan.index', [
       'sampahDikumpulkans' => ItemTransaksi::filter(request(['search']))
-        ->select('jenis-sampah_id')
+        ->select('jenis_sampah_id')
         ->selectRaw('SUM(berat) as jumlah_berat')
-        ->groupBy('jenis-sampah_id')
+        ->groupBy('jenis_sampah_id')
         ->paginate($perPage),
       'perPage' => $perPage,
     ]);

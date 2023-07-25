@@ -76,7 +76,7 @@ class ItemTransaksiController extends Controller
   
       $itemTransaksi = new ItemTransaksi([
           'transaksi_id' => $request->input('transaksi_id'),
-          'jenis-sampah_id' => $request->input('jenis_sampah'), // Simpan ID jenis sampah yang terkait
+          'jenis_sampah_id' => $request->input('jenis_sampah'), // Simpan ID jenis sampah yang terkait
           'berat' => $request->input('berat'),
           'point' => $poin, // Simpan hasil perhitungan poin ke kolom jumlah_point
       ]);

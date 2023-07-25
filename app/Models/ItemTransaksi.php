@@ -20,7 +20,7 @@ class ItemTransaksi extends Model
 
     public function jenisSampah()
     {
-        return $this->belongsTo(JenisSampah::class, 'jenis-sampah_id');
+        return $this->belongsTo(JenisSampah::class, 'jenis_sampah_id');
     }
 
     public function transaksi()

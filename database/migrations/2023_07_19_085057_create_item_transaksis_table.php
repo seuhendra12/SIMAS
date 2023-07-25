@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('item_transaksis', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('transaksi_id')->nullable();
-            $table->unsignedBigInteger('jenis-sampah_id')->nullable();
+            $table->unsignedBigInteger('jenis_sampah_id')->nullable();
             $table->bigInteger('berat');
             $table->bigInteger('point');
             $table->timestamps();
 
             $table->foreign('transaksi_id')->references('id')->on('transaksis')->onDelete('cascade');
-            $table->foreign('jenis-sampah_id')->references('id')->on('jenis_sampahs')->onDelete('cascade');
+            $table->foreign('jenis_sampah_id')->references('id')->on('jenis_sampahs')->onDelete('cascade');
         });
     }
 

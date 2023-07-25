@@ -57,6 +57,7 @@ class PenggunaController extends Controller
       'nik.size' => 'NIK harus memiliki panjang 16 karakter.',
       'nik.unique' => 'Nik sudah digunakan.',
       'name.required' => 'Nama wajib diisi.',
+      'role.required' => 'Role wajib diisi.',
       'email.required' => 'Email wajib diisi.',
       'email.email' => 'Format email tidak valid.',
       'email.unique' => 'Email sudah digunakan.',

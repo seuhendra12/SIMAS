@@ -12,6 +12,7 @@ use App\Http\Controllers\Backoffice\PenggunaController;
 use App\Http\Controllers\Backoffice\RoleController;
 use App\Http\Controllers\Backoffice\RTController;
 use App\Http\Controllers\Backoffice\RWController;
+use App\Http\Controllers\Backoffice\SampahDibuangKeTPAController;
 use App\Http\Controllers\Backoffice\SampahDikumpulkanController;
 use App\Http\Controllers\Backoffice\SampahDimanfaatkanController;
 use App\Http\Controllers\Backoffice\SampahDiolahEksternalController;
@@ -65,6 +66,7 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
   Route::resource('/sampah-dimanfaatkan', SampahDimanfaatkanController::class);
   Route::resource('/sampah-diolah-internal', SampahDiolahInternalController::class);
   Route::resource('/sampah-diolah-eksternal', SampahDiolahEksternalController::class);
+  Route::get('/sampah-dibuang', [SampahDibuangKeTPAController::class,'index']);
 
   // Manajemen Transaksi
   Route::resource('/transaksi-sampah', TransaksiSampahController::class);

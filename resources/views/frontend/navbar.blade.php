@@ -22,9 +22,9 @@
         <li class="nav-item py-2 me-3">
           <a class="nav-link text-white fw-bold" href="#statistik">Statistik</a>
         </li>
-        <li class="nav-item py-2 me-3">
+        <!-- <li class="nav-item py-2 me-3">
           <a class="nav-link text-white fw-bold" href="#berita">Berita</a>
-        </li>
+        </li> -->
         <li class="nav-item py-2">
           <a class="nav-link text-white fw-bold" href="#kontak">Kontak</a>
         </li>
