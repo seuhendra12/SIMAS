@@ -44,7 +44,7 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h3 class="card-title mt-3 fw-bold">0 Kg</h3>
+                <h3 class="card-title mt-3 fw-bold">{{$sampah_dimanfaatkan->sum('berat')}} Kg</h3>
                 <p class="card-text fw-bold text-white">Sampah Dimanfaatkan</p>
               </div>
             </div>
@@ -59,7 +59,7 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h3 class="card-title mt-3 fw-bold">0 Kg</h3>
+                <h3 class="card-title mt-3 fw-bold">{{$sampah_diolah_internal->sum('berat')}} Kg</h3>
                 <p class="card-text fw-bold text-white">Sampah Diolah Internal</p>
               </div>
             </div>

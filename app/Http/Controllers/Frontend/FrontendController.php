@@ -8,6 +8,8 @@ use App\Models\JenisSampah;
 use App\Models\NilaiKonversi;
 use App\Models\RT;
 use App\Models\RW;
+use App\Models\SampahDimanfaatkan;
+use App\Models\SampahDiolahInternal;
 use App\Models\Transaksi;
 use App\Models\TukarPoin;
 use App\Models\User;
@@ -25,6 +27,8 @@ class FrontendController extends Controller
     return view('frontend.index', [
       'jenis_sampah' => JenisSampah::get(),
       'transaksi_sampah' => Transaksi::get(),
+      'sampah_dimanfaatkan' => SampahDimanfaatkan::get(),
+      'sampah_diolah_internal' => SampahDiolahInternal::get(),
     ]);
   }
   public function profile()
