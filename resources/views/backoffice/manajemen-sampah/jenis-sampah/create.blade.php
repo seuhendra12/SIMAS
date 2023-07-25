@@ -75,7 +75,7 @@
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                        <span class="required">Point Per Kilogram</span>
+                        <span>Point Per Kilogram</span>
                       </label>
                       <input type="text" class="form-control" placeholder="Masukkan Jumlah Point per Kilogram" name="point_perkg" />
                     </div>

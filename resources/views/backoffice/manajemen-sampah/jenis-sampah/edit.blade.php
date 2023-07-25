@@ -74,7 +74,7 @@
                     </div>
                     <div class="d-flex flex-column mb-3 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                        <span class="required">Point Per Kilogram</span>
+                        <span>Point Per Kilogram</span>
                       </label>
                       <input type="text" class="form-control" placeholder="Masukkan jumlah point per kilogram" name="point_perkg" value="{{old('point_perkg',$jenisSampah->point_perkg)}}"/>
                     </div>
