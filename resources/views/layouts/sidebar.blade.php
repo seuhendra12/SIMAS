@@ -136,11 +136,11 @@
 								</span>
 								<span class="menu-title {{ Request::is('sampah-diolah-internal')?'text-white' : '' }}">Sampah Diolah Internal</span>
 							</a>
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="{{url('sampah-diolah-eksternal')}}">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title ">Sampah Diolah Eksternal</span>
+								<span class="menu-title {{ Request::is('sampah-diolah-eksternal')?'text-white' : '' }}">Sampah Diolah Eksternal</span>
 							</a>
 							<a class="menu-link" href="#">
 								<span class="menu-bullet">

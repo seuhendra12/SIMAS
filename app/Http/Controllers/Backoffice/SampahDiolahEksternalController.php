@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
 use App\Models\JenisSampah;
-use App\Models\SampahDiolahInternal;
+use App\Models\SampahDiolahEksternal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class SampahDiolahInternalController extends Controller
+class SampahDiolahEksternalController extends Controller
 {
   /**
    * Display a listing of the resource.
@@ -19,14 +19,13 @@ class SampahDiolahInternalController extends Controller
   {
     $perPage = $request->query('perPage', 10);
 
-    return view('backoffice.manajemen-sampah.sampah-diolah-internal.index', [
-        'sampahDiolahInternals' => SampahDiolahInternal::filter(request(['search']))
-            ->orderBy('sampah_diolah_internals.created_at', 'desc') // Sebutkan tabelnya dengan jelas
-            ->paginate($perPage),
-        'perPage' => $perPage
+    return view('backoffice.manajemen-sampah.sampah-diolah-eksternal.index', [
+      'sampahDiolahEksternals' => SampahDiolahEksternal::filter(request(['search']))
+        ->orderBy('sampah_diolah_eksternals.created_at', 'desc') // Sebutkan tabelnya dengan jelas
+        ->paginate($perPage),
+      'perPage' => $perPage
     ]);
   }
-
 
   /**
    * Show the form for creating a new resource.
@@ -35,7 +34,7 @@ class SampahDiolahInternalController extends Controller
    */
   public function create()
   {
-    return view('backoffice.manajemen-sampah.sampah-diolah-internal.create', [
+    return view('backoffice.manajemen-sampah.sampah-diolah-eksternal.create', [
       'jenisSampahs' => JenisSampah::get(),
     ]);
   }
@@ -63,7 +62,7 @@ class SampahDiolahInternalController extends Controller
       'lokasi.required' => 'Kolom lokasi wajib diisi',
     ]);
 
-    $sampahDiolahInternal = new SampahDiolahInternal([
+    $sampahDiolahEksternal = new SampahDiolahEksternal([
       'petugas_id' => $request->input('petugas'),
       'jenis_sampah_id' => $request->input('jenis_sampah'),
       'berat' => $request->input('berat'),
@@ -72,11 +71,11 @@ class SampahDiolahInternalController extends Controller
       'lokasi_diolah' => $request->input('lokasi'),
     ]);
 
-    $sampahDiolahInternal->save();
+    $sampahDiolahEksternal->save();
     // Set flash message berhasil
-    Session::flash('success', 'Data ini berhasil ditambah');
+    Session::flash('success', 'Data berhasil ditambah');
 
-    return redirect('sampah-diolah-internal');
+    return redirect('sampah-diolah-eksternal');
   }
 
   /**
@@ -98,9 +97,9 @@ class SampahDiolahInternalController extends Controller
    */
   public function edit($id)
   {
-    $sampahDiolahInternal = SampahDiolahInternal::findOrFail($id);
-    return view('backoffice.manajemen-sampah.sampah-diolah-internal.edit', [
-      'sampahDiolahInternal' => $sampahDiolahInternal,
+    $sampahDiolahEksternal = SampahDiolahEksternal::findOrFail($id);
+    return view('backoffice.manajemen-sampah.sampah-diolah-eksternal.edit', [
+      'sampahDiolahEksternal' => $sampahDiolahEksternal,
       'jenisSampahs' => JenisSampah::get()
     ]);
   }
@@ -114,7 +113,7 @@ class SampahDiolahInternalController extends Controller
    */
   public function update(Request $request, $id)
   {
-    $sampahDiolahInternal = SampahDiolahInternal::findOrFail($id);
+    $sampahDiolahEksternal = SampahDiolahEksternal::findOrFail($id);
 
     $request->validate([
       'petugas' => 'required',
@@ -133,7 +132,7 @@ class SampahDiolahInternalController extends Controller
       'status.required' => 'Kolom status wajib diisi',
     ]);
 
-    $sampahDiolahInternal->update([
+    $sampahDiolahEksternal->update([
       'petugas_id' => $request->input('petugas'),
       'jenis_sampah_id' => $request->input('jenis_sampah'),
       'berat' => $request->input('berat'),
@@ -144,9 +143,9 @@ class SampahDiolahInternalController extends Controller
     ]);
 
     // Set flash message berhasil
-    Session::flash('success', 'Data ini berhasil diubah');
+    Session::flash('success', 'Data berhasil diubah');
 
-    return redirect('sampah-diolah-internal');
+    return redirect('sampah-diolah-eksternal');
   }
 
   /**
@@ -157,14 +156,14 @@ class SampahDiolahInternalController extends Controller
    */
   public function destroy($id)
   {
-    $sampahDiolahInternal = SampahDiolahInternal::findOrFail($id);
+    $sampahDiolahEksternal = SampahDiolahEksternal::findOrFail($id);
 
     // Hapus data RW
-    $sampahDiolahInternal->delete();
+    $sampahDiolahEksternal->delete();
 
     // Set flash message berhasil
-    Session::flash('success', 'Data ini berhasil dihapus');
+    Session::flash('success', 'Data berhasil dihapus');
 
-    return redirect('/sampah-diolah-internal');
+    return redirect('/sampah-diolah-eksternal');
   }
 }
