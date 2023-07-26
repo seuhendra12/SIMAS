@@ -249,11 +249,11 @@
 								</span>
 								<span class="menu-title {{ Request::is('laporan-sampah-dikumpulkan')?'text-white' : '' }}">Sampah Dikumpulkan</span>
 							</a>
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="{{url('laporan-sampah-dimanfaatkan')}}">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title ">Sampah Dimanfaatkan</span>
+								<span class="menu-title {{ Request::is('laporan-sampah-dimanfaatkan')?'text-white' : '' }}">Sampah Dimanfaatkan</span>
 							</a>
 							<a class="menu-link" href="#">
 								<span class="menu-bullet">

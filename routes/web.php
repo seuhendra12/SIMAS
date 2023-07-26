@@ -80,7 +80,8 @@ Route::middleware(['role:SuperAdmin,Admin', 'auth'])->group(function () {
 
 Route::middleware(['role:SuperAdmin,Admin,Kelurahan', 'auth'])->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-  Route::get('/laporan-sampah-dikumpulkan', [LaporanController::class,'index']);
+  Route::get('/laporan-sampah-dikumpulkan', [LaporanController::class,'laporan_sampah_dikumpulkan']);
+  Route::get('/laporan-sampah-dimanfaatkan', [LaporanController::class,'laporan_sampah_dimanfaatkan']);
   Route::get('/cetak-sampah-dikumpulkan', [LaporanController::class,'cetak_sampah_dikumpulkan']);
 });
 

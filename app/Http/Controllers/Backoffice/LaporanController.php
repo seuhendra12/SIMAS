@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
 use App\Models\ItemTransaksi;
+use App\Models\SampahDimanfaatkan;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 
 class LaporanController extends Controller
 {
-  public function index(Request $request)
+  public function laporan_sampah_dikumpulkan(Request $request)
   {
     $perPage = $request->query('perPage', 10);
     return view('backoffice.report.laporan_sampah_dikumpulkan', [
@@ -20,6 +21,18 @@ class LaporanController extends Controller
         ->groupBy('jenis_sampah_id')
         ->paginate($perPage),
       'perPage' => $perPage,
+    ]);
+  }
+
+  public function laporan_sampah_dimanfaatkan(Request $request)
+  {
+    $perPage = $request->query('perPage', 10);
+
+    return view('backoffice.report.laporan_sampah_dimanfaatkan', [
+      'sampahDimanfaatkans' => SampahDimanfaatkan::filter(request(['search']))
+        ->orderBy('sampah_dimanfaatkans.updated_at', 'desc') // Sebutkan tabelnya dengan jelas
+        ->paginate($perPage),
+      'perPage' => $perPage
     ]);
   }
 
