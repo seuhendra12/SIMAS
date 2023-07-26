@@ -255,23 +255,23 @@
 								</span>
 								<span class="menu-title {{ Request::is('laporan-sampah-dimanfaatkan')?'text-white' : '' }}">Sampah Dimanfaatkan</span>
 							</a>
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="{{url('laporan-sampah-diolah-internal')}}">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title ">Sampah Diolah Internal</span>
+								<span class="menu-title {{ Request::is('laporan-sampah-diolah-internal')?'text-white' : '' }}">Sampah Diolah Internal</span>
 							</a>
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="{{url('laporan-sampah-diolah-eksternal')}}">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title ">Sampah Diolah Eksternal</span>
+								<span class="menu-title {{ Request::is('laporan-sampah-diolah-eksternal')?'text-white' : '' }}">Sampah Diolah Eksternal</span>
 							</a>
-							<a class="menu-link" href="#">
+							<a class="menu-link" href="{{url('laporan-sampah-dibuang-ke-tpa')}}">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title ">Sampah Dibuang TPA</span>
+								<span class="menu-title {{ Request::is('laporan-sampah-dibuang-ke-tpa')?'text-white' : '' }}">Sampah Dibuang TPA</span>
 							</a>
 						</div>
 					</div>

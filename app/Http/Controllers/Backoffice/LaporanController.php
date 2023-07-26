@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backoffice;
 use App\Http\Controllers\Controller;
 use App\Models\ItemTransaksi;
 use App\Models\SampahDimanfaatkan;
+use App\Models\SampahDiolahInternal;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
@@ -33,6 +34,18 @@ class LaporanController extends Controller
         ->orderBy('sampah_dimanfaatkans.updated_at', 'desc') // Sebutkan tabelnya dengan jelas
         ->paginate($perPage),
       'perPage' => $perPage
+    ]);
+  }
+
+  public function laporan_sampah_diolah_internal(Request $request)
+  {
+    $perPage = $request->query('perPage', 10);
+
+    return view('backoffice.report.laporan_sampah_diolah_internal', [
+        'sampahDiolahInternals' => SampahDiolahInternal::filter(request(['search']))
+            ->orderBy('sampah_diolah_internals.created_at', 'desc') // Sebutkan tabelnya dengan jelas
+            ->paginate($perPage),
+        'perPage' => $perPage
     ]);
   }
 

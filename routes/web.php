@@ -82,6 +82,9 @@ Route::middleware(['role:SuperAdmin,Admin,Kelurahan', 'auth'])->group(function (
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
   Route::get('/laporan-sampah-dikumpulkan', [LaporanController::class,'laporan_sampah_dikumpulkan']);
   Route::get('/laporan-sampah-dimanfaatkan', [LaporanController::class,'laporan_sampah_dimanfaatkan']);
+  Route::get('/laporan-sampah-diolah-internal', [LaporanController::class,'laporan_sampah_diolah_internal']);
+  Route::get('/laporan-sampah-diolah-eksternal', [LaporanController::class,'laporan_sampah_diolah_eksternal']);
+  Route::get('/laporan-sampah-dibuang-ke-tpa', [LaporanController::class,'laporan_sampah_dibuang_ke_tpa']);
   Route::get('/cetak-sampah-dikumpulkan', [LaporanController::class,'cetak_sampah_dikumpulkan']);
 });
 
