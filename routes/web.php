@@ -49,7 +49,7 @@ Route::post('logout', [AuthController::class, 'logout']);
 
 
 
-Route::middleware(['role:Pengelola', 'auth'])->group(function () {
+Route::middleware(['role:SuperAdmin,Admin', 'auth'])->group(function () {
   // Data Referensi
   Route::resource('/data-rt', RTController::class);
   Route::resource('/data-rw', RWController::class);
@@ -78,7 +78,7 @@ Route::middleware(['role:Pengelola', 'auth'])->group(function () {
   Route::resource('/tukar-poin-admin', TukarPoinController::class);
 });
 
-Route::middleware(['role:Pengelola,Kelurahan', 'auth'])->group(function () {
+Route::middleware(['role:SuperAdmin,Admin,Kelurahan', 'auth'])->group(function () {
   Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
   Route::get('/laporan-sampah-dikumpulkan', [LaporanController::class,'index']);
   Route::get('/cetak-sampah-dikumpulkan', [LaporanController::class,'cetak_sampah_dikumpulkan']);

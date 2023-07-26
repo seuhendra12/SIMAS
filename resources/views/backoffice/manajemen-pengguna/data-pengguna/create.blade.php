@@ -99,9 +99,11 @@
 										<div class="g-9 mb-3">
 											<label class="required fs-6 fw-semibold mb-2">Role</label>
 											<select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih Level Akses Pengguna" name="role">
-												<option value="">Select role...</option>
+												@if(Auth::user()->role === 'SuperAdmin')
+												<option value="Admin">Admin</option>
+												@endif
 												<option value="Kelurahan">Kelurahan</option>
-												<option value="Warga">Warga</option>
+												<option value="User">User</option>
 											</select>
 										</div>
 										<div class="d-flex flex-column mb-3 fv-row">

@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\Password;
-use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -44,9 +42,9 @@ class AuthController extends Controller
     if (Auth::attempt($credentials)) {
       $user = Auth::user();
 
-      if ($user->role == 'Pengelola' || $user->role == 'Kelurahan') {
+      if ($user->role == 'Pengelola' || $user->role == 'Admin' || $user->role == 'Kelurahan' ) {
         return redirect()->intended('/dashboard');
-      } elseif ($user->role == 'Warga') {
+      } elseif ($user->role == 'User') {
         return redirect()->intended('/');
       }
     }

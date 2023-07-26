@@ -30,7 +30,7 @@
 						<span class="menu-title {{ Route::currentRouteName() === 'dashboard' ? 'text-white' : '' }}">Dasbor</span>
 					</span>
 				</a>
-				@if(Auth::user()->role === 'Pengelola')
+				@if(Auth::user()->role === 'SuperAdmin' || Auth::user()->role === 'Admin')
 				<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 					<span class="menu-link">
 						<span class="menu-icon">
@@ -228,7 +228,7 @@
 				</div> -->
 				@endif
 				<!-- Halaman khusus admin dan kelurahan -->
-				@if(Auth::user()->role === 'Pengelola' || Auth::user()->role === 'Kelurahan')
+				@if(Auth::user()->role === 'SuperAdmin' || Auth::user()->role === 'Admin' || Auth::user()->role === 'Kelurahan' )
 				<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 					<span class="menu-link">
 						<span class="menu-icon">
