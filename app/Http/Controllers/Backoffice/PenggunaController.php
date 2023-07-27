@@ -101,7 +101,7 @@ class PenggunaController extends Controller
     $namaRW = $rw->name;
 
     // Gabungkan data RT, RW, dan nomor rumah untuk membentuk kode_transaksi
-    $kodeTransaksi = $namaRT . $namaRW . $nomorRumah;
+    $kodeTransaksi = $nomorRumah . $namaRT . $namaRW;
 
     if ($validator->fails()) {
       return redirect('/data-pengguna/create')
@@ -225,7 +225,7 @@ class PenggunaController extends Controller
     $namaRW = $rw->name;
 
     // Gabungkan data RT, RW, dan nomor rumah untuk membentuk kode_transaksi
-    $kodeTransaksi = $namaRT . $namaRW . $nomorRumah;
+    $kodeTransaksi = $nomorRumah . $namaRT . $namaRW;
 
     if ($validator->fails()) {
       return redirect()->back()

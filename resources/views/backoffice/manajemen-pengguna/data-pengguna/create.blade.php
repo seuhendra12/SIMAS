@@ -124,7 +124,7 @@
 													<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 														<span class="required">No Rumah</span>
 													</label>
-													<input type="number" class="form-control" placeholder="00" name="no_rumah" value="{{ old('no_rumah') }}" />
+													<input type="text" class="form-control" placeholder="00" name="no_rumah" value="{{ old('no_rumah') }}" />
 												</div>
 												<div class="col-2">
 													<label class="d-flex align-items-center fs-6 fw-semibold mb-2">

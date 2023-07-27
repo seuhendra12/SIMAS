@@ -78,7 +78,7 @@
                         <form>
                           <div class="d-flex d-inline">
                             <span class="fw-bold mt-4">Tampilkan</span>
-                            <div class="col-2 px-3">
+                            <div class="col-2">
                               <input type="number" name="perPage" class="form-control mx-3" value="{{$perPage}}" onchange="this.form.submit()">
                             </div>
                             <span class="fw-bold mt-4 ms-6">entri</span>

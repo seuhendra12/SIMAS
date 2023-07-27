@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('jenis_kelamin')->nullable();
             $table->string('no_telepon')->nullable();
             $table->text('alamat')->nullable();
-            $table->integer('no_rumah')->nullable();
+            $table->string('no_rumah')->nullable();
             $table->unsignedBigInteger('rt_id')->nullable();
             $table->unsignedBigInteger('rw_id')->nullable();
             $table->timestamps();

@@ -43,10 +43,10 @@ class LaporanController extends Controller
     $perPage = $request->query('perPage', 10);
 
     return view('backoffice.report.laporan_sampah_diolah_internal', [
-        'sampahDiolahInternals' => SampahDiolahInternal::filter(request(['search']))
-            ->orderBy('sampah_diolah_internals.created_at', 'desc') // Sebutkan tabelnya dengan jelas
-            ->paginate($perPage),
-        'perPage' => $perPage
+      'sampahDiolahInternals' => SampahDiolahInternal::filter(request(['search']))
+        ->orderBy('sampah_diolah_internals.created_at', 'desc') // Sebutkan tabelnya dengan jelas
+        ->paginate($perPage),
+      'perPage' => $perPage
     ]);
   }
 
@@ -59,6 +59,16 @@ class LaporanController extends Controller
         ->orderBy('sampah_diolah_eksternals.created_at', 'desc') // Sebutkan tabelnya dengan jelas
         ->paginate($perPage),
       'perPage' => $perPage
+    ]);
+  }
+
+  public function laporan_sampah_dibuang_ke_tpa()
+  {
+    return view('backoffice.report.laporan_sampah_dibuang_ke_tpa', [
+      'sampahDibuangs' => ItemTransaksi::selectRaw('jenis_sampah_id, SUM(berat) as jumlah_berat')
+        ->where('jenis_sampah_id', 1)
+        ->groupBy('jenis_sampah_id')
+        ->get()
     ]);
   }
 
