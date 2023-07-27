@@ -7,10 +7,10 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse offcanvas offcanvas-end" data-bs-scroll="true" id="offcanvasWithBothOptions" tabindex="-1" id="navbarNav">
+    <div class="collapse navbar-collapse offcanvas offcanvas-end bg-dark" data-bs-scroll="true" id="offcanvasWithBothOptions" tabindex="-1" id="navbarNav">
       <div class="offcanvas-header w-100 align-items-center">
-        <h2 class="mb-0">SIMAS</h2>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <h2 class="mb-0 text-white fw-bold">SIMAS</h2>
+        <button type="button" class="btn-close text-reset bg-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <ul class="navbar-nav ms-auto mx-3 pt-2">
         <li class="nav-item py-2 me-3">
@@ -25,12 +25,12 @@
         <!-- <li class="nav-item py-2 me-3">
           <a class="nav-link text-white fw-bold" href="#berita">Berita</a>
         </li> -->
-        <li class="nav-item py-2">
+        <li class="nav-item py-2 me-4">
           <a class="nav-link text-white fw-bold" href="#kontak">Kontak</a>
         </li>
         @if (Auth::check())
         <!-- Button trigger modal -->
-        <div class="d-flex align-items-center ms-3">
+        <div class="d-flex align-items-center">
           <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profile">
             <img src="{!! asset('/img/icon/icon_user.jpg') !!}" alt="User Image" class="rounded-circle me-2" style="width: 30px; height: 30px;">
             <span class="text-white fw-bold">{{ Auth::user()->name }}</span>
@@ -39,13 +39,8 @@
         @else
         <li class="nav-item">
           <div class="mb-2 text-white"></div>
-          <div class="nav-link d-inline ms-3">
-            <a href="/login" class="btn btn-light mb-3 rounded-0 fw-bold">Login</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <div class="mb-2 text-white"></div>
           <div class="nav-link d-inline">
+            <a href="/login" class="btn btn-light mb-3 rounded-0 fw-bold">Login</a>
             <a href="/registrasi" class="btn btn-success mb-3 rounded-0 fw-bold">Registrasi</a>
           </div>
         </li>
@@ -70,26 +65,14 @@
             <img src="{!! asset('/img/icon/icon_user.jpg') !!}" alt="User Image" class="rounded-circle me-2" style="width: 130px; height: 130px;">
           </div>
           <div class="col-8">
-            <table>
-              <tr>
-                <td>
-                  <h5 class="text-dark fw-bold">{{ Auth::user()->name }}</h5>
-                  <p class="text-dark fw-bold">ID : {{ Auth::user()->profile->kode_simas ?? 'Belum Tersedia' }}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="{!! asset('/img/icon/koin.png') !!}" alt="User Image" class="rounded-circle me-2" style="width: 30px; height: 30px;">
-                  <span class="fw-bold">{{ Auth::user()->transaksi->total_point ?? '0' }} Points</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="{!! asset('/img/icon/sampah.png') !!}" alt="User Image" class="rounded-circle me-2" style="width: 30px; height: 30px;">
-                  <span class="fw-bold">{{ Auth::user()->transaksi->total_berat ?? '0' }} Kg Sampah Dikumpulkan</span>
-                </td>
-              </tr>
-            </table>
+            <div class="modal-profile">
+              <h5 class="text-dark fw-bold">{{ Auth::user()->name }}</h5>
+              <p class="text-dark fw-bold">ID : {{ Auth::user()->profile->kode_simas ?? 'Belum Tersedia' }}</p>
+            </div>
+            <img src="{!! asset('/img/icon/koin.png') !!}" alt="User Image" class="rounded-circle me-2" style="width: 30px; height: 30px;">
+            <span class="fw-bold">{{ Auth::user()->transaksi->total_point ?? '0' }} Points</span> <br>
+            <img src="{!! asset('/img/icon/sampah.png') !!}" alt="User Image" class="rounded-circle me-2" style="width: 30px; height: 30px;">
+            <span class="fw-bold">{{ Auth::user()->transaksi->total_berat ?? '0' }} Kg Sampah Dikumpulkan</span>
           </div>
         </div>
         <div class="row mt-4">

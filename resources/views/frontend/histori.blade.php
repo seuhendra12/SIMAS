@@ -12,6 +12,7 @@
 
   <!-- Styling buatan sendiri -->
   <link href="{!! asset('/css/style.css') !!}" rel="stylesheet" type="text/css" />
+  <link href="{!! asset('/css/responsive.bundle.css') !!}" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
@@ -28,28 +29,30 @@
         <span class="fw-bold text-white">Histori Transaksi</span>
       </div>
       <div class="card-body bg-light px-3">
-        <table class="table table-bordered table-striped">
-          <thead class="fw-bold">
-            <tr>
-              <td>No</td>
-              <td>Jenis Sampah</td>
-              <td>Tanggal Transaksi</td>
-              <td>Berat Sampah</td>
-            </tr>
-          </thead>
-          <tbody>
-            @forelse ($historiTransaksis as $historiTransaksi)
-            <tr>
-              <td class="align-top">{{$loop->iteration}}</td>
-              <td class="align-top">{{$historiTransaksi->jenisSampah->name}}</td>
-              <td class="align-top">{{$historiTransaksi->created_at->format('d M Y')}}</td>
-              <td class="align-top">{{$historiTransaksi->berat}} Kg</td>
-            </tr>
-            @empty
-            <td colspan="5" class="text-center bg-danger">-- Data Tidak Ada --</td>
-            @endforelse
-          </tbody>
-        </table>
+        <div class="table-container">
+          <table class="table table-bordered table-striped">
+            <thead class="fw-bold">
+              <tr>
+                <td>No</td>
+                <td>Jenis Sampah</td>
+                <td>Tanggal Transaksi</td>
+                <td>Berat Sampah</td>
+              </tr>
+            </thead>
+            <tbody>
+              @forelse ($historiTransaksis as $historiTransaksi)
+              <tr>
+                <td class="align-top">{{$loop->iteration}}</td>
+                <td class="align-top">{{$historiTransaksi->jenisSampah->name}}</td>
+                <td class="align-top">{{$historiTransaksi->created_at->format('d M Y')}}</td>
+                <td class="align-top">{{$historiTransaksi->berat}} Kg</td>
+              </tr>
+              @empty
+              <td colspan="5" class="text-center bg-danger">-- Data Tidak Ada --</td>
+              @endforelse
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="mb-5">
         {{$historiTransaksis->appends(['perPage' => $perPage])->links('pagination::bootstrap-5')}}
