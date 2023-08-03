@@ -100,8 +100,11 @@
                     <div class="g-9 mb-3">
                       <label class="required fs-6 fw-semibold mb-2">Role</label>
                       <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih Level Akses Pengguna" name="role">
+                        @if(Auth::user()->role === 'SuperAdmin')
+                        <option value="Admin" {{ (old('role', $user->role) === 'Admin') ? 'selected' : '' }}>Admin</option>
+                        @endif
                         <option value="Kelurahan" {{ (old('role', $user->role) === 'Kelurahan') ? 'selected' : '' }}>Kelurahan</option>
-                        <option value="Warga" {{ (old('role', $user->role) === 'Warga') ? 'selected' : '' }}>Warga</option>
+                        <option value="User" {{ (old('role', $user->role) === 'User') ? 'selected' : '' }}>User</option>
                       </select>
                     </div>
                     <div class="d-flex flex-column mb-3 fv-row">

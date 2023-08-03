@@ -38,10 +38,10 @@ class UserSeeder extends Seeder
 				'nik' => '2172027105050003',
 			],
 			[
-				'name' => 'Warga RT 02',
-				'email' => 'user@gmail.com',
+				'name' => 'Seuhendra Setiawan',
+				'email' => 'seuhendrasetiawan.com',
 				'role' => 'User',
-				'password' => Hash::make('User12345'),
+				'password' => Hash::make('Seu12345'),
 				'nik' => '2172027105050004',
 			],
 		];

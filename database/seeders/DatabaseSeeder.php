@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             RTRWSeeder::class,
             KategoriSampahSeeder::class,
             JenisSampahSeeder::class,
+            NilaiKonversiSeeder::class,
             // Tambahkan seeder lainnya di sini
         ]);
     }

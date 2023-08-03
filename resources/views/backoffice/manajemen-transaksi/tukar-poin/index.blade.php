@@ -105,7 +105,7 @@
                           <td class="align-top">{{$loop->iteration}}</td>
                           <td class="align-top">{{$tukarPoin->transaksi->user->profile->kode_simas}}</td>
                           <td class="align-top">{{$tukarPoin->total_konversi}} Kg</td>
-                          <td class="align-top">{{$tukarPoin->tanggal_transaksi->format('d M Y')}}</td>
+                          <td class="align-top">{{$tukarPoin->tanggal_transaksi->format('d/m/Y')}}</td>
                           <td class="align-top">
                             @if ($tukarPoin->status == 'tunda')
                             <h5 class="badge badge-light-danger">Tunda</h5>

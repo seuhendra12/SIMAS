@@ -129,6 +129,7 @@ class PenggunaController extends Controller
       ['email' => $request->input('email')],
       [
         'name' => $request->input('name'),
+        'role' => $request->input('role'),
         'password' => Hash::make($request->input('password')),
       ]
     );
@@ -250,6 +251,8 @@ class PenggunaController extends Controller
 
     $user->update([
       'name' => $request->input('name'),
+      'email' => $request->input('email'),
+      'role' => $request->input('role'),
       'password' => Hash::make($request->input('password')),
     ]);
 

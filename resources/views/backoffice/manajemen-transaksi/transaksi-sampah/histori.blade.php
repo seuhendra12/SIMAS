@@ -68,7 +68,7 @@
                       <tr>
                         <td class="align-top">{{$loop->iteration}}</td>
                         <td class="align-top">{{$itemTransaksi->jenisSampah->name}}</td>
-                        <td class="align-top">{{$itemTransaksi->created_at->format('d M Y') }}</td>
+                        <td class="align-top">{{$itemTransaksi->created_at->format('d/m/Y') }}</td>
                         <td class="align-top">{{$itemTransaksi->berat}} Kg</td>
                         <td class="align-top">{{$itemTransaksi->point}} Poin</td>
                       </tr>

@@ -120,7 +120,7 @@
                             <td class="align-middle">{{$transaksiSampah->kode_transaksi}}</td>
                             <td class="align-middle">{{$transaksiSampah->user->name}}</td>
                             <td class="align-middle">
-                              {{ $transaksiSampah->tanggal_transaksi->format('d M Y') }}
+                              {{ $transaksiSampah->tanggal_transaksi->format('d/m/Y') }}
                             </td>
                             <td class="align-middle">
                               {{ $transaksiSampah->total_berat !== null ? $transaksiSampah->total_berat : 0 }} Kg

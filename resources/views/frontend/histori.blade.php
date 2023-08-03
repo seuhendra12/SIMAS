@@ -8,7 +8,8 @@
   <!-- Styling tampilan dengan bootstrap-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
-
+  <!-- ICON LOCALHOST -->
+  <link rel="icon" type="image/x-icon" href="{{ asset('img/logo/logo_sim_min.png') }}">
 
   <!-- Styling buatan sendiri -->
   <link href="{!! asset('/css/style.css') !!}" rel="stylesheet" type="text/css" />
@@ -44,7 +45,7 @@
               <tr>
                 <td class="align-top">{{$loop->iteration}}</td>
                 <td class="align-top">{{$historiTransaksi->jenisSampah->name}}</td>
-                <td class="align-top">{{$historiTransaksi->created_at->format('d M Y')}}</td>
+                <td class="align-top">{{$historiTransaksi->created_at->format('d/m/Y')}}</td>
                 <td class="align-top">{{$historiTransaksi->berat}} Kg</td>
               </tr>
               @empty

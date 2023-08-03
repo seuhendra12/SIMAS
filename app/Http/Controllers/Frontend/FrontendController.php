@@ -136,10 +136,11 @@ class FrontendController extends Controller
 
   $totalPoinTransaksi = $transaksi->total_point;
   $nilaiPoin = $konversiPoin->nilai_konversi;
+  $nilaiMinimal = $nilaiPoin + 5;
 
     // Validasi apakah total poin pengguna cukup untuk dikonversi
-  if ($totalPoinTransaksi < $nilaiPoin) {
-    return redirect()->back()->withErrors('Total poin tidak mencukupi untuk dikonversi.');
+  if ($totalPoinTransaksi < $nilaiMinimal) {
+    return redirect()->back()->withErrors('Total poin tidak mencukupi untuk dikonversi (Minimal sisa 5 poin)');
   }
 
     // Simpan data baru ke dalam tabel tukar_poin dengan membawa id_transaksi (id_transaksi dari tabel transaksi)
