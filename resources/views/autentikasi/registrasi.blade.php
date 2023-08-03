@@ -24,7 +24,7 @@
 							document.addEventListener('DOMContentLoaded', function() {
 								document.getElementById('notification').style.display = 'block';
 
-								// Atur waktu penghilangan notifikasi setelah 3 detik
+								// Atur waktu penghilangan notifikasi setelah 5 detik
 								setTimeout(function() {
 									document.getElementById('notification').style.display = 'none';
 								}, 5000);

@@ -24,7 +24,7 @@
             <div class="card card-flush h-md-100">
               <div class="card-body d-flex flex-column justify-content-between bgi-no-repeat bgi-size-cover bgi-position-x-center pb-0">
                 <div class="row">
-                  <div class="col-8">
+                  <div class="col-12">
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                       <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Laporan Sampah Diolah Internal</h1>
                       <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -32,16 +32,6 @@
                           <p class="text-muted text-hover-primary">Laporan Sampah Diolah Internal Pada Sistem Informasi Manajemen Sampah (SIMAS) Kelurahan Koto Luar</p>
                         </li>
                       </ul>
-                    </div>
-                  </div>
-                  <div class="col-4">
-                    <div class="d-grid d-md-flex justify-content-md-end">
-                      <a href="#" class="btn btn-sm fw-bold btn-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-square" viewBox="0 0 16 16">
-                          <path d="M0 6a6 6 0 1 1 12 0A6 6 0 0 1 0 6z" />
-                          <path d="M12.93 5h1.57a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1.57a6.953 6.953 0 0 1-1-.22v1.79A1.5 1.5 0 0 0 5.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 4h-1.79c.097.324.17.658.22 1z" />
-                        </svg>
-                        Data Baru</a>
                     </div>
                   </div>
                 </div>
@@ -72,44 +62,46 @@
                         </form>
                       </div>
                     </div>
-                    <table class="table table-bordered table-striped">
-                      <thead class="fw-bold">
-                        <tr>
-                          <th scope="col">No</th>
-                          <th scope="col">Jenis Sampah</th>
-                          <th scope="col" class="col-1">Berat</th>
-                          <th scope="col">Tanggal</th>
-                          <th scope="col">Lokasi</th>
-                          <th scope="col" class="col-2">Keterangan</th>
-                          <th scope="col">Petugas</th>
-                          <th scope="col">Status</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @forelse ($sampahDiolahInternals as $sampahDiolahInternal)
-                        <tr>
-                          <td class="align-top">{{$loop->iteration}}</td>
-                          <td class="align-top">{{$sampahDiolahInternal->jenisSampah->name}}</td>
-                          <td class="align-top">{{$sampahDiolahInternal->berat}} Kg</td>
-                          <td class="align-top">{{$sampahDiolahInternal->tanggal_diolah->format('d M Y')}}</td>
-                          <td class="align-top">{{$sampahDiolahInternal->lokasi_diolah}}</td>
-                          <td class="align-top">{{$sampahDiolahInternal->keterangan}}</td>
-                          <td class="align-top">{{$sampahDiolahInternal->user->name}}</td>
-                          <td class="align-top">
-                            @if ($sampahDiolahInternal->status == 'Ditolak')
-                            <h5 class="badge text-bg-danger text-white">Ditolak</h5>
-                            @elseif ($sampahDiolahInternal->status == 'Dalam proses')
-                            <h5 class="badge text-white text-bg-primary">Dalam proses</h5>
-                            @elseif ($sampahDiolahInternal->status == 'selesai')
-                            <h5 class="badge text-white text-bg-success">Selesai</h5>
-                            @endif
-                          </td>
-                        </tr>
-                        @empty
-                        <td colspan="8" class="text-center bg-danger">-- Data Tidak Ada --</td>
-                        @endforelse
-                      </tbody>
-                    </table>
+                    <div class="table-container">
+                      <table class="table table-bordered table-striped">
+                        <thead class="fw-bold">
+                          <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Jenis Sampah</th>
+                            <th scope="col" class="col-1">Berat</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Lokasi</th>
+                            <th scope="col" class="col-2">Keterangan</th>
+                            <th scope="col">Petugas</th>
+                            <th scope="col">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @forelse ($sampahDiolahInternals as $sampahDiolahInternal)
+                          <tr>
+                            <td class="align-top">{{$loop->iteration}}</td>
+                            <td class="align-top">{{$sampahDiolahInternal->jenisSampah->name}}</td>
+                            <td class="align-top">{{$sampahDiolahInternal->berat}} Kg</td>
+                            <td class="align-top">{{$sampahDiolahInternal->tanggal_diolah->format('d M Y')}}</td>
+                            <td class="align-top">{{$sampahDiolahInternal->lokasi_diolah}}</td>
+                            <td class="align-top">{{$sampahDiolahInternal->keterangan}}</td>
+                            <td class="align-top">{{$sampahDiolahInternal->user->name}}</td>
+                            <td class="align-top">
+                              @if ($sampahDiolahInternal->status == 'ditolak')
+                              <h5 class="badge badge-light-danger">Ditolak</h5>
+                              @elseif ($sampahDiolahInternal->status == 'dalam proses')
+                              <h5 class="badge badge-light-primary">Dalam proses</h5>
+                              @elseif ($sampahDiolahInternal->status == 'selesai')
+                              <h5 class="badge badge-light-success">Selesai</h5>
+                              @endif
+                            </td>
+                          </tr>
+                          @empty
+                          <td colspan="8" class="text-center bg-danger">-- Data Tidak Ada --</td>
+                          @endforelse
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
                 <div class="mb-5">

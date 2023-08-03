@@ -38,9 +38,9 @@
                 <div>
                   @if(Session::has('success'))
                   <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered  w-25">
-                      <div class="modal-content text-center">
-                        <div class="modal-body">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content text-center w-50 mx-auto">
+                        <div class="modal-body text-center">
                           <div class="mb-5">
                             <img alt="Logo" src="{!! asset('/img/icon/success.png') !!}" class="h-60px h-lg-75px" />
                             <H5 class="mt-1 fw-bold">SUKSES</H5>
@@ -107,18 +107,18 @@
                           <td class="align-top">{{$tukarPoin->total_konversi}} Kg</td>
                           <td class="align-top">{{$tukarPoin->tanggal_transaksi->format('d M Y')}}</td>
                           <td class="align-top">
-                            @if ($tukarPoin->status == 'Tunda')
-                            <h5 class="badge text-bg-danger text-white">Tunda</h5>
-                            @elseif ($tukarPoin->status == 'Proses')
-                            <h5 class="badge text-white text-bg-primary">Proses</h5>
-                            @elseif ($tukarPoin->status == 'Selesai')
-                            <h5 class="badge text-white text-bg-success">Selesai</h5>
+                            @if ($tukarPoin->status == 'tunda')
+                            <h5 class="badge badge-light-danger">Tunda</h5>
+                            @elseif ($tukarPoin->status == 'proses')
+                            <h5 class="badge badge-light-primary">Proses</h5>
+                            @elseif ($tukarPoin->status == 'selesai')
+                            <h5 class="badge badge-light-success">Selesai</h5>
                             @endif
                           </td>
                           <td>
-                            <a href="tukar-poin-admin/{{$tukarPoin->id}}/edit" class="btn btn-yellow btn-sm">
+                            <a href="tukar-poin-admin/{{$tukarPoin->id}}/edit" class="btn btn-yellow btn-sm button-action">
                               <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-pencil-fill icons" viewBox="0 0 16 16">
                                   <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
                                 </svg>
                               </span>

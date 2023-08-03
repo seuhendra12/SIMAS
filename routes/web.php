@@ -95,5 +95,5 @@ Route::middleware('auth')->group(function () {
   Route::get('/tukar-poin/{id}', [FrontendController::class, 'tukar_poin']);
   Route::post('/simpan-tukar-poin/{id}', [FrontendController::class, 'simpan_tukar_poin']);
   Route::get('/histori-transaksi', [FrontendController::class, 'histori']);
-  Route::get('/cetak-struk/{id}', [FrontendController::class, 'cetak_struk'])->name('cetak.struk');
+  Route::get('/cetak-struk/{id}', [FrontendController::class, 'cetak_struk']);
 });

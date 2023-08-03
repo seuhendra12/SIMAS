@@ -75,7 +75,12 @@
             <span class="fw-bold">{{ Auth::user()->transaksi->total_berat ?? '0' }} Kg Sampah Dikumpulkan</span>
           </div>
         </div>
-        <div class="row mt-4">
+        @if(Auth::user()->role === 'SuperAdmin' || Auth::user()->role === 'Admin')
+        <div class="mt-4 text-center">
+          <a href="{{url('dashboard')}}" class="btn btn-success rounded-0"><i class="fas fa-home me-2"></i>Halaman Dashboard</a>
+        </div>
+        @else
+         <div class="row mt-4">
           <div class="col text-center">
             <div class="btn-group">
               <a href="/profile/{{ Auth::user()->id }}" class="btn btn-success rounded-0 fw-semibold me-2"><i class="fas fa-eye me-2"></i>Detail</a>
@@ -88,6 +93,7 @@
             </div>
           </div>
         </div>
+        @endif
       </div>
     </div>
   </div>

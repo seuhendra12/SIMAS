@@ -20,7 +20,7 @@ return new class extends Migration
       $table->date('tanggal_dimanfaatkan')->nullable();
       $table->text('keterangan')->nullable();
       $table->unsignedBigInteger('petugas_id')->nullable();
-      $table->enum('status', ['Ditolak', 'Dalam proses', 'selesai'])->default('Dalam proses');
+      $table->enum('status', ['ditolak', 'dalam proses', 'selesai'])->default('dalam proses');
       $table->timestamps();
 
       $table->foreign('jenis_sampah_id')->references('id')->on('jenis_sampahs')->onDelete('cascade');

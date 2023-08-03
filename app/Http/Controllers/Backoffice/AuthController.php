@@ -42,6 +42,8 @@ class AuthController extends Controller
     if (Auth::attempt($credentials)) {
       $user = Auth::user();
 
+      // dd($user->role);
+
       if ($user->role == 'SuperAdmin' || $user->role == 'Admin' || $user->role == 'Kelurahan' ) {
         return redirect()->intended('/dashboard');
       } elseif ($user->role == 'User') {
@@ -64,6 +66,7 @@ class AuthController extends Controller
   {
     return view("autentikasi.registrasi");
   }
+  
   public function register(Request $request)
   {
     $messages = [

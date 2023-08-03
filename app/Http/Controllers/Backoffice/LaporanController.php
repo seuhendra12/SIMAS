@@ -74,6 +74,15 @@ class LaporanController extends Controller
 
   public function cetak_sampah_dikumpulkan()
   {
+    // Ambil data 
+    $sampahDimanfaatkan = SampahDimanfaatkan::get();
+    $sampahDiolahInternal = SampahDiolahInternal::get();
+    $sampahDiolahEksternal = SampahDiolahEksternal::get();
+    $sampahDibuangs = ItemTransaksi::selectRaw('jenis_sampah_id, SUM(berat) as jumlah_berat')
+        ->where('jenis_sampah_id', 1)
+        ->groupBy('jenis_sampah_id')
+        ->get();
+
     // Ambil data transaksi berdasarkan RW dan RT serta kolom total_berat
     $dataPerRW = Transaksi::with('user.profile')
       ->get()
@@ -90,7 +99,14 @@ class LaporanController extends Controller
     $pdf = new Dompdf(); // Buat instance baru dari Dompdf
 
     // Kirim data tukarPoin ke view
-    $pdf->loadHtml(view('backoffice.cetak-laporan.cetak_sampah_dikumpulkan', compact('dataPerRW')));
+    $pdf->loadHtml(view('backoffice.cetak-laporan.cetak_sampah_dikumpulkan',[
+      'dataPerRW' => $dataPerRW,
+      'sampahDimanfaatkans' => $sampahDimanfaatkan,
+      'sampahDiolahInternals' => $sampahDiolahInternal,
+      'sampahDiolahEksternals' => $sampahDiolahEksternal,
+      'sampahDibuangs' => $sampahDibuangs,
+
+    ]));
 
     // (Opsional) Set ukuran kertas dan orientasi
     $pdf->setPaper('A4', 'portrait');
@@ -99,6 +115,6 @@ class LaporanController extends Controller
     $pdf->render();
 
     // Tampilkan PDF yang dihasilkan langsung di browser
-    $pdf->stream('laporan_sampah_dikumpulkan' . '.pdf');
+    $pdf->stream('Laporan' . '.pdf');
   }
 }

@@ -22,8 +22,23 @@ class PenggunaController extends Controller
   public function index(Request $request)
   {
     $perPage = $request->query('perPage', 10);
+    $loggedInUser = auth()->user();
+
+    // Jika pengguna dengan peran 'admin' yang login
+    if ($loggedInUser->role === 'Admin') {
+      // Ambil data pengguna dengan peran 'admin' dan peran lain (tidak termasuk 'superadmin')
+      $datas = User::filter(request(['search']))
+        ->where('role', '!=', 'SuperAdmin')
+        ->paginate($perPage);
+    } else {
+      // Jika pengguna dengan peran 'superadmin' atau peran lain yang login
+      // Ambil semua data tanpa filter
+      $datas = User::filter(request(['search']))
+        ->paginate($perPage);
+    }
+
     return view('backoffice.manajemen-pengguna.data-pengguna.index', [
-      'datas' => User::filter(request(['search']))->paginate($perPage),
+      'datas' => $datas,
       'perPage' => $perPage
     ]);
   }

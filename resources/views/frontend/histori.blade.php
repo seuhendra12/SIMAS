@@ -52,6 +52,7 @@
               @endforelse
             </tbody>
           </table>
+          <a href="{{url('/')}}" class="btn btn-danger rounded-0">Kembali</a>
         </div>
       </div>
       <div class="mb-5">

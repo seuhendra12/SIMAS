@@ -24,7 +24,7 @@
             <div class="card card-flush h-md-100">
               <div class="card-body d-flex flex-column justify-content-between bgi-no-repeat bgi-size-cover bgi-position-x-center pb-0">
                 <div class="row">
-                  <div class="col-8">
+                  <div class="col-12">
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                       <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Data Sampah Dikumpulkan</h1>
                       <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -50,26 +50,28 @@
                         </form>
                       </div>
                     </div>
-                    <table class="table table-bordered table-striped">
-                      <thead class="fw-bold">
-                        <tr>
-                          <th scope="col">No</th>
-                          <th scope="col">Jenis Sampah</th>
-                          <th scope="col">Berat Sampah</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @forelse ($sampahDikumpulkans as $sampahDikumpulkan)
-                        <tr>
-                          <td class="align-top">{{$loop->iteration}}</td>
-                          <td class="align-top">{{$sampahDikumpulkan->jenisSampah->name}}</td>
-                          <td class="align-middle">{{$sampahDikumpulkan->jumlah_berat}} Kg</td>
-                        </tr>
-                        @empty
-                        <td colspan="5" class="text-center bg-danger">-- Data Tidak Ada --</td>
-                        @endforelse
-                      </tbody>
-                    </table>
+                    <div class="table-container">
+                      <table class="table table-bordered table-striped">
+                        <thead class="fw-bold text-center">
+                          <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Jenis Sampah</th>
+                            <th scope="col">Berat Sampah</th>
+                          </tr>
+                        </thead>
+                        <tbody class="text-center">
+                          @forelse ($sampahDikumpulkans as $sampahDikumpulkan)
+                          <tr>
+                            <td class="align-top">{{$loop->iteration}}</td>
+                            <td class="align-top">{{$sampahDikumpulkan->jenisSampah->name}}</td>
+                            <td class="align-middle">{{$sampahDikumpulkan->jumlah_berat}} Kg</td>
+                          </tr>
+                          @empty
+                          <td colspan="5" class="text-center bg-danger">-- Data Tidak Ada --</td>
+                          @endforelse
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
                 <div class="mb-5">

@@ -1,0 +1,154 @@
+/* Gaya default untuk semua ukuran layar */
+.table-container {
+  overflow-x: auto;
+}
+/* Gaya untuk gambar */
+.responsive-image {
+  display: none; /* Sembunyikan gambar secara default */
+  max-width: 100%;
+  height: auto;
+}
+/* Gaya untuk ukuran layar dengan lebar maksimum 480px (misalnya HP) */
+@media (max-width: 480px) {
+  .btn.btn-sm.fw-bold.btn-primary{
+    font-size: 10px;
+  }
+  .icons{
+    width: 10px;
+  }
+  .text-muted.text-hover-primary{
+    font-size: 10px;
+  }
+  .fw-bold.mt-4{
+    font-size: 10px;
+  }
+  .form-control.mx-3{
+    width: 40px;
+    margin-left: -10px;
+  }
+  .table-container {
+    max-width: 100%; /* Agar tabel tetap dalam batas layar pada ukuran kecil */
+  }
+  .btn {
+    font-size: 10px; /* Ukuran font yang lebih kecil untuk button pada layar HP */
+  }
+  .button-action{
+    margin-bottom: 5px;
+  }
+  .login-image{
+    width: 100%;
+  }
+  .responsive-image {
+    display: block; /* Tampilkan gambar jika layar cukup responsif */
+    max-width: 10%!important;
+  }
+  .card-login{
+    margin-top:190px;
+  }
+  .modal-body{
+    max-width: 100%;
+  }
+  /* Frontend */
+  .jumbotron.jumbotron-fluid.bg-aliceblue{
+    margin-top: 50px;
+  }
+  .logo{
+    width: 70px;
+  }
+  img.service{
+    width: 50%;
+  }
+  h5{
+    font-size: 13px;
+    text-align: center;
+    padding: 20px;
+    margin-top: -100px;
+  }
+  .nav-link.text-white.fw-bold{
+    font-size: 15px;
+  }
+  .col-4{
+    width: 100%;
+  }
+  .img-fluid.rounded-start{
+    width: 100%;
+  }
+  .col-md-4.my-2{
+    width: 30%;
+  }
+  .col-md-8{
+    width: 70%;
+  }
+  h1{
+    font-size: 30px;
+  }
+  .col-1{
+    width: 10%;
+  }
+  .col-11{
+    width:90%;
+  }
+  .col-5.mt-2{
+    width: 100%;
+  }
+  .col-3.mt-3{
+    width: 100%;
+  }
+  h5.kaki {
+    font-size: 18px;
+    margin-bottom: 20px;
+    display: table-row-group;
+    text-align: initial;
+  }
+  .col-lg-4{
+    width: 30%;
+  }
+  h5.text-dark.fw-bold{
+    width: 100%;
+    display: contents;
+  }
+  p.text-dark.fw-bold{
+    font-size: 10px;
+  }
+  span.fw-bold{
+    font-size: 13px;
+  }
+  .col-8{
+    width: 100%;
+  }
+  .modal-profile{
+    text-align: center;
+  }
+  .col-4.mx-auto.text-center{
+    width: 100%;
+  }
+  .card.w-100.mx-auto{
+    margin-bottom: 20px;
+  }
+  td{
+    font-size: 12px;
+  }
+  .image-point{
+    width: 100%;
+  }
+  .mx-auto.text-center.mb-4{
+    width: 100%;
+  }
+  h3.card-title.mt-3.fw-bold{
+    display: inline-block;
+    margin: auto;
+    font-size: 30px;
+  }
+  .card-title.fw-bold{
+    display: inline-block;
+    font-size: smaller;
+    margin: auto;
+  }
+  .col-4.point{
+    width: 50%;
+  }
+  .form-select{
+    font-size: 12px;
+    width: 100%;
+  }
+}

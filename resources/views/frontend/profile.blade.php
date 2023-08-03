@@ -151,6 +151,7 @@
             </div>
           </div>
           <div class="mx-auto text-center">
+            <a href="{{url('/')}}" class="btn btn-danger rounded-0">Kembali</a>
             <button class="btn btn-success rounded-0" name="submit" type="submit">Simpan</button>
           </div>
         </form>

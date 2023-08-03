@@ -35,7 +35,7 @@
                     <div class="col-5 mx-auto text-center">
                       <img src="{!! asset('/img/icon/icon_user.jpg') !!}" alt="User Image" class="rounded-circle me-2" style="width: 150px; height: 150px;">
                     </div>
-                    <div class="col-7">
+                    <div class="col-7 profile">
                       <div class="row">
                       <div class="col-4">
                           <label class="d-flex align-items-center fs-6 fw-semibold mb-2">

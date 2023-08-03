@@ -60,18 +60,18 @@
                         <span class="required">Status</span>
                       </label>
                       <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih Status Sampah" name="status" id="status">
-                        @if (old('status', $tukarPoin->status) == 'Tunda')
-                        <option value="Tunda" selected>Tunda</option>
-                        <option value="Proses">Proses</option>
-                        <option value="Selesai">Selesai</option>
-                        @elseif (old('status', $tukarPoin->status) == 'Proses')
-                        <option value="Tunda">Tunda</option>
-                        <option value="Proses" selected>Proses</option>
-                        <option value="Selesai">Selesai</option>
-                        @elseif (old('status', $tukarPoin->status) == 'Selesai')
-                        <option value="Tunda">Tunda</option>
-                        <option value="Proses">Proses</option>
-                        <option value="Selesai" selected>Selesai</option>
+                        @if (old('status', $tukarPoin->status) == 'tunda')
+                        <option value="tunda" selected>Tunda</option>
+                        <option value="proses">Proses</option>
+                        <option value="selesai">Selesai</option>
+                        @elseif (old('status', $tukarPoin->status) == 'proses')
+                        <option value="tunda">Tunda</option>
+                        <option value="proses" selected>Proses</option>
+                        <option value="selesai">Selesai</option>
+                        @elseif (old('status', $tukarPoin->status) == 'selesai')
+                        <option value="tunda">Tunda</option>
+                        <option value="proses">Proses</option>
+                        <option value="selesai" selected>Selesai</option>
                         @endif
                       </select>
                     </div>

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('nilai_konversi_id')->nullable();
             $table->date('tanggal_transaksi');
             $table->bigInteger('total_konversi');
-            $table->enum('status',['Tunda','Proses','Selesai'])->default('Tunda');
+            $table->enum('status',['tunda','proses','selesai'])->default('tunda');
             $table->timestamps();
 
             $table->foreign('transaksi_id')->references('id')->on('transaksis')->onDelete('cascade');

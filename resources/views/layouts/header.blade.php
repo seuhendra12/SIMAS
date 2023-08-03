@@ -41,12 +41,15 @@
 								</div>
 								<div class="separator my-2"></div>
 								<div class="menu-item px-5">
-									<a href="#" class="menu-link px-5" data-bs-toggle="modal" data-bs-target="#profil">My Profile</a>
+									<a href="#" class="menu-link px-5" data-bs-toggle="modal" data-bs-target="#profil"><i class="fas fa-eye me-2"></i>Profilku</a>
+								</div>
+								<div class="menu-item px-5">
+									<a href="{{url('/')}}" class="menu-link px-5"><i class="fas fa-home me-2"></i>Kunjungi Halaman Depan</a>
 								</div>
 								<div class="menu-item px-5">
 									<form action="/logout" method="POST">
 										@csrf
-										<button class="btn border-0 menu-link px-5" type="submit" onclick="return confirm('Apakah yakin ingin keluar ?')">Sign Out</button>
+										<button class="btn border-0 menu-link px-5" type="submit" onclick="return confirm('Apakah yakin ingin keluar ?')"><i class="fas fa-power-off me-2"></i>Keluar</button>
 									</form>
 								</div>
 							</div>

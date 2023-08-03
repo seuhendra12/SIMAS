@@ -73,4 +73,9 @@ class User extends Authenticatable
   {
     return $this->hasMany(SampahDiolahEksternal::class);
   }
+
+  public function scopeAdmin($query)
+  {
+    return $query->where('role', 'admin');
+  }
 }

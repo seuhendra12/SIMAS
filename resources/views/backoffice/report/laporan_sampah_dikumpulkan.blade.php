@@ -24,7 +24,7 @@
             <div class="card card-flush h-md-100">
               <div class="card-body d-flex flex-column justify-content-between bgi-no-repeat bgi-size-cover bgi-position-x-center pb-0">
                 <div class="row">
-                  <div class="col-8">
+                  <div class="col-12">
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                       <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Laporan Sampah Yang Dikumpulkan</h1>
                       <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -34,16 +34,16 @@
                       </ul>
                     </div>
                   </div>
-                  <div class="col-4 d-grid d-md-flex justify-content-md-end">
+                  <!-- <div class="col-4 d-grid d-md-flex justify-content-md-end">
                     <div class=" mb-3">
                       <a href="{{url('cetak-sampah-dikumpulkan')}}" class="btn btn-sm btn-danger">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill icons" viewBox="0 0 16 16">
                           <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z" />
                           <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
                         </svg> Cetak
                       </a>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div>
                   <div class="mt-3">
@@ -60,26 +60,28 @@
                         </form>
                       </div>
                     </div>
-                    <table class="table table-bordered table-striped">
-                      <thead class="fw-bold">
-                        <tr>
-                          <th scope="col">No</th>
-                          <th scope="col">Jenis Sampah</th>
-                          <th scope="col">Berat Sampah</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @forelse ($sampahDikumpulkans as $sampahDikumpulkan)
-                        <tr>
-                          <td class="align-top">{{$loop->iteration}}</td>
-                          <td class="align-top">{{$sampahDikumpulkan->jenisSampah->name}}</td>
-                          <td class="align-middle">{{$sampahDikumpulkan->jumlah_berat}} Kg</td>
-                        </tr>
-                        @empty
-                        <td colspan="5" class="text-center bg-danger">-- Data Tidak Ada --</td>
-                        @endforelse
-                      </tbody>
-                    </table>
+                    <div class="table-container">
+                      <table class="table table-bordered table-striped">
+                        <thead class="fw-bold text-center">
+                          <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Jenis Sampah</th>
+                            <th scope="col">Berat Sampah</th>
+                          </tr>
+                        </thead>
+                        <tbody class="text-center">
+                          @forelse ($sampahDikumpulkans as $sampahDikumpulkan)
+                          <tr>
+                            <td class="align-top">{{$loop->iteration}}</td>
+                            <td class="align-top">{{$sampahDikumpulkan->jenisSampah->name}}</td>
+                            <td class="align-middle">{{$sampahDikumpulkan->jumlah_berat}} Kg</td>
+                          </tr>
+                          @empty
+                          <td colspan="5" class="text-center bg-danger">-- Data Tidak Ada --</td>
+                          @endforelse
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
                 <div class="mb-5">

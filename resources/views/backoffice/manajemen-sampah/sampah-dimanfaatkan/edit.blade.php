@@ -94,18 +94,18 @@
                         <span class="required">Status</span>
                       </label>
                       <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih Status Sampah" name="status" id="status">
-                        @if (old('status', $sampahDimanfaatkan->status) == 'Dalam proses')
-                        <option value="Dalam proses" selected>Dalam proses</option>
-                        <option value="Ditolak">Ditolak</option>
-                        <option value="Selesai">Selesai</option>
-                        @elseif (old('status', $sampahDimanfaatkan->status) == 'Proses')
-                        <option value="Dalam proses">Dalam proses</option>
-                        <option value="Ditolak" selected>Ditolak</option>
-                        <option value="Selesai">Selesai</option>
+                        @if (old('status', $sampahDimanfaatkan->status) == 'dalam proses')
+                        <option value="dalam proses" selected>Dalam proses</option>
+                        <option value="ditolak">Ditolak</option>
+                        <option value="selesai">Selesai</option>
+                        @elseif (old('status', $sampahDimanfaatkan->status) == 'ditolak')
+                        <option value="dalam proses">Dalam proses</option>
+                        <option value="ditolak" selected>Ditolak</option>
+                        <option value="selesai">Selesai</option>
                         @elseif (old('status', $sampahDimanfaatkan->status) == 'selesai')
-                        <option value="Dalam proses">Dalam proses</option>
-                        <option value="Ditolak">Ditolak</option>
-                        <option value="Selesai" selected>Selesai</option>
+                        <option value="dalam proses">Dalam proses</option>
+                        <option value="ditolak">Ditolak</option>
+                        <option value="selesai" selected>Selesai</option>
                         @endif
                       </select>
                     </div>

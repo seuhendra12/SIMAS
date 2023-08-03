@@ -31,6 +31,32 @@
             <span class="fw-bold text-white">Tukar Poin</span>
           </div>
           <div class="card-body bg-light px-3">
+            @if(Session::has('success'))
+            <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content text-center w-50 mx-auto">
+                  <div class="modal-body text-center">
+                    <div class="mb-2">
+                      <img alt="Logo" src="{!! asset('/img/icon/success.png') !!}" style="width: 100px; height: 130px;" />
+                      <H5 class="mt-1 fw-bold">SUKSES</H5>
+                    </div>
+                    {{ Session::get('success') }}
+                    <div>
+                      <button type="button" class="btn btn-primary mt-2" data-bs-dismiss="modal" aria-label="Close">
+                        OK
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+                myModal.show();
+              });
+            </script>
+            @endif
             @if ($errors->any())
             <div id="notification" class="alert alert-danger" style="display: none;">
               <ul>
@@ -69,20 +95,21 @@
               @csrf
               <div class="table-container">
                 <div class="d-flex flex-column mb-3 fv-row">
-                <label for="tukarPoin" class="fs-6 fw-semibold mb-2 required">Pilih Tukar Poin</label>
-                <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih Jenis Sampah" name="konversiPoin" id="tukarPoin">
-                  @foreach ($konversiPoin as $konversiPoin)
-                  @if (old('konvers$konversiPoin_id')==$konversiPoin->id)
-                  <option value="{{$konversiPoin->id}}" selected>{{$konversiPoin->nilai_konversi}}</option>
-                  @else
-                  <option value="{{$konversiPoin->id}}">{{$konversiPoin->nilai_konversi}}</option>
-                  @endif
-                  @endforeach
-                </select>
-              </div>
+                  <label for="tukarPoin" class="fs-6 fw-semibold mb-2 required">Pilih Tukar Poin</label>
+                  <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih Jenis Sampah" name="konversiPoin" id="tukarPoin">
+                    @foreach ($konversiPoin as $konversiPoin)
+                    @if (old('konvers$konversiPoin_id')==$konversiPoin->id)
+                    <option value="{{$konversiPoin->id}}" selected>{{$konversiPoin->nilai_konversi}}</option>
+                    @else
+                    <option value="{{$konversiPoin->id}}">{{$konversiPoin->nilai_konversi}}</option>
+                    @endif
+                    @endforeach
+                  </select>
+                </div>
               </div>
               <div class="mx-auto text-center">
-                <button class="btn btn-success rounded-0" name="submit" type="submit">Simpan</button>
+                <a href="{{url('/')}}" class="btn btn-danger rounded-0">Kembali</a>
+                <button class="btn btn-success rounded-0" name="submit" type="submit">Tukar</button>
               </div>
             </form>
           </div>
@@ -112,16 +139,16 @@
                     <td class="align-top">{{$tukarPoin->total_konversi}} Poin</td>
                     <td class="align-top">{{$tukarPoin->tanggal_transaksi->format('d M Y')}}</td>
                     <td class="align-top">
-                      @if ($tukarPoin->status == 'Tunda')
+                      @if ($tukarPoin->status == 'tunda')
                       <h5 class="badge text-bg-danger">Tunda</h5>
-                      @elseif ($tukarPoin->status == 'Proses')
+                      @elseif ($tukarPoin->status == 'proses')
                       <h5 class="badge text-bg-primary">Proses</h5>
-                      @elseif ($tukarPoin->status == 'Selesai')
+                      @elseif ($tukarPoin->status == 'selesai')
                       <h5 class="badge text-bg-success">Selesai</h5>
                       @endif
                     </td>
                     <td class="align-top">
-                      <a href="{{ route('cetak.struk', ['id' => $tukarPoin->id]) }}" class="btn btn-success btn-sm rounded-0" target="_blank">Unduh</a>
+                      <a href="{{ url('cetak-struk', ['id' => $tukarPoin->id]) }}" class="btn btn-success btn-sm rounded-0" target="_blank">Unduh</a>
                     </td>
                   </tr>
                   @empty

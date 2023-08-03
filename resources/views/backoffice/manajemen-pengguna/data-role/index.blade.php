@@ -23,7 +23,7 @@
             <div class="card card-flush h-md-100">
               <div class="card-body d-flex flex-column justify-content-between bgi-no-repeat bgi-size-cover bgi-position-x-center pb-0">
                 <div class="row">
-                  <div class="col-8">
+                  <div class="col-12">
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                       <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Data Role</h1>
                       <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -37,13 +37,13 @@
                 <div>
                   <div class="mt-3">
                     <table class="table table-bordered table-striped">
-                      <thead class="fw-bold">
+                      <thead class="fw-bold text-center">
                         <tr>
                           <th scope="col">No</th>
                           <th scope="col">Nama Role</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody class="text-center">
                         <tr>
                           <td>1</td>
                           <td>Pengelola</td>

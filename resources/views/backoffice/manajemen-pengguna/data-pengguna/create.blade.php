@@ -118,7 +118,7 @@
 											</label>
 											<textarea name="alamat" id="alamat" cols="10" rows="2" class="form-control" placeholder="Tambahkan Alamat">{{ old('alamat') }}</textarea>
 										</div>
-										<div class="d-flex flex-column mb-8 fv-row">
+										<div class="d-flex flex-column mb-3 fv-row">
 											<div class="row">
 												<div class="col-2">
 													<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
@@ -148,7 +148,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="d-flex flex-column mb-8 fv-row">
+										<div class="d-flex flex-column mb-3 fv-row">
 											<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
 												<span class="required">Kata Sandi</span>
 											</label>

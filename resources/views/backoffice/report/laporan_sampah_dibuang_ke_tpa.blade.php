@@ -37,26 +37,28 @@
                 </div>
                 <div>
                   <div class="mt-3">
-                    <table class="table table-bordered table-striped">
-                      <thead class="fw-bold">
-                        <tr>
-                          <th scope="col">No</th>
-                          <th scope="col">Jenis Sampah</th>
-                          <th scope="col">Berat Sampah</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @forelse ($sampahDibuangs as $sampahDibuang)
-                        <tr>
-                          <td class="align-top">{{$loop->iteration}}</td>
-                          <td class="align-top">{{$sampahDibuang->jenisSampah->name}}</td>
-                          <td class="align-middle">{{$sampahDibuang->jumlah_berat}} Kg</td>
-                        </tr>
-                        @empty
-                        <td colspan="3" class="text-center bg-danger">-- Data Tidak Ada --</td>
-                        @endforelse
-                      </tbody>
-                    </table>
+                    <div class="table-container">
+                      <table class="table table-bordered table-striped">
+                        <thead class="fw-bold">
+                          <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Jenis Sampah</th>
+                            <th scope="col">Berat Sampah</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @forelse ($sampahDibuangs as $sampahDibuang)
+                          <tr>
+                            <td class="align-top">{{$loop->iteration}}</td>
+                            <td class="align-top">{{$sampahDibuang->jenisSampah->name}}</td>
+                            <td class="align-middle">{{$sampahDibuang->jumlah_berat}} Kg</td>
+                          </tr>
+                          @empty
+                          <td colspan="3" class="text-center bg-danger">-- Data Tidak Ada --</td>
+                          @endforelse
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
