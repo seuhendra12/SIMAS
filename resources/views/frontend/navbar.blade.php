@@ -40,8 +40,8 @@
         <li class="nav-item">
           <div class="mb-2 text-white"></div>
           <div class="nav-link d-inline">
-            <a href="/login" class="btn btn-light mb-3 rounded-0 fw-bold">Login</a>
-            <a href="/registrasi" class="btn btn-success mb-3 rounded-0 fw-bold">Registrasi</a>
+            <a href="/login" class="btn btn-light mb-3 rounded-0 fw-bold">Masuk</a>
+            <a href="/registrasi" class="btn btn-success mb-3 px-3 rounded-0 fw-bold">Daftar</a>
           </div>
         </li>
         @endif
@@ -75,7 +75,7 @@
             <span class="fw-bold">{{ Auth::user()->transaksi->total_berat ?? '0' }} Kg Sampah Dikumpulkan</span>
           </div>
         </div>
-        @if(Auth::user()->role === 'SuperAdmin' || Auth::user()->role === 'Admin')
+        @if(Auth::user()->role === 'SuperAdmin' || Auth::user()->role === 'Admin' || Auth::user()->role === 'Kelurahan')
         <div class="mt-4 text-center">
           <a href="{{url('dashboard')}}" class="btn btn-success rounded-0"><i class="fas fa-home me-2"></i>Halaman Dashboard</a>
         </div>

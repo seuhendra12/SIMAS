@@ -72,7 +72,7 @@ class LaporanController extends Controller
     ]);
   }
 
-  public function cetak_sampah_dikumpulkan()
+  public function cetak_laporan()
   {
     // Ambil data 
     $sampahDimanfaatkan = SampahDimanfaatkan::get();
@@ -99,7 +99,7 @@ class LaporanController extends Controller
     $pdf = new Dompdf(); // Buat instance baru dari Dompdf
 
     // Kirim data tukarPoin ke view
-    $pdf->loadHtml(view('backoffice.cetak-laporan.cetak_sampah_dikumpulkan',[
+    $pdf->loadHtml(view('backoffice.cetak-laporan.cetak_laporan',[
       'dataPerRW' => $dataPerRW,
       'sampahDimanfaatkans' => $sampahDimanfaatkan,
       'sampahDiolahInternals' => $sampahDiolahInternal,

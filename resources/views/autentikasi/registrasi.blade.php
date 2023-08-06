@@ -34,7 +34,7 @@
 						<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="{{url('registrasi')}}" method="POST">
 							@csrf
 							<div class="mb-3 text-center">
-								<h1 class="text-dark fw-bolder">Registrasi Akun</h1>
+								<h1 class="text-dark fw-bolder">Daftar Akun</h1>
 								<div class="text-gray-500 fw-semibold fs-6">Daftarkan akun berdasarkan data diri Anda</div>
 							</div>
 							<div class="fv-row">
@@ -66,7 +66,7 @@
 								</div>
 							</div>
 							<span>
-								<p>Sudah memiliki akun ? <a href="/login">Login sekarang</a></p>
+								<p>Sudah memiliki akun ? <a href="/login">Masuk sekarang</a></p>
 							</span>
 							<div class="d-grid col-3">
 								<button type="submit" name="submit" class="btn btn-primary btn-sm rounded-0">

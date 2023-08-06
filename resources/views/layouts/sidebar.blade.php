@@ -235,7 +235,7 @@
 								</span>
 								<span class="menu-title {{ Request::is('laporan-sampah-dibuang-ke-tpa')?'text-white' : '' }}">Sampah Dibuang TPA</span>
 							</a>
-							<a class="menu-link" href="{{url('cetak-sampah-dikumpulkan')}}">
+							<a class="menu-link" href="{{url('cetak-laporan')}}">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>

@@ -51,7 +51,7 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($sampahDimanfaatkans as $sampahDimanfaatkan)
+      @forelse($sampahDimanfaatkans as $sampahDimanfaatkan)
       <tr>
         <td class="align-top">{{$loop->iteration}}</td>
         <td class="align-top">{{$sampahDimanfaatkan->jenisSampah->name}}</td>
@@ -69,7 +69,9 @@
           @endif
         </td>
       </tr>
-      @endforeach
+      @empty
+      <td colspan="7">--Data Tidak Ada--</td>
+      @endforelse
     </tbody>
   </table>
 
@@ -89,7 +91,7 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($sampahDiolahInternals as $sampahDiolahInternal)
+      @forelse($sampahDiolahInternals as $sampahDiolahInternal)
       <tr>
         <td class="align-top">{{$loop->iteration}}</td>
         <td class="align-top">{{$sampahDiolahInternal->jenisSampah->name}}</td>
@@ -108,7 +110,9 @@
           @endif
         </td>
       </tr>
-      @endforeach
+      @empty
+      <td colspan="8">--Data Tidak Ada--</td>
+      @endforelse
     </tbody>
   </table>
 
@@ -128,7 +132,7 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($sampahDiolahEksternals as $sampahDiolahEksternal)
+      @forelse($sampahDiolahEksternals as $sampahDiolahEksternal)
       <tr>
         <td class="align-top">{{$loop->iteration}}</td>
         <td class="align-top">{{$sampahDiolahEksternal->jenisSampah->name}}</td>
@@ -147,7 +151,9 @@
           @endif
         </td>
       </tr>
-      @endforeach
+      @empty
+      <td colspan="8">--Data Tidak Ada--</td>
+      @endforelse
     </tbody>
   </table>
 
@@ -162,13 +168,15 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($sampahDibuangs as $sampahDibuang)
+      @forelse($sampahDibuangs as $sampahDibuang)
       <tr>
         <td class="align-top">{{$loop->iteration}}</td>
         <td class="align-top">{{$sampahDibuang->jenisSampah->name}}</td>
         <td class="align-middle">{{$sampahDibuang->jumlah_berat}} Kg</td>
       </tr>
-      @endforeach
+      @empty
+      <td colspan="3">--Data Tidak Ada--</td>
+      @endforelse
     </tbody>
   </table>
 

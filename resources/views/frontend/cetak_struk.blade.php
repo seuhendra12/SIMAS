@@ -52,11 +52,11 @@
       <p><strong>Tanggal Transaksi:</strong> {{ $tukarPoin->tanggal_transaksi->format('d M Y') }}</p>
       <p>
         <strong>Status:</strong>
-        @if ($tukarPoin->status == 'Tunda')
+        @if ($tukarPoin->status == 'tunda')
         Tunda
-        @elseif ($tukarPoin->status == 'Proses')
+        @elseif ($tukarPoin->status == 'proses')
         Proses
-        @elseif ($tukarPoin->status == 'Selesai')
+        @elseif ($tukarPoin->status == 'selesai')
         Selesai
         @endif
       </p>
