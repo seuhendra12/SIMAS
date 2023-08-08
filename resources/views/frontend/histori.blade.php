@@ -25,7 +25,7 @@
 
 <body>
   <section class="container bg-aliceblue py-5">
-    <div class="card w-75 mx-auto">
+    <div class="card w-75 mx-auto bg-light">
       <div class="card-header text-center bg-green rounded-0">
         <span class="fw-bold text-white">Histori Transaksi</span>
       </div>

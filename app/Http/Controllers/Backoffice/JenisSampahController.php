@@ -50,9 +50,12 @@ class JenisSampahController extends Controller
     $request->validate([
       'name' => 'required|unique:jenis_sampahs',
       'kategori_sampah' => 'required',
+      'point_perkg' => 'required',
     ], [
-      'name.required' => 'Kolom nama wajib diisi',
-      'name.unique' => 'RT tersebut sudah ada',
+      'name.required' => 'Kolom jenis sampah wajib diisi',
+      'kategori_sampah.required' => 'Kolom kategori sampah wajib diisi',
+      'point_perkg.required' => 'Kolom poin wajib diisi',
+      'name.unique' => 'Jenis sampah tersebut sudah ada',
     ]);
 
     $jenisSampah = new JenisSampah([
@@ -105,8 +108,14 @@ class JenisSampahController extends Controller
   {
     $jenisSampah = JenisSampah::findOrFail($id);
     $request->validate([
-      'name' => 'required',
+      'name' => 'required|unique:jenis_sampahs,name,'.$id,
       'kategori_sampah' => 'required',
+      'point_perkg' => 'required',
+    ], [
+      'name.required' => 'Kolom jenis sampah wajib diisi',
+      'kategori_sampah.required' => 'Kolom kategori sampah wajib diisi',
+      'point_perkg.required' => 'Kolom poin wajib diisi',
+      'name.unique' => 'Jenis sampah tersebut sudah ada',
     ]);
 
     $jenisSampah->update([

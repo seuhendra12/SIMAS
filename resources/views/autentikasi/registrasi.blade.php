@@ -45,10 +45,6 @@
 								<label class="fw-bolder mb-1">Nama Lengkap</label>
 								<input type="text" placeholder="Masukkan Nama Lengkap" name="name" autocomplete="off" class="form-control bg-white" value="{{ old('name') ?? session('name') }}" required />
 							</div>
-							<div class="fv-row mt-2">
-								<label class="fw-bolder mb-1">Email</label>
-								<input type="text" placeholder="Masukkan Email" name="email" autocomplete="off" class="form-control bg-white" value="{{ old('email') ?? session('email') }}" required />
-							</div>
 							<div class="fv-row mt-2 mb-4">
 								<div class="row">
 									<div class="col-7">

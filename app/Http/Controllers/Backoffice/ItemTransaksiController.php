@@ -60,6 +60,7 @@ class ItemTransaksiController extends Controller
           'jenis_sampah' => 'required',
           'berat' => 'required',
       ], [
+          'jenis_sampah.required' => 'Kolom jenis sampah wajib diisi',
           'berat.required' => 'Kolom berat wajib diisi',
       ]);
   

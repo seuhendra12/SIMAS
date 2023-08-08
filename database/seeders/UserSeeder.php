@@ -17,39 +17,35 @@ class UserSeeder extends Seeder
 	{
 		$users = [
 			[
+				'nik' => '2172027105050001',
 				'name' => 'Super Admin',
-				'email' => 'superadmin@gmail.com',
 				'role' => 'SuperAdmin',
 				'password' => Hash::make('Superadmin12345'),
-				'nik' => '2172027105050001',
 			],
 			[
+				'nik' => '2172027105050002',
 				'name' => 'Admin',
-				'email' => 'admin@gmail.com',
 				'role' => 'Admin',
 				'password' => Hash::make('Admin12345'),
-				'nik' => '2172027105050002',
 			],
 			[
+				'nik' => '2172027105050003',
 				'name' => 'Kelurahan Koto Luar',
-				'email' => 'kelurahan@gmail.com',
 				'role' => 'Kelurahan',
 				'password' => Hash::make('Kelurahan12345'),
-				'nik' => '2172027105050003',
 			],
 			[
+				'nik' => '2102082009010003',
 				'name' => 'Seuhendra Setiawan',
-				'email' => 'seuhendrasetiawan.com',
 				'role' => 'User',
-				'password' => Hash::make('Seu12345'),
-				'nik' => '2172027105050004',
+				'password' => Hash::make('Suen200901'),
 			],
 		];
 
 		foreach ($users as $userData) {
-			$user = User::create([
+			$user=User::create([
+				'nik' => $userData['nik'],
 				'name' => $userData['name'],
-				'email' => $userData['email'],
 				'role' => $userData['role'],
 				'password' => $userData['password'],
 				'created_at' => \Carbon\Carbon::now(),
@@ -57,7 +53,7 @@ class UserSeeder extends Seeder
 			]);
 
 			$user->profile()->create([
-				'nik' => $userData['nik'],
+				'user_id' => $user->id,
 				// Isi dengan kolom-kolom lain yang ada dalam tabel profil
 			]);
 		}

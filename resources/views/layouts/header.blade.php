@@ -79,14 +79,14 @@
 									<div class="stepper-item current" data-kt-stepper-element="nav">
 										<div class="stepper-wrapper">
 											<div class="stepper-label">
-												<h3 class="stepper-title">Nama Lengkap</h3>
-												<div class="stepper-desc">{{Auth::user()->name}}</div>
+												<h3 class="stepper-title">NIK</h3>
+												<div class="stepper-desc">{{Auth::user()->nik}}</div>
 											</div>
 										</div>
 										<div class="stepper-wrapper mt-5">
 											<div class="stepper-label">
-												<h3 class="stepper-title">Email</h3>
-												<div class="stepper-desc">{{Auth::user()->email}}</div>
+												<h3 class="stepper-title">Nama Lengkap</h3>
+												<div class="stepper-desc">{{Auth::user()->name}}</div>
 											</div>
 										</div>
 										<div class="stepper-wrapper mt-5">

@@ -45,8 +45,8 @@ class KategoriSampahController extends Controller
       'name' => 'required|unique:kategori_sampahs',
       'deskripsi' => 'required',
     ], [
-      'name.required' => 'Kolom nama wajib diisi',
-      'name.unique' => 'RT tersebut sudah ada',
+      'name.required' => 'Kolom kategori wajib diisi',
+      'name.unique' => 'Kategori tersebut sudah ada',
       'deskripsi.required' => 'Kolom deskripsi wajib diisi',
     ]);
 
@@ -99,8 +99,12 @@ class KategoriSampahController extends Controller
     $kategoriSampah = KategoriSampah::findOrFail($id);
 
     $request->validate([
-      'name' => 'required',
+      'name' => 'required|unique:kategori_sampahs,name,'.$id,
       'deskripsi' => 'required',
+    ], [
+      'name.required' => 'Kolom kategori wajib diisi',
+      'name.unique' => 'Kategori tersebut sudah ada',
+      'deskripsi.required' => 'Kolom deskripsi wajib diisi',
     ]);
 
     $kategoriSampah->update([

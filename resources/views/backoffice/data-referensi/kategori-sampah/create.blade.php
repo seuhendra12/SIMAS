@@ -58,7 +58,7 @@
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span class="required">Kategori Sampah</span>
                       </label>
-                      <input type="text" class="form-control" placeholder="Masukkan Kategori Sampah" name="name" />
+                      <input type="text" class="form-control" placeholder="Masukkan Kategori Sampah" name="name" value="{{old('name')}}" />
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">

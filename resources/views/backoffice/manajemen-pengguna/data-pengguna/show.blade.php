@@ -37,13 +37,21 @@
                     </div>
                     <div class="col-7 profile">
                       <div class="row">
-                      <div class="col-4">
+                        <div class="col-4">
+                          <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                            <h4 class="fw-bold">NIK</h4>
+                          </label>
+                        </div>
+                        <div class="col-8">
+                          <h4 class="fw-bold">: {{$user->nik ?? '-'}}</h4>
+                        </div>
+                        <div class="col-4">
                           <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                             <h4 class="fw-bold">Kode Pengguna</h4>
                           </label>
                         </div>
                         <div class="col-8">
-                          <h4 class="fw-bold">: {{$user->profile->kode_simas ?? ''}}</h4>
+                          <h4 class="fw-bold">: {{$user->profile->kode_simas ?? '-'}}</h4>
                         </div>
                         <div class="col-4">
                           <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
@@ -51,15 +59,7 @@
                           </label>
                         </div>
                         <div class="col-8">
-                          <h4 class="fw-bold">: {{$user->name}}</h4>
-                        </div>
-                        <div class="col-4">
-                          <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                            <h4 class="fw-bold">NIK</h4>
-                          </label>
-                        </div>
-                        <div class="col-8">
-                          <h4 class="fw-bold">: {{$user->profile->nik}}</h4>
+                          <h4 class="fw-bold">: {{$user->name ?? '-'}}</h4>
                         </div>
                         <div class="col-4">
                           <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
@@ -67,7 +67,7 @@
                           </label>
                         </div>
                         <div class="col-8">
-                          <h4 class="fw-bold">: {{$user->profile->tempat_lahir}}</h4>
+                          <h4 class="fw-bold">: {{$user->profile->tempat_lahir ?? '-'}}</h4>
                         </div>
                         <div class="col-4">
                           <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
@@ -83,7 +83,7 @@
                           </label>
                         </div>
                         <div class="col-8">
-                          <h4 class="fw-bold">: {{ $user->profile->jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan' }}</h4>
+                          <h4 class="fw-bold">: {{ $user->profile->jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan' ?? '-'}}</h4>
                         </div>
                         <div class="col-4">
                           <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
@@ -91,7 +91,7 @@
                           </label>
                         </div>
                         <div class="col-8">
-                          <h4 class="fw-bold">: {{$user->profile->no_telepon}}</h4>
+                          <h4 class="fw-bold">: {{$user->profile->no_telepon ?? '-'}}</h4>
                         </div>
                         <div class="col-4">
                           <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
@@ -102,22 +102,15 @@
                           <h4 class="fw-bold">: {{ $user->profile->alamat ?? ' ' }} No. {{ $user->profile->no_rumah ?? ' ' }} 
                             RT {{ $user->profile->rt->name ?? '' }}
                             / RW {{ $user->profile->rw->name ?? '' }}</h4>
-                        </div>
-                        <div class="col-4">
-                          <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                            <h4 class="fw-bold">Email</h4>
-                          </label>
-                        </div>
-                        <div class="col-8">
-                          <h4 class="fw-bold">: {{$user->email}}</h4>
-                        </div>
-                        <div class="col-4">
-                          <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                            <h4 class="fw-bold">Terakhir Diupdate</h4>
-                          </label>
-                        </div>
-                        <div class="col-8">
-                          <h4 class="fw-bold">: {{ \Carbon\Carbon::parse($user->profile->updated_at)->formatLocalized('%d %B %Y') }}</h4>
+                          </div>
+                          <div class="col-4">
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                              <h4 class="fw-bold">Terakhir Diupdate</h4>
+                            </label>
+                          </div>
+                          <div class="col-8">
+                            <h4 class="fw-bold">: {{ \Carbon\Carbon::parse($user->profile->updated_at)->formatLocalized('%d %B %Y') }}</h4>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -130,6 +123,5 @@
       </div>
     </div>
   </div>
-</div>
 
-@endsection
+  @endsection

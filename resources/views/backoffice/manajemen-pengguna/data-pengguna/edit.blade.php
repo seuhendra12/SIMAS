@@ -60,7 +60,7 @@
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span class="required">Nomor Induk Keluarga</span>
                       </label>
-                      <input type="text" class="form-control" placeholder="Masukkan NIK" name="nik" value="{{ old('nik', $user->profile->nik) }}" />
+                      <input type="text" class="form-control" placeholder="Masukkan NIK" name="nik" value="{{ old('nik', $user->nik) }}" />
                     </div>
                     <div class="d-flex flex-column mb-3 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
@@ -90,12 +90,6 @@
                         <option value="L" {{ (old('jenis_kelamin', $user->profile->jenis_kelamin) === 'L') ? 'selected' : '' }}>Laki-laki</option>
                         <option value="P" {{ (old('jenis_kelamin', $user->profile->jenis_kelamin) === 'P') ? 'selected' : '' }}>Perempuan</option>
                       </select>
-                    </div>
-                    <div class="d-flex flex-column mb-3 fv-row">
-                      <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                        <span class="required">Email</span>
-                      </label>
-                      <input type="email" class="form-control" placeholder="Masukkan Alamat Email" name="email" value="{{ old('email', $user->email) }}" />
                     </div>
                     <div class="g-9 mb-3">
                       <label class="required fs-6 fw-semibold mb-2">Role</label>

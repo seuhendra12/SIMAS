@@ -58,19 +58,19 @@
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span class="required">Kode Aplikasi SIMAS</span>
                       </label>
-                      <input type="text" class="form-control" name="kode_simas" id="kode_simas" />
+                      <input type="text" class="form-control" name="kode_simas" id="kode_simas" value="{{old('kode_simas')}}" />
                     </div>
                     <div class="d-flex flex-column mb-3 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span>ID Pengguna</span>
                       </label>
-                      <input type="text" class="form-control bg-secondary" name="user_id" id="user_id" readonly="true"/>
+                      <input type="text" class="form-control bg-secondary" name="user_id" id="user_id" readonly="true"/ value="{{old('user_id')}}">
                     </div>
                     <div class="d-flex flex-column mb-3 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span>Nama Pengguna</span>
                       </label>
-                      <input type="text" class="form-control bg-secondary"id="name" readonly="true"/>
+                      <input type="text" class="form-control bg-secondary" id="name" readonly="true"/>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">

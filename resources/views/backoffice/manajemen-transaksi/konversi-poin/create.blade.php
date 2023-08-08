@@ -54,13 +54,13 @@
                   @endif
                   <form class="form" action="{{url('konversi-poin')}}" method="POST">
                     @csrf
-                    <div class="d-flex flex-column mb-8 fv-row">
+                    <div class="d-flex flex-column mb-3 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span class="required">Angka Konversi</span>
                       </label>
-                      <input type="text" class="form-control" placeholder="Masukkan Angka Konversi" name="angka" />
+                      <input type="text" class="form-control" placeholder="Masukkan Angka Konversi" name="angka_konversi" />
                     </div>
-                    <div class="d-flex flex-column mb-8 fv-row">
+                    <div class="d-flex flex-column mb-3 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span class="required">Nilai Poin</span>
                       </label>

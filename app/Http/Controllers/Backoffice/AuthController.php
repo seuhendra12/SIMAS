@@ -21,13 +21,13 @@ class AuthController extends Controller
   public function login(Request $request)
   {
     $messages = [
-      'email.required' => 'Email wajib diisi.',
+      'nik.required' => 'NIK wajib diisi.',
       'password.required' => 'Kata sandi wajib diisi.',
       'password.min' => 'Kata sandi harus terdiri dari minimal :min karakter.',
       'password.regex' => 'Kata sandi harus mengandung setidaknya satu huruf kapital, satu huruf kecil, dan satu angka.',
     ];
     $validator = Validator::make($request->all(), [
-      'email' => 'required',
+      'nik' => 'required',
       'password' => [
         'required',
         'string',
@@ -38,7 +38,7 @@ class AuthController extends Controller
     if ($validator->fails()) {
       return redirect()->back()->withErrors($validator)->withInput();
     }
-    $credentials = $request->only('email', 'password');
+    $credentials = $request->only('nik', 'password');
     if (Auth::attempt($credentials)) {
       $user = Auth::user();
 
@@ -51,8 +51,8 @@ class AuthController extends Controller
       }
     }
 
-    $request->session()->put('email', $request->input('email'));
-    return back()->with('errorLogin', 'Email atau kata sandi tidak valid');
+    $request->session()->put('nik', $request->input('nik'));
+    return back()->with('errorLogin', 'NIK atau kata sandi tidak valid');
   }
 
   public function logout(Request $request)
@@ -71,20 +71,17 @@ class AuthController extends Controller
   {
     $messages = [
       'nik.required' => 'NIK wajib diisi.',
+      'nik.unique' => 'NIK sudah digunakan.',
       'nik.size' => 'NIK harus memiliki panjang 16 karakter.',
       'name.required' => 'Nama wajib diisi.',
-      'email.required' => 'Email wajib diisi.',
-      'email.email' => 'Format email tidak valid.',
-      'email.unique' => 'Email sudah digunakan.',
       'password.required' => 'Kata sandi wajib diisi.',
       'password.min' => 'Kata sandi harus terdiri dari minimal :min karakter.',
       'password.regex' => 'Kata sandi harus mengandung setidaknya satu huruf kapital, satu huruf kecil, dan satu angka.',
   ];
   
   $validator = Validator::make($request->all(), [
-      'nik' => 'required|size:16',
+      'nik' => 'required|size:16|unique:users',
       'name' => 'required',
-      'email' => 'required|email|unique:users',
       'password' => [
           'required',
           'string',
@@ -103,16 +100,16 @@ class AuthController extends Controller
 
     // Buat user baru
     $user = User::create([
+      'nik' => $request->input('nik'),
       'name' => $request->input('name'),
-      'email' => $request->input('email'),
       'password' => Hash::make($request->input('password')),
     ]);
 
     // Buat profil pengguna dan set user_id
     $profile = new Profile([
-      'nik' => $request->input('nik'),
+      'user_id' => $user->id
     ]);
-    $profile->user_id = $user->id; // Mengisi user_id dengan id user yang baru dibuat
+    
     $profile->save();
 
     // Set flash message berhasil

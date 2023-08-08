@@ -87,11 +87,11 @@
 							@csrf
 							<div class="mb-3 text-center">
 								<h1 class="text-dark fw-bolder mb-3">Masuk</h1>
-								<div class="text-gray-500 fw-semibold fs-6">Masuk dengan surel dan kata sandimu</div>
+								<div class="text-gray-500 fw-semibold fs-6">Masuk dengan nik dan kata sandimu</div>
 							</div>
 							<div class="fv-row mb-4">
-								<label class="fw-bolder mb-1">Surel</label>
-								<input type="email" placeholder="Email" name="email" autocomplete="off" class="form-control bg-white" value="{{ old('email') ?? session('email') }}" required />
+								<label class="fw-bolder mb-1">Nomor Induk Keluarga</label>
+								<input type="text" placeholder="Masukkan NIK" name="nik" autocomplete="off" class="form-control bg-white" value="{{ old('nik') ?? session('nik') }}" required />
 							</div>
 							<div class="fv-row mb-3">
 								<div class="row">
@@ -110,6 +110,11 @@
 								</div>
 							</div>
 							<div>
+								@if(session()->has('errorLogin'))
+								<span>
+									<p>Lupa password ? <a  href="whatsapp://send?phone=6282283274212&text=Halo%20admin,%0ASaya%20lupa%20password%20akun%20saya%20dan%20butuh%20bantuan%20untuk%20meresetnya.%20Bisakah%20Anda%20membantu%20saya%20dengan%20proses%20pemulihan%3F%0ATerima%20kasih.">Silahkan hubungi admin</a></p>
+								</span>
+								@endif
 								<span>
 									<p>Belum memiliki akun ? <a href="/registrasi">Daftar sekarang</a></p>
 								</span>

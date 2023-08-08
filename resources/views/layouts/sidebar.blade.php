@@ -64,6 +64,12 @@
 								</span>
 								<span class="menu-title {{ Request::is('kategori-sampah')?'text-white' : '' }}">Kategori Sampah</span>
 							</a>
+							<a class="menu-link" href="{{url('jenis-sampah')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title {{ Request::is('jenis-sampah')?'text-white' : '' }}">Jenis Sampah</span>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -101,60 +107,6 @@
 					<span class="menu-link">
 						<span class="menu-icon">
 							<span class="svg-icon svg-icon-2">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-									<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-									<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-								</svg>
-							</span>
-						</span>
-						<span class="menu-title ">Manajemen Sampah</span>
-						<span class="menu-arrow"></span>
-					</span>
-					<div class="menu-sub menu-sub-accordion">
-						<div class="menu-item">
-							<a class="menu-link" href="{{url('jenis-sampah')}}">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title {{ Request::is('jenis-sampah')?'text-white' : '' }}">Jenis Sampah</span>
-							</a>
-							<a class="menu-link" href="{{url('sampah-dikumpulkan')}}">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title {{ Request::is('sampah-dikumpulkan')?'text-white' : '' }}">Sampah Dikumpulkan</span>
-							</a>
-							<a class="menu-link" href="{{url('sampah-dimanfaatkan')}}">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title {{ Request::is('sampah-dimanfaatkan')?'text-white' : '' }}">Sampah Dimanfaatkan</span>
-							</a>
-							<a class="menu-link" href="{{url('sampah-diolah-internal')}}">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title {{ Request::is('sampah-diolah-internal')?'text-white' : '' }}">Sampah Diolah Internal</span>
-							</a>
-							<a class="menu-link" href="{{url('sampah-diolah-eksternal')}}">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title {{ Request::is('sampah-diolah-eksternal')?'text-white' : '' }}">Sampah Diolah Eksternal</span>
-							</a>
-							<a class="menu-link" href="{{url('sampah-dibuang')}}">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title {{ Request::is('sampah-dibuang')?'text-white' : '' }}">Sampah Dibuang TPA</span>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-					<span class="menu-link">
-						<span class="menu-icon">
-							<span class="svg-icon svg-icon-2">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-coin" viewBox="0 0 16 16">
 									<path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9H5.5zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518l.087.02z" />
 									<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -184,6 +136,54 @@
 									<span class="bullet bullet-dot"></span>
 								</span>
 								<span class="menu-title {{ Request::is('tukar-poin-admin')?'text-white' : '' }}">Tukar Poin Sampah</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+					<span class="menu-link">
+						<span class="menu-icon">
+							<span class="svg-icon svg-icon-2">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+									<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+									<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+								</svg>
+							</span>
+						</span>
+						<span class="menu-title ">Manajemen Sampah</span>
+						<span class="menu-arrow"></span>
+					</span>
+					<div class="menu-sub menu-sub-accordion">
+						<div class="menu-item">
+							<a class="menu-link" href="{{url('sampah-dikumpulkan')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title {{ Request::is('sampah-dikumpulkan')?'text-white' : '' }}">Sampah Dikumpulkan</span>
+							</a>
+							<a class="menu-link" href="{{url('sampah-dimanfaatkan')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title {{ Request::is('sampah-dimanfaatkan')?'text-white' : '' }}">Sampah Dimanfaatkan</span>
+							</a>
+							<a class="menu-link" href="{{url('sampah-diolah-internal')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title {{ Request::is('sampah-diolah-internal')?'text-white' : '' }}">Sampah Diolah Internal</span>
+							</a>
+							<a class="menu-link" href="{{url('sampah-diolah-eksternal')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title {{ Request::is('sampah-diolah-eksternal')?'text-white' : '' }}">Sampah Diolah Eksternal</span>
+							</a>
+							<a class="menu-link" href="{{url('sampah-dibuang')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title {{ Request::is('sampah-dibuang')?'text-white' : '' }}">Sampah Dibuang TPA</span>
 							</a>
 						</div>
 					</div>

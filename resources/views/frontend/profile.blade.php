@@ -62,7 +62,7 @@
               <div class="mb-3 row">
                 <label for="nik" class="col-sm-4 col-form-label">NIK</label>
                 <div class="col-sm-7">
-                  <input type="text" value="{{ Auth::user()->profile->nik ? Auth::user()->profile->nik : '' }}" class="form-control" id="nik" placeholder="Tambahkan NIK" name="nik">
+                  <input type="text" value="{{ Auth::user()->nik ? Auth::user()->nik : '' }}" class="form-control" id="nik" placeholder="Tambahkan NIK" name="nik">
                 </div>
               </div>
               <div class="mb-3 row">
@@ -90,12 +90,6 @@
                     <option value="L" {{ (Auth::user()->profile->jenis_kelamin === 'L') ? 'selected' : '' }}>Laki-laki</option>
                     <option value="P" {{ (Auth::user()->profile->jenis_kelamin === 'P') ? 'selected' : '' }}>Perempuan</option>
                   </select>
-                </div>
-              </div>
-              <div class="mb-3 row">
-                <label for="email" class="col-sm-4 col-form-label">Email</label>
-                <div class="col-sm-7">
-                  <input type="text" name="email" value="{{ Auth::user()->email }}" class="form-control" id="email">
                 </div>
               </div>
               <div class="mb-3 row">

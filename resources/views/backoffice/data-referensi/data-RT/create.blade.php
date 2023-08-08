@@ -58,7 +58,7 @@
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span class="required">Nama RT</span>
                       </label>
-                      <input type="text" class="form-control" placeholder="Masukkan Nomor RT" name="name" />
+                      <input type="text" class="form-control" placeholder="Masukkan Nomor RT" name="name" value="{{ old('name') }}" />
                     </div>
                     <div class="mb-10">
                       <button type="submit" class="btn btn-primary btn-sm">

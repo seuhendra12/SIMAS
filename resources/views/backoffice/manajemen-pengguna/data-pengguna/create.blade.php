@@ -90,12 +90,6 @@
 												<option value="P">Perempuan</option>
 											</select>
 										</div>
-										<div class="d-flex flex-column mb-3 fv-row">
-											<label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-												<span class="required">Email</span>
-											</label>
-											<input type="email" class="form-control" placeholder="Masukkan Alamat Email" name="email" value="{{ old('email') }}" />
-										</div>
 										<div class="g-9 mb-3">
 											<label class="required fs-6 fw-semibold mb-2">Role</label>
 											<select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih Level Akses Pengguna" name="role">

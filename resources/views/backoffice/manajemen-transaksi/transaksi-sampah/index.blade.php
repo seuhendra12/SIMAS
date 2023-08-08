@@ -101,7 +101,7 @@
                       </div>
                     </div>
                     <div class="table-container">
-                      <table class="table table-bordered table-striped">
+                      <table class="table table-bordered table-striped text-center">
                         <thead class="fw-bold">
                           <tr>
                             <th scope="col">No</th>

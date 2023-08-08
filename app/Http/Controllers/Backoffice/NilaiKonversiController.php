@@ -42,10 +42,11 @@ class NilaiKonversiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'angka' => 'required',
+            'angka_konversi' => 'required|unique:nilai_konversis',
             'nilai' => 'required',
         ], [
-            'angka.required' => 'Kolom angka wajib diisi',
+            'angka_konversi.required' => 'Kolom angka wajib diisi',
+            'angka_konversi.unique' => 'Angka konversi sudah ada',
             'nilai.required' => 'Kolom nilai wajib diisi',
         ]);
 
@@ -97,15 +98,16 @@ class NilaiKonversiController extends Controller
     {
         $konversiPoin = NilaiKonversi::findOrFail($id);
         $request->validate([
+            'angka_konversi' => 'required|unique:nilai_konversis,angka_konversi,'.$id,
             'nilai' => 'required',
-            'angka' => 'required',
         ], [
+            'angka_konversi.required' => 'Kolom angka wajib diisi',
+            'angka_konversi.unique' => 'Angka konversi sudah ada',
             'nilai.required' => 'Kolom nilai wajib diisi',
-            'angka.required' => 'Kolom angka wajib diisi',
         ]);
 
         $konversiPoin->update([
-            'angka_konversi' => $request->input('angka'),
+            'angka_konversi' => $request->input('angka_konversi'),
             'nilai_konversi' => $request->input('nilai'),
         ]);
 

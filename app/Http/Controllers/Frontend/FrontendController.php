@@ -48,12 +48,11 @@ class FrontendController extends Controller
     $user = User::find($id);
 
     $validator = Validator::make($request->all(), [
-      'nik' => "required|size:16|unique:profiles,nik,$id",
+      'nik' => "required|size:16|unique:users,nik,$id",
       'name' => 'required',
       'tempat_lahir' => 'required',
       'tanggal_lahir' => 'required',
       'jenis_kelamin' => 'required',
-      'email' => "required|email|unique:users,email,$user->id",
       'no_telepon' => 'required',
       'alamat' => 'required',
       'no_rumah' => 'required',
@@ -79,17 +78,17 @@ class FrontendController extends Controller
 
     if ($validator->fails()) {
       return redirect()->back()
-      ->withErrors($validator)
-      ->withInput();
+        ->withErrors($validator)
+        ->withInput();
     }
 
     $user->update([
       'name' => $request->input('name'),
+      'nik' => $request->input('nik'),
     ]);
 
     $profile = $user->profile;
     $profile->update([
-      'nik' => $request->input('nik'),
       'tempat_lahir' => $request->input('tempat_lahir'),
       'tanggal_lahir' => $request->input('tanggal_lahir'),
       'jenis_kelamin' => $request->input('jenis_kelamin'),
@@ -109,90 +108,94 @@ class FrontendController extends Controller
 
   public function tukar_poin()
   {
-   $user = Auth::user();
+    $user = Auth::user();
 
-   $tukarPoins = TukarPoin::whereHas('transaksi', function ($query) use ($user) {
-    $query->where('user_id', $user->id);
-  })
-   ->orderBy('updated_at', 'desc')
-   ->get();
+    $tukarPoins = TukarPoin::whereHas('transaksi', function ($query) use ($user) {
+      $query->where('user_id', $user->id);
+    })
+      ->orderBy('updated_at', 'desc')
+      ->get();
 
-   return view('frontend.tukar_poin', [
-    'konversiPoin' => NilaiKonversi::all(),
-    'tukarPoins' => $tukarPoins,
-  ]);
- }
+    return view('frontend.tukar_poin', [
+      'konversiPoin' => NilaiKonversi::all(),
+      'tukarPoins' => $tukarPoins,
+    ]);
+  }
 
- public function simpan_tukar_poin(Request $request, $id)
- {
+  public function simpan_tukar_poin(Request $request, $id)
+  {
     // Mendapatkan nilai "konversPoin" dari input form
-  $konversiPoinId = $request->input('konversiPoin');
+    $konversiPoinId = $request->input('konversiPoin');
 
     // Dapatkan nilai dari model KonversiPoin berdasarkan "id" yang dipilih
-  $konversiPoin = NilaiKonversi::find($konversiPoinId);
+    $konversiPoin = NilaiKonversi::find($konversiPoinId);
 
     // Dapatkan data transaksi dari tabel "transaksi" berdasarkan "user_id"
-  $transaksi = Transaksi::where('user_id', $id)->first();
+    $transaksi = Transaksi::where('user_id', $id)->first();
 
-  $totalPoinTransaksi = $transaksi->total_point;
-  $nilaiPoin = $konversiPoin->nilai_konversi;
-  $nilaiMinimal = $nilaiPoin + 5;
-
-    // Validasi apakah total poin pengguna cukup untuk dikonversi
-  if ($totalPoinTransaksi < $nilaiMinimal) {
-    return redirect()->back()->withErrors('Total poin tidak mencukupi untuk dikonversi (Minimal sisa 5 poin)');
+    if ($transaksi !== null) {
+      $totalPoinTransaksi = $transaksi->total_point;
+      $nilaiPoin = $konversiPoin->nilai_konversi;
+      $nilaiMinimal = $nilaiPoin + 5;
+  
+      // Validasi apakah total poin pengguna cukup untuk dikonversi
+      if ($totalPoinTransaksi < $nilaiMinimal) {
+          return redirect()->back()->withErrors('Total poin tidak mencukupi untuk dikonversi (Minimal sisa 5 poin)');
+      }
+  } else {
+      return redirect()->back()->withErrors('Transaksi tidak ditemukan');
   }
 
     // Simpan data baru ke dalam tabel tukar_poin dengan membawa id_transaksi (id_transaksi dari tabel transaksi)
-  $tukarPoin = new TukarPoin();
-  $tukarPoin->transaksi_id = $transaksi->id;
-  $tukarPoin->nilai_konversi_id = $konversiPoinId;
-  $tukarPoin->tanggal_transaksi = now();
-  $tukarPoin->total_konversi = $konversiPoin->nilai_konversi;
-  $tukarPoin->save();
+    $tukarPoin = new TukarPoin();
+    $tukarPoin->transaksi_id = $transaksi->id;
+    $tukarPoin->nilai_konversi_id = $konversiPoinId;
+    $tukarPoin->tanggal_transaksi = now();
+    $tukarPoin->total_konversi = $konversiPoin->nilai_konversi;
+    $tukarPoin->save();
 
     // Kurangi total_poin dalam transaksi berdasarkan poin yang dikonversi
-  $transaksi->total_point -= $nilaiPoin;
-  $transaksi->save();
+    $transaksi->total_point -= $nilaiPoin;
+    $transaksi->save();
 
     // Set flash message berhasil
-  Session::flash('success', 'Tukar poin berhasil diajukan');
+    Session::flash('success', 'Tukar poin berhasil diajukan');
 
-  return redirect()->back();
-}
+    return redirect()->back();
+  }
 
-public function histori(Request $request)
-{
-  $perPage = $request->query('perPage', 10);
+  public function histori(Request $request)
+  {
+    $perPage = $request->query('perPage', 10);
     // Ambil data user yang sedang login
-  $user = Auth::user();
+    $user = Auth::user();
 
     // Ambil data item_transaksi berdasarkan user yang login melalui join dengan tabel transaksi
-  $historiTransaksi = ItemTransaksi::join('transaksis', 'item_transaksis.transaksi_id', '=', 'transaksis.id')
-  ->where('transaksis.user_id', $user->id)
+    $historiTransaksi = ItemTransaksi::join('transaksis', 'item_transaksis.transaksi_id', '=', 'transaksis.id')
+      ->where('transaksis.user_id', $user->id)
       ->orderBy('item_transaksis.updated_at', 'desc') // Menampilkan data terbaru berdasarkan tanggal transaksi pada tabel item_transaksi
       ->paginate($perPage);
 
-      return view('frontend.histori', [
-        'historiTransaksis' => $historiTransaksi,
-        'perPage' => $perPage,
-      ]);
-    }
+    return view('frontend.histori', [
+      'historiTransaksis' => $historiTransaksi,
+      'perPage' => $perPage,
+    ]);
+  }
 
-    public function cetak_struk($id)
-    {
-      $user = Auth::user(); // Mendapatkan user yang sedang login
+  public function cetak_struk($id)
+  {
+    $user = Auth::user(); // Mendapatkan user yang sedang login
     $tukarPoin = TukarPoin::findOrFail($id); // Ambil data tukar poin berdasarkan ID
 
     // Pastikan bahwa tukar poin yang diakses terkait dengan user yang sedang login
     if ($user->id !== $tukarPoin->transaksi->user_id) {
-        abort(403); // Tolak akses jika user tidak berhak mengakses data tukar poin ini
-      }
+      abort(403); // Tolak akses jika user tidak berhak mengakses data tukar poin ini
+    }
     $pdf = new Dompdf(); // Buat instance baru dari Dompdf
 
     // Kirim data tukarPoin ke view
-    $pdf->loadHtml(view('frontend.cetak_struk',[
-      'tukarPoin'=>$tukarPoin
+    $pdf->loadHtml(view('frontend.cetak_struk', [
+      'tukarPoin' => $tukarPoin
     ]));
 
     // (Opsional) Set ukuran kertas dan orientasi

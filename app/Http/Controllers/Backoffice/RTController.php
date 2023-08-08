@@ -96,7 +96,10 @@ class RTController extends Controller
         $rt = RT::findOrFail($id);
 
         $request->validate([
-            'name' => 'required|unique:rts',
+            'name' => 'required|unique:rts,name,'.$id,
+        ], [
+            'name.required' => 'Kolom nama wajib diisi',
+            'name.unique' => 'RT tersebut sudah ada',
         ]);
 
         $rt->update([

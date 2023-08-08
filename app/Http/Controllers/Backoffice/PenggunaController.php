@@ -68,26 +68,27 @@ class PenggunaController extends Controller
   public function store(Request $request)
   {
     $messages = [
-      'nik.required' => 'NIK wajib diisi.',
+      'nik.required' => 'Kolom NIK wajib diisi.',
       'nik.size' => 'NIK harus memiliki panjang 16 karakter.',
       'nik.unique' => 'Nik sudah digunakan.',
-      'name.required' => 'Nama wajib diisi.',
-      'role.required' => 'Role wajib diisi.',
-      'email.required' => 'Email wajib diisi.',
-      'email.email' => 'Format email tidak valid.',
-      'email.unique' => 'Email sudah digunakan.',
-      'password.required' => 'Kata sandi wajib diisi.',
+      'name.required' => 'Kolom nama lengkap wajib diisi.',
+      'role.required' => 'Kolom role wajib diisi.',
+      'password.required' => 'Kolom kata sandi wajib diisi.',
       'password.min' => 'Kata sandi harus terdiri dari minimal :min karakter.',
       'password.regex' => 'Kata sandi harus mengandung setidaknya satu huruf kapital, satu huruf kecil, dan satu angka.',
+      'tempat_lahir.required' => 'Kolom tempat lahir wajib diisi.',
+      'tanggal_lahir.required' => 'Kolom tanggal lahir wajib diisi.',
+      'no_telepon.required' => 'Kolom no telepon wajib diisi.',
+      'alamat.required' => 'Kolom alamat wajib diisi.',
+      'no_rumah.required' => 'Kolom no rumah wajib diisi.',
     ];
 
     $validator = Validator::make($request->all(), [
-      'nik' => 'required|size:16|unique:profiles',
+      'nik' => 'required|size:16|unique:users',
       'name' => 'required',
       'tempat_lahir' => 'required',
       'tanggal_lahir' => 'required',
       'jenis_kelamin' => 'required',
-      'email' => 'required|email|unique:users',
       'role' => 'required',
       'no_telepon' => 'required',
       'alamat' => 'required',
@@ -126,17 +127,17 @@ class PenggunaController extends Controller
 
     // Buat user baru jika NIK dan email unik
     $user = User::firstOrCreate(
-      ['email' => $request->input('email')],
+      ['nik' => $request->input('nik')],
       [
         'name' => $request->input('name'),
         'role' => $request->input('role'),
         'password' => Hash::make($request->input('password')),
+        // Pastikan tidak ada kolom 'nik' di sini, karena sudah disertakan di bagian atas
       ]
     );
 
     // Buat profil pengguna dan set user_id
-    $profile = Profile::firstOrCreate(
-      ['nik' => $request->input('nik')],
+    Profile::firstOrCreate(
       [
         'user_id' => $user->id,
         'tempat_lahir' => $request->input('tempat_lahir'),
@@ -206,14 +207,28 @@ class PenggunaController extends Controller
   public function update(Request $request, $id)
   {
     $user = User::find($id);
+    $messages = [
+      'nik.required' => 'Kolom NIK wajib diisi.',
+      'nik.size' => 'NIK harus memiliki panjang 16 karakter.',
+      'nik.unique' => 'Nik sudah digunakan.',
+      'name.required' => 'Kolom nama lengkap wajib diisi.',
+      'role.required' => 'Kolom role wajib diisi.',
+      'password.required' => 'Kolom kata sandi wajib diisi.',
+      'password.min' => 'Kata sandi harus terdiri dari minimal :min karakter.',
+      'password.regex' => 'Kata sandi harus mengandung setidaknya satu huruf kapital, satu huruf kecil, dan satu angka.',
+      'tempat_lahir.required' => 'Kolom tempat lahir wajib diisi.',
+      'tanggal_lahir.required' => 'Kolom tanggal lahir wajib diisi.',
+      'no_telepon.required' => 'Kolom no telepon wajib diisi.',
+      'alamat.required' => 'Kolom alamat wajib diisi.',
+      'no_rumah.required' => 'Kolom no rumah wajib diisi.',
+    ];
 
     $validator = Validator::make($request->all(), [
-      'nik' => "required|size:16|unique:profiles,nik,$id",
+      'nik' => "required|size:16|unique:users,nik,$id",
       'name' => 'required',
       'tempat_lahir' => 'required',
       'tanggal_lahir' => 'required',
       'jenis_kelamin' => 'required',
-      'email' => "required|email|unique:users,email,$user->id",
       'role' => 'required',
       'no_telepon' => 'required',
       'alamat' => 'required',
@@ -225,7 +240,7 @@ class PenggunaController extends Controller
         'min:8',
         'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
       ],
-    ]);
+    ], $messages);
 
     // Ambil data RT, RW, dan nomor rumah dari input request
     $rtId = $request->input('rt');
@@ -250,15 +265,14 @@ class PenggunaController extends Controller
     }
 
     $user->update([
+      'nik' => $request->input('nik'),
       'name' => $request->input('name'),
-      'email' => $request->input('email'),
       'role' => $request->input('role'),
       'password' => Hash::make($request->input('password')),
     ]);
 
     $profile = $user->profile;
     $profile->update([
-      'nik' => $request->input('nik'),
       'tempat_lahir' => $request->input('tempat_lahir'),
       'tanggal_lahir' => $request->input('tanggal_lahir'),
       'jenis_kelamin' => $request->input('jenis_kelamin'),

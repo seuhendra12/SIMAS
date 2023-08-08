@@ -42,10 +42,10 @@ class RWController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:rts',
+            'name' => 'required|unique:rws',
         ], [
             'name.required' => 'Kolom nama wajib diisi',
-            'name.unique' => 'RT tersebut sudah ada',
+            'name.unique' => 'RW tersebut sudah ada',
         ]);
 
         $rw = new RW([
@@ -96,7 +96,10 @@ class RWController extends Controller
         $rw = RW::findOrFail($id);
 
         $request->validate([
-            'name' => 'required|unique:rws',
+            'name' => 'required|unique:rws,name,'.$id,
+        ], [
+            'name.required' => 'Kolom nama wajib diisi',
+            'name.unique' => 'RW tersebut sudah ada',
         ]);
 
         $rw->update([
