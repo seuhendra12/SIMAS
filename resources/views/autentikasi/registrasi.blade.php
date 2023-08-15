@@ -31,7 +31,7 @@
 							});
 						</script>
 						@endif
-						<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="{{url('registrasi')}}" method="POST">
+						<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="{{url('registrasi')}}" method="POST" enctype="multipart/form-data">
 							@csrf
 							<div class="mb-3 text-center">
 								<h1 class="text-dark fw-bolder">Daftar Akun</h1>
@@ -44,6 +44,14 @@
 							<div class="fv-row mt-2">
 								<label class="fw-bolder mb-1">Nama Lengkap</label>
 								<input type="text" placeholder="Masukkan Nama Lengkap" name="name" autocomplete="off" class="form-control bg-white" value="{{ old('name') ?? session('name') }}" required />
+							</div>
+							<div class="fv-row mt-2">
+								<label class="fw-bolder mb-1">Nomor Whatsapp</label>
+								<input type="number" placeholder="Masukkan No WA" name="no_wa" autocomplete="off" class="form-control bg-white" value="{{ old('no_wa') ?? session('no_wa') }}" required />
+							</div>
+							<div class="fv-row mt-2">
+								<label class="fw-bolder mb-1">Upload Foto KTP (Max : 5MB)</label>
+								<input type="file" name="foto_ktp" autocomplete="off" class="form-control bg-white" required />
 							</div>
 							<div class="fv-row mt-2 mb-4">
 								<div class="row">

@@ -103,10 +103,8 @@
                         <thead class="fw-bold">
                           <tr>
                             <th>No</th>
-                            <th>Kode Aplikasi</th>
                             <th>NIK</th>
                             <th>Nama Lengkap</th>
-                            <th>Role</th>
                             <th>Aksi</th>
                           </tr>
                         </thead>
@@ -114,10 +112,8 @@
                           @forelse($datas as $user)
                           <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$user->profile->kode_simas ?? '-'}}</td>
                             <td>{{$user->nik}}</td>
                             <td>{{$user->name}}</td>
-                            <td>{{$user->role}}</td>
                             <td>
                               <a href="data-pengguna/{{$user->id}}" class="btn btn-purple btn-sm button-action" title="Detail" data-bs-toggle="tooltip">
                                 <span>

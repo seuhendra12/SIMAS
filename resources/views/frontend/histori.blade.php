@@ -45,11 +45,11 @@
               <tr>
                 <td class="align-top">{{$loop->iteration}}</td>
                 <td class="align-top">{{$historiTransaksi->jenisSampah->name}}</td>
-                <td class="align-top">{{$historiTransaksi->created_at->format('d/m/Y')}}</td>
+                <td class="align-top">{{$historiTransaksi->updated_at->format('d/m/Y')}}</td>
                 <td class="align-top">{{$historiTransaksi->berat}} Kg</td>
               </tr>
               @empty
-              <td colspan="5" class="text-center bg-danger">-- Data Tidak Ada --</td>
+              <td colspan="4" class="text-center bg-danger">-- Data Tidak Ada --</td>
               @endforelse
             </tbody>
           </table>

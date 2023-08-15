@@ -136,7 +136,7 @@
                             </td>
                           </tr>
                           @empty
-                          <td colspan="6" class="text-center bg-danger">-- Data Tidak Ada --</td>
+                          <td colspan="7" class="text-center bg-danger">-- Data Tidak Ada --</td>
                           @endforelse
                         </tbody>
                       </table>

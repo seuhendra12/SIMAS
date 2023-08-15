@@ -46,15 +46,27 @@
                       <tbody class="text-center">
                         <tr>
                           <td>1</td>
-                          <td>Pengelola</td>
+                          <td>Superadmin</td>
                         </tr>
                         <tr>
                           <td>2</td>
-                          <td>Kelurahan</td>
+                          <td>Admin</td>
                         </tr>
                         <tr>
                           <td>3</td>
-                          <td>Warga</td>
+                          <td>Kelurahan</td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>RW</td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>RT</td>
+                        </tr>
+                        <tr>
+                          <td>6</td>
+                          <td>User</td>
                         </tr>
                       </tbody>
                     </table>

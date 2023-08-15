@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
+use App\Models\ItemTransaksi;
 use App\Models\JenisSampah;
 use App\Models\SampahDimanfaatkan;
 use Illuminate\Http\Request;
@@ -136,6 +137,14 @@ class SampahDimanfaatkanController extends Controller
       'keterangan' => $request->input('keterangan'),
       'status' => $request->input('status'),
     ]);
+
+    $datainput = $request->input('berat');
+
+    $dataSampah=ItemTransaksi::get();
+
+    $totalSampah  = $dataSampah->sum('berat');
+
+    $total = $datainput - $totalSampah;
 
     // Set flash message berhasil
     Session::flash('success', 'Data ini berhasil diubah');

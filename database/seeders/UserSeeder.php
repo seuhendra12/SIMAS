@@ -17,29 +17,47 @@ class UserSeeder extends Seeder
 	{
 		$users = [
 			[
-				'nik' => '2172027105050001',
+				'nik' => '0000000000000001',
 				'name' => 'Super Admin',
 				'role' => 'SuperAdmin',
+				'is_active'=>1,
 				'password' => Hash::make('Superadmin12345'),
 			],
 			[
-				'nik' => '2172027105050002',
+				'nik' => '0000000000000002',
 				'name' => 'Admin',
 				'role' => 'Admin',
+				'is_active'=>1,
 				'password' => Hash::make('Admin12345'),
 			],
 			[
-				'nik' => '2172027105050003',
+				'nik' => '0000000000000003',
 				'name' => 'Kelurahan Koto Luar',
 				'role' => 'Kelurahan',
+				'is_active'=>1,
 				'password' => Hash::make('Kelurahan12345'),
 			],
 			[
-				'nik' => '2102082009010003',
-				'name' => 'Seuhendra Setiawan',
-				'role' => 'User',
-				'password' => Hash::make('Suen200901'),
+				'nik' => '0000000000000004',
+				'name' => 'RT',
+				'role' => 'RT',
+				'is_active'=>1,
+				'password' => Hash::make('Rt123456'),
 			],
+			[
+				'nik' => '0000000000000005',
+				'name' => 'RW',
+				'role' => 'RW',
+				'is_active'=>1,
+				'password' => Hash::make('Rw123456'),
+			],
+			// [
+			// 	'nik' => '2102082009010004',
+			// 	'name' => 'Seuhendra Setiawan',
+			// 	'role' => 'User',
+			// 	'is_active'=>1,
+			// 	'password' => Hash::make('Suen200901'),
+			// ],
 		];
 
 		foreach ($users as $userData) {
@@ -47,6 +65,7 @@ class UserSeeder extends Seeder
 				'nik' => $userData['nik'],
 				'name' => $userData['name'],
 				'role' => $userData['role'],
+				'is_active' => $userData['is_active'],
 				'password' => $userData['password'],
 				'created_at' => \Carbon\Carbon::now(),
 				'updated_at' => \Carbon\Carbon::now(),

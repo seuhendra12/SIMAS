@@ -20,6 +20,22 @@
     .table-striped tbody tr:nth-of-type(odd) {
       background-color: #A1A5B7
     }
+
+    .notification-icon {
+      display: inline-block;
+      position: relative;
+    }
+
+    .notification-icon svg {
+      vertical-align: middle;
+    }
+
+    .notification-icon .badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(50%, -50%);
+    }
   </style>
 
   <link href="{!! asset('/css/responsive_dashboard.bundle.css') !!}" rel="stylesheet" type="text/css" />

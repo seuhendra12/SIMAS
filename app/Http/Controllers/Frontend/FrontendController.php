@@ -58,6 +58,15 @@ class FrontendController extends Controller
       'no_rumah' => 'required',
       'rt' => 'required',
       'rw' => 'required',
+    ],[
+      'nik.required' => 'Kolom nik wajib diisi.',
+      'name.required' => 'Kolom nama wajib diisi.',
+      'tempat_lahir.required' => 'Kolom tempat lahir wajib diisi.',
+      'tanggal_lahir.required' => 'Kolom tanggal lahir wajib diisi.',
+      'jenis_kelamin.required' => 'Kolom jenis kelamin wajib diisi.',
+      'no_telepon.required' => 'Kolom nomor telepon wajib diisi.',
+      'alamat.required' => 'Kolom alamat wajib diisi.',
+      'no_rumah.required' => 'Kolom nomor rumah wajib diisi.',
     ]);
 
     // Ambil data RT, RW, dan nomor rumah dari input request
@@ -178,6 +187,7 @@ class FrontendController extends Controller
 
     return view('frontend.histori', [
       'historiTransaksis' => $historiTransaksi,
+      
       'perPage' => $perPage,
     ]);
   }

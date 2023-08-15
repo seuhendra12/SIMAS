@@ -16,6 +16,7 @@ class HistoriTransaksiController extends Controller
     // Mengambil item transaksi dan melakukan agregasi berat berdasarkan jenis sampah
     $itemTransaksis = ItemTransaksi::with('jenisSampah')
       ->where('transaksi_id', $id)// Urutkan berdasarkan jenis_sampah_id
+      ->orderBy('updated_at','desc')
       ->paginate($perPage);
 
     return view('backoffice.manajemen-transaksi.transaksi-sampah.histori', [

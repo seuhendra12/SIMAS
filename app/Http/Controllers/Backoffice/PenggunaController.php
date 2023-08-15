@@ -28,12 +28,13 @@ class PenggunaController extends Controller
     if ($loggedInUser->role === 'Admin') {
       // Ambil data pengguna dengan peran 'admin' dan peran lain (tidak termasuk 'superadmin')
       $datas = User::filter(request(['search']))
-        ->where('role', '!=', 'SuperAdmin')
+        ->where('role', '!=', 'SuperAdmin' && 'is_active', 1)
         ->paginate($perPage);
     } else {
       // Jika pengguna dengan peran 'superadmin' atau peran lain yang login
       // Ambil semua data tanpa filter
       $datas = User::filter(request(['search']))
+        ->where('is_active',1)
         ->paginate($perPage);
     }
 

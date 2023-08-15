@@ -38,11 +38,16 @@ class AuthController extends Controller
     if ($validator->fails()) {
       return redirect()->back()->withErrors($validator)->withInput();
     }
-    $credentials = $request->only('nik', 'password');
-    if (Auth::attempt($credentials)) {
-      $user = Auth::user();
+    
+    $credentials = [
+      'nik' => $request->nik,
+      'password' => $request->password,
+    ];
 
-      // dd($user->role);
+    $user = User::where('nik', $credentials['nik'])->first();
+
+    if ($user && $user->is_active == 1 && Auth::attempt($credentials)) {
+      $user = Auth::user();
 
       if ($user->role == 'SuperAdmin' || $user->role == 'Admin' || $user->role == 'Kelurahan' ) {
         return redirect()->intended('/dashboard');
@@ -50,6 +55,10 @@ class AuthController extends Controller
         return redirect()->intended('/');
       }
     }
+    else if ($user && $user->is_active == 0) {
+      $request->session()->put('nik', $request->input('nik'));
+      return back()->with('errorLogin', 'Akun kamu belum aktif !');
+    } 
 
     $request->session()->put('nik', $request->input('nik'));
     return back()->with('errorLogin', 'NIK atau kata sandi tidak valid');
@@ -82,6 +91,8 @@ class AuthController extends Controller
   $validator = Validator::make($request->all(), [
       'nik' => 'required|size:16|unique:users',
       'name' => 'required',
+      'no_wa' => 'required',
+      'foto_ktp' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
       'password' => [
           'required',
           'string',
@@ -96,24 +107,33 @@ class AuthController extends Controller
         ->withInput();
     }
 
+    if($request->hasFile('foto_ktp')){
+      $image = $request->file('foto_ktp');
+      $imageName = time().'.'.$image->getClientOriginalExtension();
+      $image->move(public_path('img/foto_ktp'), $imageName);
+    }
+
     // Proses selanjutnya jika validasi berhasil
 
     // Buat user baru
     $user = User::create([
       'nik' => $request->input('nik'),
       'name' => $request->input('name'),
+      'is_active' => 0,
       'password' => Hash::make($request->input('password')),
     ]);
 
     // Buat profil pengguna dan set user_id
     $profile = new Profile([
-      'user_id' => $user->id
+      'user_id' => $user->id,
+      'foto_ktp' => $imageName,
+      'no_wa' => $request->input('no_wa')
     ]);
     
     $profile->save();
 
     // Set flash message berhasil
-    Session::flash('success', 'Akun berhasil dibuat. Silakan login.');
+    Session::flash('success', 'Akun berhasil dibuat. Tunggu konfirmasi dari admin, agar bisa login.');
 
     return redirect('/login');
   }
