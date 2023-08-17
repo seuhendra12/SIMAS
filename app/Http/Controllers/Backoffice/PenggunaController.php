@@ -34,7 +34,7 @@ class PenggunaController extends Controller
       // Jika pengguna dengan peran 'superadmin' atau peran lain yang login
       // Ambil semua data tanpa filter
       $datas = User::filter(request(['search']))
-        ->where('is_active',1)
+        ->where('is_active', 1)
         ->paginate($perPage);
     }
 
@@ -102,6 +102,7 @@ class PenggunaController extends Controller
         'min:8',
         'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
       ],
+      'is_active' => 'nullable'
     ], $messages);
 
     // Ambil data RT, RW, dan nomor rumah dari input request
@@ -119,13 +120,11 @@ class PenggunaController extends Controller
 
     // Gabungkan data RT, RW, dan nomor rumah untuk membentuk kode_transaksi
     $kodeTransaksi = $nomorRumah . $namaRT . $namaRW;
-
     if ($validator->fails()) {
       return redirect('/data-pengguna/create')
         ->withErrors($validator)
         ->withInput();
     }
-
     // Buat user baru jika NIK dan email unik
     $user = User::firstOrCreate(
       ['nik' => $request->input('nik')],
@@ -133,6 +132,7 @@ class PenggunaController extends Controller
         'name' => $request->input('name'),
         'role' => $request->input('role'),
         'password' => Hash::make($request->input('password')),
+        'is_active' => $request->input('is_active', 0)
         // Pastikan tidak ada kolom 'nik' di sini, karena sudah disertakan di bagian atas
       ]
     );
@@ -144,7 +144,7 @@ class PenggunaController extends Controller
         'tempat_lahir' => $request->input('tempat_lahir'),
         'tanggal_lahir' => $request->input('tanggal_lahir'),
         'jenis_kelamin' => $request->input('jenis_kelamin'),
-        'no_telepon' => $request->input('no_telepon'),
+        'no_wa' => $request->input('no_telepon'),
         'alamat' => $request->input('alamat'),
         'rt_id' => $request->input('rt'),
         'rw_id' => $request->input('rw'),
@@ -155,7 +155,6 @@ class PenggunaController extends Controller
 
     // Set flash message berhasil
     Session::flash('success', 'Pengguna berhasil ditambahkan');
-
     return redirect('/data-pengguna');
   }
 
@@ -241,7 +240,9 @@ class PenggunaController extends Controller
         'min:8',
         'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
       ],
+      'is_active' => 'nullable'
     ], $messages);
+
 
     // Ambil data RT, RW, dan nomor rumah dari input request
     $rtId = $request->input('rt');
@@ -269,6 +270,7 @@ class PenggunaController extends Controller
       'nik' => $request->input('nik'),
       'name' => $request->input('name'),
       'role' => $request->input('role'),
+      'is_active' => $request->input('is_active', 0),
       'password' => Hash::make($request->input('password')),
     ]);
 
@@ -326,7 +328,6 @@ class PenggunaController extends Controller
         'user_id' => $user_id
       ]);
     }
-
     return response()->json(['name' => null]);
   }
 }

@@ -64,7 +64,7 @@
                           <tr>
                             <td class="align-top">{{$loop->iteration}}</td>
                             <td class="align-top">{{$sampahDikumpulkan->jenisSampah->name}}</td>
-                            <td class="align-middle">{{$sampahDikumpulkan->jumlah_berat}} Kg</td>
+                            <td class="align-middle">{{$sampahDikumpulkan->total_berat}} Kg</td>
                           </tr>
                           @empty
                           <td colspan="5" class="text-center bg-danger">-- Data Tidak Ada --</td>

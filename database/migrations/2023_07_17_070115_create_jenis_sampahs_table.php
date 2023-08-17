@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique()->nullable();
             $table->bigInteger('point_perkg')->nullable();
+            $table->decimal('harga_per_kg', 10, 2)->default(0);
             $table->unsignedBigInteger('kategori_sampah_id')->nullable();
             $table->timestamps();
 

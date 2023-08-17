@@ -156,6 +156,12 @@
 												<div class="fw-semibold fs-6"> Tampilkan Kata Sandi</div>
 											</div>
 										</div>
+										<div class="d-flex flex-stack mb-3">
+											<label class="form-check form-switch form-check-custom form-check-solid">
+												<input name="is_active" class="form-check-input" type="checkbox" value="1" />
+												<span class="form-check-label fw-semibold text-muted">Aktif</span>
+											</label>
+										</div>
 										<div class="mb-10">
 											<button type="submit" class="btn btn-primary btn-sm">
 												<span class="indicator-label">Simpan</span>

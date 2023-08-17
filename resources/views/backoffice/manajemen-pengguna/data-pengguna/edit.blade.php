@@ -105,7 +105,7 @@
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span class="required">No Telepon</span>
                       </label>
-                      <input type="text" class="form-control" placeholder="Masukan No Telepon" name="no_telepon" value="{{ old('no_telepon', $user->profile->no_telepon) }}" />
+                      <input type="text" class="form-control" placeholder="Masukan No Telepon" name="no_telepon" value="{{ old('no_telepon', $user->profile->no_wa) }}" />
                     </div>
                     <div class="d-flex flex-column mb-3 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
@@ -160,6 +160,12 @@
                       <div class="col-10">
                         <div class="fw-semibold fs-6"> Tampilkan Kata Sandi</div>
                       </div>
+                    </div>
+                    <div class="d-flex flex-stack mb-3">
+                      <label class="form-check form-switch form-check-custom form-check-solid">
+                        <input name="is_active" class="form-check-input" type="checkbox" value="1" {{ $user['is_active'] == 1 ? 'checked' : '' }} />
+                        <span class="form-check-label fw-semibold text-muted">Aktif</span>
+                      </label>
                     </div>
                     <div class="mb-10">
                       <button type="submit" class="btn btn-primary btn-sm">

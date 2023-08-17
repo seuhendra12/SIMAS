@@ -87,11 +87,11 @@
                         </div>
                         <div class="col-4">
                           <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                            <h4 class="fw-bold">No Telepon</h4>
+                            <h4 class="fw-bold">No Whatsapp</h4>
                           </label>
                         </div>
                         <div class="col-8">
-                          <h4 class="fw-bold">: {{$user->profile->no_telepon ?? '-'}}</h4>
+                          <h4 class="fw-bold">: +62{{$user->profile->no_wa ?? '-'}}</h4>
                         </div>
                         <div class="col-4">
                           <label class="d-flex align-items-center fs-6 fw-semibold mb-2">

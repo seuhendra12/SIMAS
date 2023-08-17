@@ -103,6 +103,7 @@
                         <thead class="fw-bold">
                           <tr>
                             <th>No</th>
+                            <th>Kode Aplikasi</th>
                             <th>NIK</th>
                             <th>Nama Lengkap</th>
                             <th>Aksi</th>
@@ -112,6 +113,7 @@
                           @forelse($datas as $user)
                           <tr>
                             <td>{{$loop->iteration}}</td>
+                            <td>{{$user->profile->kode_simas ?? '-'}}</td>
                             <td>{{$user->nik}}</td>
                             <td>{{$user->name}}</td>
                             <td>
