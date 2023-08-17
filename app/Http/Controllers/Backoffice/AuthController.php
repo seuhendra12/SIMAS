@@ -17,7 +17,7 @@ class AuthController extends Controller
   {
     return view("autentikasi.login");
   }
-  
+
   public function login(Request $request)
   {
     $messages = [
@@ -38,7 +38,7 @@ class AuthController extends Controller
     if ($validator->fails()) {
       return redirect()->back()->withErrors($validator)->withInput();
     }
-    
+
     $credentials = [
       'nik' => $request->nik,
       'password' => $request->password,
@@ -49,16 +49,15 @@ class AuthController extends Controller
     if ($user && $user->is_active == 1 && Auth::attempt($credentials)) {
       $user = Auth::user();
 
-      if ($user->role == 'SuperAdmin' || $user->role == 'Admin' || $user->role == 'Kelurahan' ) {
+      if ($user->role == 'SuperAdmin' || $user->role == 'Admin' || $user->role == 'Kelurahan') {
         return redirect()->intended('/dashboard');
       } elseif ($user->role == 'User') {
         return redirect()->intended('/');
       }
-    }
-    else if ($user && $user->is_active == 0) {
+    } else if ($user && $user->is_active == 0) {
       $request->session()->put('nik', $request->input('nik'));
       return back()->with('errorLogin', 'Akun kamu belum aktif !');
-    } 
+    }
 
     $request->session()->put('nik', $request->input('nik'));
     return back()->with('errorLogin', 'NIK atau kata sandi tidak valid');
@@ -75,7 +74,7 @@ class AuthController extends Controller
   {
     return view("autentikasi.registrasi");
   }
-  
+
   public function register(Request $request)
   {
     $messages = [
@@ -86,20 +85,20 @@ class AuthController extends Controller
       'password.required' => 'Kata sandi wajib diisi.',
       'password.min' => 'Kata sandi harus terdiri dari minimal :min karakter.',
       'password.regex' => 'Kata sandi harus mengandung setidaknya satu huruf kapital, satu huruf kecil, dan satu angka.',
-  ];
-  
-  $validator = Validator::make($request->all(), [
+    ];
+
+    $validator = Validator::make($request->all(), [
       'nik' => 'required|size:16|unique:users',
       'name' => 'required',
       'no_wa' => 'required',
       'foto_ktp' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
       'password' => [
-          'required',
-          'string',
-          'min:8',
-          'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+        'required',
+        'string',
+        'min:8',
+        'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
       ],
-  ], $messages);
+    ], $messages);
 
     if ($validator->fails()) {
       return redirect('/registrasi')
@@ -107,9 +106,9 @@ class AuthController extends Controller
         ->withInput();
     }
 
-    if($request->hasFile('foto_ktp')){
+    if ($request->hasFile('foto_ktp')) {
       $image = $request->file('foto_ktp');
-      $imageName = time().'.'.$image->getClientOriginalExtension();
+      $imageName = time() . '.' . $image->getClientOriginalExtension();
       $image->move(public_path('img/foto_ktp'), $imageName);
     }
 
@@ -129,7 +128,7 @@ class AuthController extends Controller
       'foto_ktp' => $imageName,
       'no_wa' => $request->input('no_wa')
     ]);
-    
+
     $profile->save();
 
     // Set flash message berhasil

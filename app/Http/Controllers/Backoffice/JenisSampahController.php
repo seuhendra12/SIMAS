@@ -108,7 +108,7 @@ class JenisSampahController extends Controller
   {
     $jenisSampah = JenisSampah::findOrFail($id);
     $request->validate([
-      'name' => 'required|unique:jenis_sampahs,name,'.$id,
+      'name' => 'required|unique:jenis_sampahs,name,' . $id,
       'kategori_sampah' => 'required',
       'point_perkg' => 'required',
     ], [

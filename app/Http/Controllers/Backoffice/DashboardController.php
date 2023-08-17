@@ -17,7 +17,7 @@ class DashboardController extends Controller
   public function index()
   {
     $total_berat = ItemTransaksi::where('jenis_sampah_id', 1)->sum('berat');
-    return view('backoffice.index',[
+    return view('backoffice.index', [
       'jenis_sampah' => JenisSampah::get(),
       'transaksi_sampah' => Transaksi::get(),
       'sampah_dimanfaatkan' => SampahDimanfaatkan::get(),
