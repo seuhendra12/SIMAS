@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ItemTransaksi;
 use App\Models\JenisSampah;
 use App\Models\SampahDimanfaatkan;
+use App\Models\Total_sampah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -69,12 +70,30 @@ class SampahDimanfaatkanController extends Controller
       'tanggal_dimanfaatkan' => $request->input('tanggal_dimanfaatkan'),
       'keterangan' => $request->input('keterangan'),
     ]);
+    // Ambil total sampah yang ada berdasarkan jenis
+    $jenisSampah = $request->input('jenis_sampah');
+    $beratSampahDimanfaatkan = $request->input('berat');
 
-    $sampahDimanfaatkan->save();
-    // Set flash message berhasil
-    Session::flash('success', 'Data ini berhasil ditambah');
+    $totalSampah = Total_sampah::where('jenis_sampah_id', $jenisSampah)->first();
+    if ($totalSampah) {
+      // Periksa apakah berat yang dimanfaatkan tidak melebihi total berat sampah yang tersedia
+      if ($beratSampahDimanfaatkan < $totalSampah->total_berat) {
+        $sampahDimanfaatkan->save();
 
-    return redirect('sampah-dimanfaatkan');
+        // Kurangi total sampah berdasarkan jenisnya di tabel total_sampah
+        $totalSampah->total_berat -= $beratSampahDimanfaatkan;
+        $totalSampah->save();
+
+        // Set flash message berhasil
+        Session::flash('success', 'Data ini berhasil ditambah');
+        return redirect('sampah-dimanfaatkan');
+      } else {
+        // Jika berat yang dimanfaatkan melebihi total berat sampah yang tersedia
+        return redirect()->back()->withErrors(['error' => 'Berat sampah yang dimanfaatkan melebihi total berat sampah yang tersedia'])->withInput();
+      }
+    } else {
+      return redirect()->back()->withErrors(['error' => 'Jenis sampah tidak ditemukan. Silakan pilih jenis sampah yang valid.'])->withInput();
+    }
   }
 
   /**
@@ -137,14 +156,6 @@ class SampahDimanfaatkanController extends Controller
       'keterangan' => $request->input('keterangan'),
       'status' => $request->input('status'),
     ]);
-
-    $datainput = $request->input('berat');
-
-    $dataSampah=ItemTransaksi::get();
-
-    $totalSampah  = $dataSampah->sum('berat');
-
-    $total = $datainput - $totalSampah;
 
     // Set flash message berhasil
     Session::flash('success', 'Data ini berhasil diubah');

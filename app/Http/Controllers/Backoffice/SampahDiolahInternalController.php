@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backoffice;
 use App\Http\Controllers\Controller;
 use App\Models\JenisSampah;
 use App\Models\SampahDiolahInternal;
+use App\Models\Total_sampah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -20,10 +21,10 @@ class SampahDiolahInternalController extends Controller
     $perPage = $request->query('perPage', 10);
 
     return view('backoffice.manajemen-sampah.sampah-diolah-internal.index', [
-        'sampahDiolahInternals' => SampahDiolahInternal::filter(request(['search']))
-            ->orderBy('sampah_diolah_internals.created_at', 'desc') // Sebutkan tabelnya dengan jelas
-            ->paginate($perPage),
-        'perPage' => $perPage
+      'sampahDiolahInternals' => SampahDiolahInternal::filter(request(['search']))
+        ->orderBy('sampah_diolah_internals.created_at', 'desc') // Sebutkan tabelnya dengan jelas
+        ->paginate($perPage),
+      'perPage' => $perPage
     ]);
   }
 
@@ -72,11 +73,30 @@ class SampahDiolahInternalController extends Controller
       'lokasi_diolah' => $request->input('lokasi'),
     ]);
 
-    $sampahDiolahInternal->save();
-    // Set flash message berhasil
-    Session::flash('success', 'Data ini berhasil ditambah');
+    // Ambil total sampah yang ada berdasarkan jenis
+    $jenisSampah = $request->input('jenis_sampah');
+    $beratSampahDiolahInternal = $request->input('berat');
 
-    return redirect('sampah-diolah-internal');
+    $totalSampah = Total_sampah::where('jenis_sampah_id', $jenisSampah)->first();
+    if ($totalSampah) {
+      // Periksa apakah berat yang dimanfaatkan tidak melebihi total berat sampah yang tersedia
+      if ($beratSampahDiolahInternal < $totalSampah->total_berat) {
+        $sampahDiolahInternal->save();
+
+        // Kurangi total sampah berdasarkan jenisnya di tabel total_sampah
+        $totalSampah->total_berat -= $beratSampahDiolahInternal;
+        $totalSampah->save();
+
+        // Set flash message berhasil
+        Session::flash('success', 'Data ini berhasil ditambah');
+        return redirect('sampah-diolah-internal');
+      } else {
+        // Jika berat yang diolah melebihi total berat sampah yang tersedia
+        return redirect()->back()->withErrors(['error' => 'Berat sampah yang diolah melebihi total berat sampah yang tersedia'])->withInput();
+      }
+    } else {
+      return redirect()->back()->withErrors(['error' => 'Jenis sampah tidak ditemukan. Silakan pilih jenis sampah yang valid.'])->withInput();
+    }
   }
 
   /**

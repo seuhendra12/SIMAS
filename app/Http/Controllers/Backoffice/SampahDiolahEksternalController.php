@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backoffice;
 use App\Http\Controllers\Controller;
 use App\Models\JenisSampah;
 use App\Models\SampahDiolahEksternal;
+use App\Models\Total_sampah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -71,11 +72,30 @@ class SampahDiolahEksternalController extends Controller
       'lokasi_diolah' => $request->input('lokasi'),
     ]);
 
-    $sampahDiolahEksternal->save();
-    // Set flash message berhasil
-    Session::flash('success', 'Data berhasil ditambah');
+    // Ambil total sampah yang ada berdasarkan jenis
+    $jenisSampah = $request->input('jenis_sampah');
+    $beratSampahDiolahEkstrenal = $request->input('berat');
 
-    return redirect('sampah-diolah-eksternal');
+    $totalSampah = Total_sampah::where('jenis_sampah_id', $jenisSampah)->first();
+    if ($totalSampah) {
+      // Periksa apakah berat yang dimanfaatkan tidak melebihi total berat sampah yang tersedia
+      if ($beratSampahDiolahEkstrenal < $totalSampah->total_berat) {
+        $sampahDiolahEksternal->save();
+
+        // Kurangi total sampah berdasarkan jenisnya di tabel total_sampah
+        $totalSampah->total_berat -= $beratSampahDiolahEkstrenal;
+        $totalSampah->save();
+
+        // Set flash message berhasil
+        Session::flash('success', 'Data ini berhasil ditambah');
+        return redirect('sampah-diolah-eksternal');
+      } else {
+        // Jika berat yang diolah melebihi total berat sampah yang tersedia
+        return redirect()->back()->withErrors(['error' => 'Berat sampah yang diolah melebihi total berat sampah yang tersedia'])->withInput();
+      }
+    } else {
+      return redirect()->back()->withErrors(['error' => 'Jenis sampah tidak ditemukan. Silakan pilih jenis sampah yang valid.'])->withInput();
+    }
   }
 
   /**

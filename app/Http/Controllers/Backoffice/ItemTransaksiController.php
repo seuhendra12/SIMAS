@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Backoffice;
 use App\Http\Controllers\Controller;
 use App\Models\ItemTransaksi;
 use App\Models\JenisSampah;
+use App\Models\SampahDimanfaatkan;
+use App\Models\SampahDiolahEksternal;
+use App\Models\SampahDiolahInternal;
 use App\Models\Total_sampah;
 use App\Models\Transaksi;
 use App\Models\TukarPoin;
@@ -102,17 +105,23 @@ class ItemTransaksiController extends Controller
     $transaksi->tanggal_transaksi = now();
     $transaksi->save();
 
-    $jenisSampah = ItemTransaksi::select('jenis_sampah_id', DB::raw('SUM(berat) as total_berats'))
+    $jenisSampahList = ItemTransaksi::select('jenis_sampah_id', DB::raw('SUM(berat) as total_berats'))
       ->groupBy('jenis_sampah_id')
       ->get();
 
-    foreach ($jenisSampah as $jenis) {
+    foreach ($jenisSampahList as $jenisSampah) {
+      $sampahDimanfaatkan = SampahDimanfaatkan::where('jenis_sampah_id', $jenisSampah->jenis_sampah_id)->sum('berat');
+      $sampahDiolahInternal = SampahDiolahInternal::where('jenis_sampah_id', $jenisSampah->jenis_sampah_id)->sum('berat');
+      $sampahDiolahEksternal = SampahDiolahEksternal::where('jenis_sampah_id', $jenisSampah->jenis_sampah_id)->sum('berat');
+
+      $totalSampah = $jenisSampah->total_berats;
+      $sisaSampah = $totalSampah - $sampahDimanfaatkan - $sampahDiolahInternal - $sampahDiolahEksternal;
+
       Total_sampah::updateOrCreate(
-        ['jenis_sampah_id' => $jenis->jenis_sampah_id],
-        ['total_berat' => $jenis->total_berats]
+        ['jenis_sampah_id' => $jenisSampah->jenis_sampah_id],
+        ['total_berat' => $sisaSampah]
       );
     }
-
     // Set flash message berhasil
     Session::flash('success', 'Data item berhasil ditambah');
 

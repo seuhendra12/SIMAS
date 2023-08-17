@@ -7,6 +7,7 @@ use App\Models\ItemTransaksi;
 use App\Models\SampahDimanfaatkan;
 use App\Models\SampahDiolahEksternal;
 use App\Models\SampahDiolahInternal;
+use App\Models\Total_sampah;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
@@ -17,11 +18,7 @@ class LaporanController extends Controller
   {
     $perPage = $request->query('perPage', 10);
     return view('backoffice.report.laporan_sampah_dikumpulkan', [
-      'sampahDikumpulkans' => ItemTransaksi::filter(request(['search']))
-        ->select('jenis_sampah_id')
-        ->selectRaw('SUM(berat) as jumlah_berat')
-        ->groupBy('jenis_sampah_id')
-        ->paginate($perPage),
+      'total_sampah' => Total_sampah::paginate($perPage),
       'perPage' => $perPage,
     ]);
   }
