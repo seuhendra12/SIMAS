@@ -51,13 +51,13 @@ class UserSeeder extends Seeder
 				'is_active'=>1,
 				'password' => Hash::make('Rw123456'),
 			],
-			// [
-			// 	'nik' => '2102082009010004',
-			// 	'name' => 'Seuhendra Setiawan',
-			// 	'role' => 'User',
-			// 	'is_active'=>1,
-			// 	'password' => Hash::make('Suen200901'),
-			// ],
+			[
+				'nik' => '0000000000000006',
+				'name' => 'Petugas 1',
+				'role' => 'Petugas',
+				'is_active'=>1,
+				'password' => Hash::make('Petugas12345'),
+			],
 		];
 
 		foreach ($users as $userData) {

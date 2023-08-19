@@ -17,7 +17,15 @@ return new class extends Migration
       $table->id();
       $table->string('nik')->unique();
       $table->string('name');
-      $table->enum('role', ['SuperAdmin','Admin','Kelurahan','Petugas','RT','RW','User'])->default('User');
+      $table->enum('role', [
+        'SuperAdmin',
+        'Admin',
+        'Kelurahan',
+        'Petugas',
+        'RT',
+        'RW',
+        'User',
+        ])->default('User');
       $table->tinyInteger('is_active');
       $table->string('password');
       $table->timestamps();

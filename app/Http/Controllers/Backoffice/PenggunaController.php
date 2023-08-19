@@ -279,10 +279,11 @@ class PenggunaController extends Controller
       'tempat_lahir' => $request->input('tempat_lahir'),
       'tanggal_lahir' => $request->input('tanggal_lahir'),
       'jenis_kelamin' => $request->input('jenis_kelamin'),
-      'no_telepon' => $request->input('no_telepon'),
+      'no_wa' => $request->input('no_telepon'),
       'alamat' => $request->input('alamat'),
       'rt_id' => $request->input('rt'),
       'rw_id' => $request->input('rw'),
+      'no_rumah' => $request->input('no_rumah'),
       'kode_simas' => $kodeTransaksi, // Set nilai kode_transaksi
     ]);
 

@@ -7,17 +7,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-  use HasApiTokens, HasFactory, Notifiable;
+  use HasApiTokens, HasFactory, Notifiable, LogsActivity;
 
   /**
    * The attributes that are mass assignable.
    *
    * @var array<int, string>
    */
+
   protected $fillable = [
     'nik',
     'name',
@@ -25,6 +28,30 @@ class User extends Authenticatable
     'is_active',
     'password',
   ];
+
+  public function getActivitylogOptions(): LogOptions
+  {
+      return LogOptions::defaults()
+          ->logOnly(['nik', 'name', 'role', 'is_active', 'password']); // Atur atribut yang ingin dicatat
+  }
+
+  // public function getActivitylogOptions(): LogOptions
+  // {
+  //   $logOptions = new LogOptions();
+
+  //   $logOptions->logName = 'user_activities';
+  //   // Atur opsi lainnya sesuai kebutuhan Anda
+
+  //   return $logOptions;
+  // }
+
+  // public function someActivity()
+  // {
+  //   activity('Custom Activity')
+  //     ->on($this)
+  //     ->withProperties(['key' => 'value'])
+  //     ->log('Custom activity log');
+  // }
 
   /**
    * The attributes that should be hidden for serialization.

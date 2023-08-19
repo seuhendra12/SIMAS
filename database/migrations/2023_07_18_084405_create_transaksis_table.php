@@ -20,9 +20,12 @@ return new class extends Migration
             $table->date('tanggal_transaksi')->nullable();
             $table->bigInteger('total_berat')->nullable();
             $table->bigInteger('total_point')->nullable();
+            $table->tinyInteger('status')->default(0);
+            $table->unsignedBigInteger('petugas_id')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('petugas_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

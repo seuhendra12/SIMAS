@@ -64,7 +64,7 @@
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span>ID Pengguna</span>
                       </label>
-                      <input type="text" class="form-control bg-secondary" name="user_id" id="user_id" readonly="true"/ value="{{old('user_id')}}">
+                      <input type="text" class="form-control bg-secondary" name="user_id" id="user_id" readonly="true" value="{{old('user_id')}}">
                     </div>
                     <div class="d-flex flex-column mb-3 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
@@ -91,7 +91,6 @@
                   <script>
                     document.getElementById('kode_simas').addEventListener('input', function() {
                       var kodeSimas = this.value;
-
                       // Lakukan permintaan AJAX ke server untuk mendapatkan data nama berdasarkan ID pengguna
                       fetch(`/get-user-name?kode_simas=${kodeSimas}`)
                         .then(response => response.json())

@@ -21,6 +21,7 @@ use App\Http\Controllers\Backoffice\SampahDiolahInternalController;
 use App\Http\Controllers\Backoffice\TransaksiSampahController;
 use App\Http\Controllers\Backoffice\TukarPoinController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\PetugasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,7 +58,6 @@ Route::middleware(['role:SuperAdmin,Admin', 'auth'])->group(function () {
   Route::resource('/kategori-sampah', KategoriSampahController::class);
 
   // Manajemen Pengguna
-  Route::get('/get-user-name', [PenggunaController::class, 'getUserName'])->name('getUserName');
   Route::resource('/data-pengguna', PenggunaController::class);
   Route::get('/data-role', [RoleController::class, 'index']);
 
@@ -102,3 +102,12 @@ Route::middleware('auth')->group(function () {
   Route::get('/histori-transaksi', [FrontendController::class, 'histori']);
   Route::get('/cetak-struk/{id}', [FrontendController::class, 'cetak_struk']);
 });
+
+// Petugas
+Route::middleware(['role:Petugas','auth'])->group(function (){
+  Route::get('/petugas',[PetugasController::class,'index']);
+  Route::post('/petugas-proses',[PetugasController::class,'store']);
+});
+
+// Ambi data pengguna
+Route::get('/get-user-name', [PenggunaController::class, 'getUserName'])->name('getUserName');

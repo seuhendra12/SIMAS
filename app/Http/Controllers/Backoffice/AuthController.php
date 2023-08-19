@@ -53,7 +53,10 @@ class AuthController extends Controller
         return redirect()->intended('/dashboard');
       } elseif ($user->role == 'User') {
         return redirect()->intended('/');
+      } elseif ($user->role == 'Petugas') {
+        return redirect()->intended('/petugas');
       }
+      
     } else if ($user && $user->is_active == 0) {
       $request->session()->put('nik', $request->input('nik'));
       return back()->with('errorLogin', 'Akun kamu belum aktif !');

@@ -97,6 +97,9 @@
 												<option value="Admin">Admin</option>
 												@endif
 												<option value="Kelurahan">Kelurahan</option>
+												<option value="Petugas">Petugas</option>
+												<option value="RT">RT</option>
+												<option value="RW">RW</option>
 												<option value="User">User</option>
 											</select>
 										</div>
