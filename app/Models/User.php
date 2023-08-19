@@ -31,8 +31,8 @@ class User extends Authenticatable
 
   public function getActivitylogOptions(): LogOptions
   {
-      return LogOptions::defaults()
-          ->logOnly(['nik', 'name', 'role', 'is_active', 'password']); // Atur atribut yang ingin dicatat
+    return LogOptions::defaults()
+      ->logOnly(['nik', 'name', 'role', 'is_active', 'password']); // Atur atribut yang ingin dicatat
   }
 
   // public function getActivitylogOptions(): LogOptions

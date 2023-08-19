@@ -47,7 +47,13 @@ class AuthController extends Controller
     $user = User::where('nik', $credentials['nik'])->first();
 
     if ($user && $user->is_active == 1 && Auth::attempt($credentials)) {
-      $user = Auth::user();
+      activity()
+        ->performedOn($user)
+        ->withProperties([
+          'action' => 'login',
+          'ip_address' => $request->ip(),
+        ])
+        ->log('User berhasil login');
 
       if ($user->role == 'SuperAdmin' || $user->role == 'Admin' || $user->role == 'Kelurahan') {
         return redirect()->intended('/dashboard');
@@ -56,7 +62,6 @@ class AuthController extends Controller
       } elseif ($user->role == 'Petugas') {
         return redirect()->intended('/petugas');
       }
-      
     } else if ($user && $user->is_active == 0) {
       $request->session()->put('nik', $request->input('nik'));
       return back()->with('errorLogin', 'Akun kamu belum aktif !');
