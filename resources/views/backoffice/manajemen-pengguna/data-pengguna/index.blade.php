@@ -34,6 +34,7 @@
                       </ul>
                     </div>
                   </div>
+                  @if(Auth::user()->role === 'SuperAdmin')
                   <div class="col-4">
                     <div class="d-grid d-md-flex justify-content-md-end">
                       <a href="data-pengguna/create" class="btn btn-sm fw-bold btn-primary">
@@ -44,6 +45,7 @@
                         Data Baru</a>
                     </div>
                   </div>
+                  @endif
                 </div>
                 <div>
                   @if(Session::has('success'))
@@ -140,6 +142,7 @@
                                   </svg>
                                 </span>
                               </a>
+                              @if(Auth::user()->role === 'SuperAdmin')
                               <a href="#" class="btn btn-red btn-sm" data-bs-toggle="modal" data-bs-target="#confirm-delete-modal" data-user-id="{{ $user->id }}">
                                 <span>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
@@ -147,6 +150,7 @@
                                   </svg>
                                 </span>
                               </a>
+                              @endif
                             </td>
                           </tr>
                           @empty

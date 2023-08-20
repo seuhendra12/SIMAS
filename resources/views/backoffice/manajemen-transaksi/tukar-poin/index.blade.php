@@ -126,6 +126,7 @@
                                   </svg>
                                 </span>
                               </a>
+                              @if(Auth::user()->role === 'SuperAdmin')
                               <a href="#" class="btn btn-red btn-sm button-action" data-bs-toggle="modal" data-bs-target="#confirm-delete-modal" data-tukar-poin-admin-id="{{ $tukarPoin->id }}">
                                 <span>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3 icons" viewBox="0 0 16 16">
@@ -133,6 +134,7 @@
                                   </svg>
                                 </span>
                               </a>
+                              @endif
                             </td>
                           </tr>
                           @empty
