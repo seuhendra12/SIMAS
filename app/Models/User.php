@@ -107,4 +107,9 @@ class User extends Authenticatable
   {
     return $query->where('role', 'admin');
   }
+
+  public function loginHistory()
+	{
+		return $this->hasMany(LoginHistory::class);
+	}
 }

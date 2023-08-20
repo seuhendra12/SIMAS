@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
+use App\Models\LoginHistory;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -55,12 +56,26 @@ class AuthController extends Controller
         ])
         ->log('User berhasil login');
 
-      if ($user->role == 'SuperAdmin' || $user->role == 'Admin' || $user->role == 'Kelurahan') {
-        return redirect()->intended('/dashboard');
-      } elseif ($user->role == 'User') {
-        return redirect()->intended('/');
-      } elseif ($user->role == 'Petugas') {
-        return redirect()->intended('/petugas');
+      $history = LoginHistory::updateOrCreate(
+        ['user_id' => $user->id],
+        [
+          'login_time' => now(),
+          'ip_address' => $request->ip(),
+        ]
+      );
+
+      if ($history) {
+        if ($user->role == 'SuperAdmin' || $user->role == 'Admin' || $user->role == 'Kelurahan') {
+          return redirect()->intended('/dashboard');
+        } elseif ($user->role == 'User') {
+          return redirect()->intended('/');
+        } elseif ($user->role == 'Petugas') {
+          return redirect()->intended('/petugas');
+        }
+      } else {
+        return redirect()->back()->withErrors([
+          'email' => 'Failed to save login history.',
+        ]);
       }
     } else if ($user && $user->is_active == 0) {
       $request->session()->put('nik', $request->input('nik'));

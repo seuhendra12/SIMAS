@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
+use App\Models\LoginHistory;
 use App\Models\Profile;
 use App\Models\RT;
 use App\Models\RW;
@@ -40,6 +41,7 @@ class PenggunaController extends Controller
 
     return view('backoffice.manajemen-pengguna.data-pengguna.index', [
       'datas' => $datas,
+      'loginHistory' => LoginHistory::latest(),
       'perPage' => $perPage
     ]);
   }
