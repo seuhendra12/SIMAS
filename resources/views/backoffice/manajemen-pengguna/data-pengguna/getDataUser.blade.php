@@ -1,5 +1,5 @@
 @extends('layouts.index')
-@section('title','Data Admin')
+@section('title','Data Pengguna')
 @section('container')
 
 <!-- MAIN CONTENT -->
@@ -8,10 +8,10 @@
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
       <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
         <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-          <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Data Admin</h1>
+          <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Data Pengguna</h1>
           <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7">
             <li class="breadcrumb-item text-muted">
-              <a href="{{url('data-pengguna')}}" class="text-muted text-hover-primary">Home</a>
+              <a href="{{url('getDataPengguna')}}" class="text-muted text-hover-primary">Home</a>
             </li>
           </ul>
         </div>
@@ -26,10 +26,10 @@
                 <div class="row">
                   <div class="col-8">
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-                      <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Data Admin</h1>
+                      <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Data Pengguna</h1>
                       <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <li class="breadcrumb-item text-muted">
-                          <p class="text-muted text-hover-primary">Data Admin Pada Sistem Informasi Manajemen Sampah (SIMAS) Kelurahan Koto Luar</p>
+                          <p class="text-muted text-hover-primary">Data Pengguna Pada Sistem Informasi Manajemen Sampah (SIMAS) Kelurahan Koto Luar</p>
                         </li>
                       </ul>
                     </div>
@@ -86,7 +86,7 @@
                         </form>
                       </div>
                       <div class="col-5 d-grid d-md-flex justify-content-md-end mb-3">
-                        <form class="form" action="/data-pengguna">
+                        <form class="form" action="/getDataPengguna">
                           <div class="input-group input-group-sm">
                             <input type="text" name="search" class="form-control float-right rounded-0" id="search" placeholder="Search" value="{{ request('search') }}">
                             <div class="input-group-append">
@@ -119,14 +119,14 @@
                             <td>{{$user->name}}</td>
                             <td>
                               @if ($user->loginHistory->first())
-                              {{\Carbon\Carbon::parse($user->loginHistory->first()->login_time)->format('d/m/Y | H:i')}}
+                              {{ \Carbon\Carbon::parse($user->loginHistory->first()->login_time)->format('d/m/Y | H:i') }}
                               @else
                               -
                               @endif
                             </td>
                             <td>
                               <a href="data-pengguna/{{$user->id}}" class="btn btn-purple btn-sm button-action" title="Detail" data-bs-toggle="tooltip">
-                                <span>  
+                                <span>
                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye icon-large" viewBox="0 0 16 16">
                                     <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
                                     <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />

@@ -92,13 +92,37 @@
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title {{ Request::is('data-pengguna')?'text-white' : '' }}">Pengguna</span>
+								<span class="menu-title {{ Request::is('data-pengguna')?'text-white' : '' }}">Data Admin</span>
 							</a>
-							<a class="menu-link" href="{{url('data-role')}}">
+							<a class="menu-link" href="{{url('getDataKelurahan')}}">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
-								<span class="menu-title {{ Request::is('data-role')?'text-white' : '' }}">Role</span>
+								<span class="menu-title {{ Request::is('getDataKelurahan')?'text-white' : '' }}">Data Kelurahan</span>
+							</a>
+							<a class="menu-link" href="{{url('getDataRT')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title {{ Request::is('getDataRT')?'text-white' : '' }}">Data Ketua RT</span>
+							</a>
+							<a class="menu-link" href="{{url('getDataRW')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title {{ Request::is('getDataRW')?'text-white' : '' }}">Data Ketua RW</span>
+							</a>
+							<a class="menu-link" href="{{url('getDataPetugas')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title {{ Request::is('getDataPetugas')?'text-white' : '' }}">Data Petugas</span>
+							</a>
+							<a class="menu-link" href="{{url('getDataPengguna')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title {{ Request::is('getDataPengguna')?'text-white' : '' }}">Data Pengguna</span>
 							</a>
 						</div>
 					</div>

@@ -110,6 +110,6 @@ class User extends Authenticatable
 
   public function loginHistory()
 	{
-		return $this->hasMany(LoginHistory::class);
+		return $this->hasMany(LoginHistory::class)->orderBy('login_time', 'desc');
 	}
 }

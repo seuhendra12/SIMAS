@@ -60,6 +60,11 @@ Route::middleware(['role:SuperAdmin,Admin', 'auth'])->group(function () {
   // Manajemen Pengguna
   Route::resource('/data-pengguna', PenggunaController::class);
   Route::get('/data-role', [RoleController::class, 'index']);
+  Route::get('/getDataPengguna', [PenggunaController::class, 'getDataPengguna']);
+  Route::get('/getDataPetugas', [PenggunaController::class, 'getDataPetugas']);
+  Route::get('/getDataRT', [PenggunaController::class, 'getDataRT']);
+  Route::get('/getDataRW', [PenggunaController::class, 'getDataRW']);
+  Route::get('/getDataKelurahan', [PenggunaController::class, 'getDataKelurahan']);
 
   // Manajemen Sampah
   Route::resource('/jenis-sampah', JenisSampahController::class);

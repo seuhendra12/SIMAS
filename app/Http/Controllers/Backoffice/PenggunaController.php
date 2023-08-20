@@ -29,12 +29,15 @@ class PenggunaController extends Controller
     if ($loggedInUser->role === 'Admin') {
       // Ambil data pengguna dengan peran 'admin' dan peran lain (tidak termasuk 'superadmin')
       $datas = User::filter(request(['search']))
-        ->where('role', '!=', 'SuperAdmin' && 'is_active', 1)
+        ->where('role', '<>', 'SuperAdmin')
+        ->where('role', 'Admin')
+        ->where('is_active', 1)
         ->paginate($perPage);
     } else {
       // Jika pengguna dengan peran 'superadmin' atau peran lain yang login
       // Ambil semua data tanpa filter
       $datas = User::filter(request(['search']))
+        ->where('role', 'Admin')
         ->where('is_active', 1)
         ->paginate($perPage);
     }
@@ -332,5 +335,73 @@ class PenggunaController extends Controller
       ]);
     }
     return response()->json(['name' => null]);
+  }
+
+  public function getDataPengguna(Request $req)
+  {
+    $perPage = $req->query('perPage', 10);
+    $datas = User::filter(request(['search']))
+      ->where('role', 'User')
+      ->with('loginHistory') // Memuat relasi loginHistory
+      ->join('login_histories', 'users.id', '=', 'login_histories.user_id')
+      ->join('profiles', 'users.id', '=', 'profiles.user_id')
+      ->orderByDesc('login_histories.login_time')
+      ->paginate($perPage);
+    return view('backoffice.manajemen-pengguna.data-pengguna.getDataUser', [
+      'datas' => $datas,
+      'perPage' => $perPage,
+    ]);
+  }
+
+  public function getDataPetugas(Request $req)
+  {
+    $perPage = $req->query('perPage', 10);
+    $datas = User::filter(request(['search']))
+      ->where('role', 'Petugas')
+      ->paginate($perPage);
+    return view('backoffice.manajemen-pengguna.data-pengguna.getDataPetugas', [
+      'datas' => $datas,
+      'perPage' => $perPage,
+      'loginHistory' => LoginHistory::latest(),
+    ]);
+  }
+
+  public function getDataRT(Request $req)
+  {
+    $perPage = $req->query('perPage', 10);
+    $datas = User::filter(request(['search']))
+      ->where('role', 'RT')
+      ->paginate($perPage);
+    return view('backoffice.manajemen-pengguna.data-pengguna.getDataRT', [
+      'datas' => $datas,
+      'perPage' => $perPage,
+      'loginHistory' => LoginHistory::latest(),
+    ]);
+  }
+
+  public function getDataRW(Request $req)
+  {
+    $perPage = $req->query('perPage', 10);
+    $datas = User::filter(request(['search']))
+      ->where('role', 'RW')
+      ->paginate($perPage);
+    return view('backoffice.manajemen-pengguna.data-pengguna.getDataRW', [
+      'datas' => $datas,
+      'perPage' => $perPage,
+      'loginHistory' => LoginHistory::latest(),
+    ]);
+  }
+
+  public function getDataKelurahan(Request $req)
+  {
+    $perPage = $req->query('perPage', 10);
+    $datas = User::filter(request(['search']))
+      ->where('role', 'Kelurahan')
+      ->paginate($perPage);
+    return view('backoffice.manajemen-pengguna.data-pengguna.getDataKelurahan', [
+      'datas' => $datas,
+      'perPage' => $perPage,
+      'loginHistory' => LoginHistory::latest(),
+    ]);
   }
 }
