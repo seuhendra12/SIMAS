@@ -31,7 +31,7 @@
 									<div class="fs-2hx fw-bold text-gray-800 text-center mb-13">
 										<div class="row">
 											<div class="col-3">
-												<a href="{{url('jenis-sampah')}}" class="card card-flush" style="background-color: #F1416C">
+												<a href="{{url('jenis-sampah')}}" class="card card-flush rounded-0 fw-bold" style="background-color: #F1416C">
 													<div class="card-header pt-5">
 														<div class="card-title d-flex flex-column">
 															<span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{$jenis_sampah->count()}}</span>
@@ -41,7 +41,7 @@
 												</a>
 											</div>
 											<div class="col-3">
-												<a href="{{url('laporan-sampah-dikumpulkan')}}" class="card card-flush" style="background-color: #00CED1">
+												<a href="{{url('laporan-sampah-dikumpulkan')}}" class="card card-flush rounded-0 fw-bold" style="background-color: #00CED1">
 													<div class="card-header pt-5">
 														<div class="card-title d-flex flex-column">
 															<span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{$total_sampah->sum('total_berat')}} Kg</span>
@@ -51,7 +51,7 @@
 												</a>
 											</div>
 											<div class="col-3">
-												<a href="{{url('laporan-sampah-dimanfaatkan')}}" class="card card-flush" style="background-color: #90EE90">
+												<a href="{{url('laporan-sampah-dimanfaatkan')}}" class="card card-flush rounded-0 fw-bold" style="background-color: #90EE90">
 													<div class="card-header pt-5">
 														<div class="card-title d-flex flex-column">
 															<span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{$sampah_dimanfaatkan->sum('berat')}} Kg</span>
@@ -61,7 +61,7 @@
 												</a>
 											</div>
 											<div class="col-3">
-												<a href="{{url('laporan-sampah-diolah-internal')}}" class="card card-flush" style="background-color:	#FFD700">
+												<a href="{{url('laporan-sampah-diolah-internal')}}" class="card card-flush rounded-0 fw-bold" style="background-color:	#FFD700">
 													<div class="card-header pt-5">
 														<div class="card-title d-flex flex-column">
 															<span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{$sampah_diolah_internal->sum('berat')}} Kg</span>
@@ -71,7 +71,7 @@
 												</div>
 											</a>
 											<div class="col-3">
-												<a href="{{url('laporan-sampah-diolah-eksternal')}}" class="card card-flush mt-4" style="background-color:	#B37EFF">
+												<a href="{{url('laporan-sampah-diolah-eksternal')}}" class="card card-flush mt-4 rounded-0 fw-bold" style="background-color:	#B37EFF">
 													<div class="card-header pt-5">
 														<div class="card-title d-flex flex-column">
 															<span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{$sampah_diolah_eksternal->sum('berat')}} Kg</span>
@@ -81,7 +81,7 @@
 												</a>
 											</div>
 											<div class="col-3">
-												<a href="{{url('laporan-sampah-dibuang-ke-tpa')}}" class="card card-flush mt-4" style="background-color:	#FFA57E">
+												<a href="{{url('laporan-sampah-dibuang-ke-tpa')}}" class="card card-flush mt-4 rounded-0 fw-bold" style="background-color:	#FFA57E">
 													<div class="card-header pt-5">
 														<div class="card-title d-flex flex-column">
 															<span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">

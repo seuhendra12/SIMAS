@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
-use App\Models\ItemTransaksi;
 use App\Models\JenisSampah;
 use App\Models\SampahDimanfaatkan;
 use App\Models\Total_sampah;
@@ -37,8 +36,9 @@ class SampahDimanfaatkanController extends Controller
    */
   public function create()
   {
+    $jenisSampahs = JenisSampah::where('name','<>','Tempat Pembuangan Akhir')->get();
     return view('backoffice.manajemen-sampah.sampah-dimanfaatkan.create', [
-      'jenisSampahs' => JenisSampah::get(),
+      'jenisSampahs' => $jenisSampahs
     ]);
   }
 
