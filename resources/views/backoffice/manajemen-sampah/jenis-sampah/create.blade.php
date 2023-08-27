@@ -56,7 +56,7 @@
                     @csrf
                     <div class="d-flex flex-column mb-3 fv-row">
                       <label for="kategoriSampah" class="fs-6 fw-semibold mb-2 required">Kategori Sampah</label>
-                      <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih Kategori Sampah" name="kategori_sampah" id="kategoriSampah">
+                      <select class="form-select rounded-0" data-control="select2" data-hide-search="true" data-placeholder="Pilih Kategori Sampah" name="kategori_sampah" id="kategoriSampah">
                         <option value="">Pilih Kategori Sampah</option>
                         @foreach ($kategoriSampahs as $kategoriSampah)
                         @if (old('kategoriSampah_id')===$kategoriSampah->id)
@@ -71,21 +71,17 @@
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span class="required">Jenis Sampah</span>
                       </label>
-                      <input type="text" class="form-control" placeholder="Masukkan Jenis Sampah" name="name" value="{{old('name')}}"/>
+                      <input type="text" class="form-control rounded-0" placeholder="Masukkan Jenis Sampah" name="name" value="{{old('name')}}"/>
                     </div>
                     <div class="d-flex flex-column mb-8 fv-row">
                       <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                         <span>Point Per Kilogram</span>
                       </label>
-                      <input type="text" class="form-control" placeholder="Masukkan Jumlah Point per Kilogram" name="point_perkg" value="{{old('point_perkg')}}"/>
+                      <input type="text" class="form-control rounded-0" placeholder="Masukkan Jumlah Point per Kilogram" name="point_perkg" value="{{old('point_perkg')}}"/>
                     </div>
                     <div class="mb-10">
-                      <button type="submit" class="btn btn-primary btn-sm">
-                        <span class="indicator-label">Simpan</span>
-                        <span class="indicator-progress">Please wait...
-                          <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                      </button>
-                      <button type="reset" class="btn btn-secondary me-5 btn-sm">Batal</button>
+                      <button type="submit" class="btn btn-primary rounded-0 fw-bold">Simpan</button>
+                      <button type="reset" class="btn btn-secondary me-5 rounded-0 fw-bold">Batal</button>
                     </div>
                   </form>
                 </div>
