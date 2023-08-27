@@ -58,7 +58,7 @@ class FrontendController extends Controller
       'no_rumah' => 'required',
       'rt' => 'required',
       'rw' => 'required',
-    ],[
+    ], [
       'nik.required' => 'Kolom nik wajib diisi.',
       'name.required' => 'Kolom nama wajib diisi.',
       'tempat_lahir.required' => 'Kolom tempat lahir wajib diisi.',
@@ -146,14 +146,14 @@ class FrontendController extends Controller
       $totalPoinTransaksi = $transaksi->total_point;
       $nilaiPoin = $konversiPoin->nilai_konversi;
       $nilaiMinimal = $nilaiPoin + 5;
-  
+
       // Validasi apakah total poin pengguna cukup untuk dikonversi
       if ($totalPoinTransaksi < $nilaiMinimal) {
-          return redirect()->back()->withErrors('Total poin tidak mencukupi untuk dikonversi (Minimal sisa 5 poin)');
+        return redirect()->back()->withErrors('Total poin tidak mencukupi untuk dikonversi (Minimal sisa 5 poin)');
       }
-  } else {
+    } else {
       return redirect()->back()->withErrors('Transaksi tidak ditemukan');
-  }
+    }
 
     // Simpan data baru ke dalam tabel tukar_poin dengan membawa id_transaksi (id_transaksi dari tabel transaksi)
     $tukarPoin = new TukarPoin();
@@ -175,20 +175,29 @@ class FrontendController extends Controller
 
   public function histori(Request $request)
   {
+    $user = Auth::user()->id;
+    $transaksiSampah = Transaksi::where('user_id', $user)->first();
     $perPage = $request->query('perPage', 10);
-    // Ambil data user yang sedang login
-    $user = Auth::user();
-
+    $selectedMonth = $request->query('month');
+    $selectedYear = $request->query('year');
     // Ambil data item_transaksi berdasarkan user yang login melalui join dengan tabel transaksi
-    $historiTransaksi = ItemTransaksi::join('transaksis', 'item_transaksis.transaksi_id', '=', 'transaksis.id')
-      ->where('transaksis.user_id', $user->id)
-      ->orderBy('item_transaksis.updated_at', 'desc') // Menampilkan data terbaru berdasarkan tanggal transaksi pada tabel item_transaksi
+    $itemTransaksis = ItemTransaksi::with('jenisSampah')
+      ->where('transaksi_id', $transaksiSampah->id)
+      ->when($selectedMonth, function ($query, $selectedMonth) {
+        // Filter berdasarkan bulan jika parameter bulan ada
+        return $query->whereMonth('updated_at', $selectedMonth);
+      })
+      ->when($selectedYear, function ($query, $selectedYear) {
+        return $query->whereYear('updated_at', $selectedYear);
+      })
+      ->orderBy('updated_at', 'desc')
       ->paginate($perPage);
 
     return view('frontend.histori', [
-      'historiTransaksis' => $historiTransaksi,
-      
+      'historiTransaksis' => $itemTransaksis,
       'perPage' => $perPage,
+      'selectedMonth' => $selectedMonth,
+      'selectedYear' => $selectedYear,
     ]);
   }
 

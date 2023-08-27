@@ -30,8 +30,34 @@
         <span class="fw-bold text-white">Histori Transaksi</span>
       </div>
       <div class="card-body bg-light px-3">
+        <div class="row justify-content-end">
+          <div class="col-5">
+            <form action="{{ url('histori-transaksi') }}" method="get">
+              <div class="input-group mb-3">
+                <select name="month" id="month" class="form-control rounded-0">
+                  <option value="">Pilih Bulan</option>
+                  <option value="1" {{ $selectedMonth == 1 ? 'selected' : '' }}>Januari</option>
+                  <option value="2" {{ $selectedMonth == 2 ? 'selected' : '' }}>Februari</option>
+                  <option value="3" {{ $selectedMonth == 3 ? 'selected' : '' }}>Maret</option>
+                  <option value="4" {{ $selectedMonth == 4 ? 'selected' : '' }}>April</option>
+                  <option value="5" {{ $selectedMonth == 5 ? 'selected' : '' }}>Mei</option>
+                  <option value="6" {{ $selectedMonth == 6 ? 'selected' : '' }}>Juni</option>
+                  <option value="7" {{ $selectedMonth == 7 ? 'selected' : '' }}>Juli</option>
+                  <option value="8" {{ $selectedMonth == 8 ? 'selected' : '' }}>Agustus</option>
+                  <option value="9" {{ $selectedMonth == 9 ? 'selected' : '' }}>September</option>
+                  <option value="10" {{ $selectedMonth == 10 ? 'selected' : '' }}>Oktober</option>
+                  <option value="11" {{ $selectedMonth == 11 ? 'selected' : '' }}>November</option>
+                  <option value="12" {{ $selectedMonth == 12 ? 'selected' : '' }}>Desember</option>
+                  <!-- Tambahkan opsi bulan lainnya di sini -->
+                </select>
+                <input type="number" name="year" id="year" class="form-control rounded-0" placeholder="Tahun" value="{{ $selectedYear }}">
+                <button class="btn btn-outline-secondary rounded-0" type="submit">Filter</button>
+              </div>
+            </form>
+          </div>
+        </div>
         <div class="table-container">
-          <table class="table table-bordered table-striped">
+          <table class="table table-bordered table-striped text-center">
             <thead class="fw-bold">
               <tr>
                 <td>No</td>

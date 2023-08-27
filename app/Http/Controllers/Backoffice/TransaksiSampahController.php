@@ -9,6 +9,7 @@ use App\Models\KategoriSampah;
 use App\Models\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -79,6 +80,7 @@ class TransaksiSampahController extends Controller
     $transaksiSampah = new Transaksi([
       'kode_transaksi' => $kode_transaksi,
       'user_id' => $request->input('user_id'),
+      'petugas_id' => Auth::user()->id,
       'tanggal_transaksi' => $request->input('tanggal_transaksi'),
     ]);
 

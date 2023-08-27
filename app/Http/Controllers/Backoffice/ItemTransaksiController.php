@@ -12,6 +12,7 @@ use App\Models\Total_sampah;
 use App\Models\Transaksi;
 use App\Models\TukarPoin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -101,8 +102,14 @@ class ItemTransaksiController extends Controller
     $sisaTotalPoin  = $totalPointSebelumnya - $totalPoinDitukarkan;
 
     // Simpan total poin yang tersisa ke dalam kolom total_point pada tabel Transaksi
+    $user = Auth::user();
     $transaksi->total_point = $sisaTotalPoin;
     $transaksi->tanggal_transaksi = now();
+    $transaksi->petugas_id = $user->id;
+
+    if ($user->role == 'Admin' || $user->role =='SuperAdmin') {
+      $transaksi->status = 1;
+    }
     $transaksi->save();
 
     $jenisSampahList = ItemTransaksi::select('jenis_sampah_id', DB::raw('SUM(berat) as total_berats'))
@@ -122,6 +129,7 @@ class ItemTransaksiController extends Controller
         ['total_berat' => $sisaSampah]
       );
     }
+
     // Set flash message berhasil
     Session::flash('success', 'Data item berhasil ditambah');
 

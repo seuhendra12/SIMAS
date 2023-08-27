@@ -342,10 +342,10 @@ class PenggunaController extends Controller
     $perPage = $req->query('perPage', 10);
     $datas = User::filter(request(['search']))
       ->where('role', 'User')
-      ->with('loginHistory') // Memuat relasi loginHistory
-      ->join('login_histories', 'users.id', '=', 'login_histories.user_id')
-      ->join('profiles', 'users.id', '=', 'profiles.user_id')
-      ->orderByDesc('login_histories.login_time')
+      // ->with('loginHistory') // Memuat relasi loginHistory
+      // ->join('login_histories', 'users.id', '=', 'login_histories.user_id')
+      // ->join('profiles', 'users.id', '=', 'profiles.user_id')
+      // ->orderByDesc('login_histories.login_time')
       ->paginate($perPage);
     return view('backoffice.manajemen-pengguna.data-pengguna.getDataUser', [
       'datas' => $datas,

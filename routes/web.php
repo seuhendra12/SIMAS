@@ -112,6 +112,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['role:Petugas','auth'])->group(function (){
   Route::get('/petugas',[PetugasController::class,'index']);
   Route::post('/petugas-proses',[PetugasController::class,'store']);
+  Route::post('tambah-item', [PetugasController::class, 'tambahItem']);
+  
 });
 
 // Ambi data pengguna
