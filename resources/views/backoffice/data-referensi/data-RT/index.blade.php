@@ -151,7 +151,7 @@
 
     <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal-label" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content rounded-0 fw-bold">
           <div class="modal-header">
             <h5 class="modal-title" id="confirm-delete-modal-label">Hapus Data RT </h5>
             <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -165,11 +165,11 @@
           </div>
           <div class="modal-body">Apakah kamu yakin ingin menghapus data RT ini ?</div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-secondary rounded-0 fw-bold" data-bs-dismiss="modal">Batal</button>
             <form action="{{ url('data-rt', '__rt_id') }}" method="POST" style="display: inline-block;">
               @csrf
               @method('DELETE')
-              <button type="submit" class="btn btn-danger">Hapus</button>
+              <button type="submit" class="btn btn-danger rounded-0 fw-bold">Hapus</button>
             </form>
           </div>
         </div>
