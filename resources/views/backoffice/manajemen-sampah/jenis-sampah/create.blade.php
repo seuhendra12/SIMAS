@@ -79,6 +79,12 @@
                       </label>
                       <input type="text" class="form-control rounded-0" placeholder="Masukkan Jumlah Point per Kilogram" name="point_perkg" value="{{old('point_perkg')}}"/>
                     </div>
+                    <div class="d-flex flex-column mb-8 fv-row">
+                      <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                        <span>Harga Jual Per Kilogram</span>
+                      </label>
+                      <input type="text" class="form-control rounded-0" placeholder="Masukkan Jumlah Harga Jual per Kilogram" name="harga_per_kg" value="{{old('harga_per_kg')}}"/>
+                    </div>
                     <div class="mb-10">
                       <button type="submit" class="btn btn-primary rounded-0 fw-bold">Simpan</button>
                       <button type="reset" class="btn btn-secondary me-5 rounded-0 fw-bold">Batal</button>

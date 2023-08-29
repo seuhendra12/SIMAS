@@ -51,16 +51,19 @@ class JenisSampahController extends Controller
       'name' => 'required|unique:jenis_sampahs',
       'kategori_sampah' => 'required',
       'point_perkg' => 'required',
+      'harga_per_kg' => 'required',
     ], [
       'name.required' => 'Kolom jenis sampah wajib diisi',
       'kategori_sampah.required' => 'Kolom kategori sampah wajib diisi',
       'point_perkg.required' => 'Kolom poin wajib diisi',
+      'harga_per_kg.required' => 'Kolom harga jual wajib diisi',
       'name.unique' => 'Jenis sampah tersebut sudah ada',
     ]);
 
     $jenisSampah = new JenisSampah([
       'name' => $request->input('name'),
       'point_perkg' => $request->input('point_perkg'),
+      'harga_per_kg' => $request->input('harga_per_kg'),
       'kategori_sampah_id' => $request->input('kategori_sampah'),
     ]);
 
@@ -111,16 +114,19 @@ class JenisSampahController extends Controller
       'name' => 'required|unique:jenis_sampahs,name,' . $id,
       'kategori_sampah' => 'required',
       'point_perkg' => 'required',
+      'harga_per_kg' => 'required',
     ], [
       'name.required' => 'Kolom jenis sampah wajib diisi',
       'kategori_sampah.required' => 'Kolom kategori sampah wajib diisi',
       'point_perkg.required' => 'Kolom poin wajib diisi',
+      'harga_per_kgr.required' => 'Kolom harga jual wajib diisi',
       'name.unique' => 'Jenis sampah tersebut sudah ada',
     ]);
 
     $jenisSampah->update([
       'name' => $request->input('name'),
       'point_perkg' => $request->input('point_perkg'),
+      'harga_per_kg' => $request->input('harga_per_kg'),
       'kategori_sampah_id' => $request->input('kategori_sampah'),
     ]);
 

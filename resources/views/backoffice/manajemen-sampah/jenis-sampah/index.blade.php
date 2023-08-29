@@ -106,6 +106,7 @@
                             <th scope="col">Jenis Sampah</th>
                             <th scope="col">Kategori Sampah</th>
                             <th scope="col">Point per Kilogram</th>
+                            <th scope="col">Harga Jual per Kilogram</th>
                             <th scope="col">Aksi</th>
                           </tr>
                         </thead>
@@ -116,6 +117,7 @@
                             <td class="align-top">{{$jenisSampah->name}}</td>
                             <td class="align-top">{{$jenisSampah->kategoriSampah->name}}</td>
                             <td class="align-top">{{$jenisSampah->point_perkg}}</td>
+                            <td class="align-top">Rp {{number_format($jenisSampah->harga_per_kg, 0,',','.')}},-</td>
                             <td>
                               <a href="jenis-sampah/{{$jenisSampah->id}}/edit" class="btn btn-yellow btn-sm button-action rounded-0 fw-bold" title="Edit" data-bs-toggle="tooltip">
                                 <span>
