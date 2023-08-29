@@ -49,7 +49,7 @@
                   @if(Session::has('success'))
                   <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content text-center w-50 mx-auto">
+                      <div class="modal-content text-center w-50 mx-auto rounded-0 fw-bold">
                         <div class="modal-body text-center">
                           <div class="mb-5">
                             <img alt="Logo" src="{!! asset('/img/icon/success.png') !!}" class="h-60px h-lg-75px" />

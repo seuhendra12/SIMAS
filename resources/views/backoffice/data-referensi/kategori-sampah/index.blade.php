@@ -49,7 +49,7 @@
                   @if(Session::has('success'))
                   <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content text-center w-50 mx-auto">
+                      <div class="modal-content text-center w-50 mx-auto rounded-0 fw-bold">
                         <div class="modal-body text-center">
                           <div class="mb-5">
                             <img alt="Logo" src="{!! asset('/img/icon/success.png') !!}" class="h-60px h-lg-75px" />
@@ -57,7 +57,7 @@
                           </div class="mb-2">
                           {{ Session::get('success') }}
                           <div>
-                            <button type="button" class="btn btn-primary mt-2" data-bs-dismiss="modal" aria-label="Close">
+                            <button type="button" class="btn btn-primary mt-2 rounded-0 fw-bold" data-bs-dismiss="modal" aria-label="Close">
                               OK
                             </button>
                           </div>
