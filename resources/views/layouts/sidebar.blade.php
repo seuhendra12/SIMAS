@@ -161,6 +161,12 @@
 								</span>
 								<span class="menu-title {{ Request::is('tukar-poin-admin')?'text-white' : '' }}">Tukar Poin Sampah</span>
 							</a>
+							<a class="menu-link" href="{{url('transaksi-jual-sampah')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title {{ Request::is('transaksi-jual-sampah')?'text-white' : '' }}">Transaksi Jual Sampah</span>
+							</a>
 						</div>
 					</div>
 				</div>

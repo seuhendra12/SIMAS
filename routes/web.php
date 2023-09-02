@@ -18,6 +18,7 @@ use App\Http\Controllers\Backoffice\SampahDikumpulkanController;
 use App\Http\Controllers\Backoffice\SampahDimanfaatkanController;
 use App\Http\Controllers\Backoffice\SampahDiolahEksternalController;
 use App\Http\Controllers\Backoffice\SampahDiolahInternalController;
+use App\Http\Controllers\Backoffice\TransaksiJualSampahController;
 use App\Http\Controllers\Backoffice\TransaksiSampahController;
 use App\Http\Controllers\Backoffice\TukarPoinController;
 use App\Http\Controllers\Frontend\FrontendController;
@@ -82,6 +83,7 @@ Route::middleware(['role:SuperAdmin,Admin', 'auth'])->group(function () {
   Route::get('/histori-transaksi/{id}', [HistoriTransaksiController::class, 'histori']);
   Route::resource('/konversi-poin', NilaiKonversiController::class);
   Route::resource('/tukar-poin-admin', TukarPoinController::class);
+  Route::resource('/transaksi-jual-sampah', TransaksiJualSampahController::class);
 
   // Notifikasi
   Route::get('/notif', [NotifikasiController::class, 'index']);
