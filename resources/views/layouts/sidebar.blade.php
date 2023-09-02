@@ -218,6 +218,30 @@
 						</div>
 					</div>
 				</div>
+				<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+					<span class="menu-link">
+						<span class="menu-icon">
+							<span class="svg-icon svg-icon-2">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
+									<path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+									<path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z" />
+								</svg>
+							</span>
+						</span>
+						<span class="menu-title ">Manajemen Keuangan</span>
+						<span class="menu-arrow"></span>
+					</span>
+					<div class="menu-sub menu-sub-accordion">
+						<div class="menu-item">
+							<a class="menu-link" href="{{url('pendapatan')}}">
+								<span class="menu-bullet">
+									<span class="bullet bullet-dot"></span>
+								</span>
+								<span class="menu-title {{ Request::is('pendapatan')?'text-white' : '' }}">Pendapatan</span>
+							</a>
+						</div>
+					</div>
+				</div>
 				@endif
 				<!-- Halaman khusus admin dan kelurahan -->
 				@if(Auth::user()->role === 'SuperAdmin' || Auth::user()->role === 'Admin' || Auth::user()->role === 'Kelurahan' )

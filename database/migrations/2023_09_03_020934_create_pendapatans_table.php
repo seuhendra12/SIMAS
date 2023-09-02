@@ -13,16 +13,13 @@ return new class extends Migration
    */
   public function up()
   {
-    Schema::create('transaksi_jual_sampahs', function (Blueprint $table) {
+    Schema::create('pendapatans', function (Blueprint $table) {
       $table->id();
       $table->date('tanggal')->nullable();
       $table->unsignedBigInteger('jenis_sampah_id')->nullable();
-      $table->string('nama')->nullable();
-      $table->decimal('berat', 10, 2)->nullable();
-      $table->decimal('harga', 10, 2)->nullable();
+      $table->decimal('total_pendapatan')->default(0);
       $table->timestamps();
 
-      // Menambahkan foreign key untuk jenis_sampah_id
       $table->foreign('jenis_sampah_id')->references('id')->on('jenis_sampahs')->onDelete('cascade');
     });
   }
@@ -34,6 +31,6 @@ return new class extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('transaksi_jual_sampahs');
+    Schema::dropIfExists('pendapatans');
   }
 };

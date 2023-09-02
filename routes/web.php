@@ -9,6 +9,7 @@ use App\Http\Controllers\Backoffice\KategoriSampahController;
 use App\Http\Controllers\Backoffice\LaporanController;
 use App\Http\Controllers\Backoffice\NilaiKonversiController;
 use App\Http\Controllers\Backoffice\NotifikasiController;
+use App\Http\Controllers\Backoffice\PendapatanController;
 use App\Http\Controllers\Backoffice\PenggunaController;
 use App\Http\Controllers\Backoffice\RoleController;
 use App\Http\Controllers\Backoffice\RTController;
@@ -84,6 +85,9 @@ Route::middleware(['role:SuperAdmin,Admin', 'auth'])->group(function () {
   Route::resource('/konversi-poin', NilaiKonversiController::class);
   Route::resource('/tukar-poin-admin', TukarPoinController::class);
   Route::resource('/transaksi-jual-sampah', TransaksiJualSampahController::class);
+
+  // Manajemen Keuangan
+  Route::get('pendapatan',[PendapatanController::class,'index']);
 
   // Notifikasi
   Route::get('/notif', [NotifikasiController::class, 'index']);
