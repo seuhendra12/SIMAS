@@ -156,11 +156,11 @@
         </div>
       </div>
       <div class="col-6">
-        <div class="card w-100 mx-auto">
+        <div class="card w-100 mx-auto bg-light">
           <div class="card-header text-center bg-green rounded-0">
             <span class="fw-bold text-white">Data Transaksi</span>
           </div>
-          <div class="card-body bg-light px-3">
+          <div class="card-body px-3">
             <div class="col-12 d-grid d-md-flex justify-content-md-end mb-3">
               <form class="form" action="/petugas">
                 <div class="d-flex d-inline">
@@ -177,39 +177,30 @@
             </div>
             <div class="table-container">
               <table class="table table-bordered table-striped">
-                <thead class="fw-bold text-center">
+                <thead class="fw-bold text-center bg-white">
                   <tr>
                     <td class="align-middle">No</td>
                     <td class="align-middle">Kode Transaksi</td>
                     <td class="align-middle">Nama</td>
                     <td class="align-middle">Total Berat</td>
                     <td class="align-middle">Total Point</td>
-                    <td class="col-2 align-middle">Aksi</td>
+                    <td class="col-3 align-middle">Aksi</td>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                   @forelse ($transaksiSampahs as $transaksi)
                   <tr>
                     <td class="align-top">{{$loop->iteration}}</td>
                     <td class="align-top">{{$transaksi->kode_transaksi ?? '-'}}</td>
                     <td class="align-top">{{$transaksi->user->name ?? '-'}}</td>
                     <td class="align-top">{{$transaksi->total_berat ?? '0'}} Kg</td>
-                    <td class="align-top">{{$transaksi->total_point ?? '0'}} Kg</td>
+                    <td class="align-top">{{$transaksi->total_point ?? '0'}}</td>
                     <td class="align-top">
-                      <a href="#" class="btn btn-primary btn-sm button-action" title="Detail Item" data-bs-toggle="modal" data-bs-target="#modalDetail" data-id_transaksi="{{$transaksi->id}}">
-                        <span>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye icon-large icons" viewBox="0 0 16 16">
-                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 shh0 0 1-7 0z" />
-                          </svg>
-                        </span>
+                      <a href="{{url('detail-item')}}/{{$transaksi->id}}" class="btn btn-secondary btn-sm button-action rounded-0">
+                        Detail
                       </a>
-                      <a href="#" class="btn btn-info btn-sm button-action" title="Tambah Item" data-bs-toggle="modal" data-bs-target="#modalTambahItem" data-id_transaksi="{{$transaksi->id}}">
-                        <span>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-shop icons" viewBox="0 0 16 16">
-                            <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z" />
-                          </svg>
-                        </span>
+                      <a href="#" class="btn btn-primary btn-sm px-3 button-action rounded-0" title="Tambah Item" data-bs-toggle="modal" data-bs-target="#modalTambahItem" data-id_transaksi="{{$transaksi->id}}">
+                        Pilih
                       </a>
                     </td>
                   </tr>
@@ -246,7 +237,6 @@
                 <div class="d-flex flex-column mb-3 fv-row">
                   <label for="jenisSampah" class="fs-6 fw-semibold mb-2 required">Jenis Sampah</label>
                   <select class="form-select" data-control="select2" data-hide-search="true" data-placeholder="Pilih Jenis Sampah" name="jenis_sampah" id="jenisSampah">
-                    <option value="">Select Jenis Sampah</option>
                     @foreach ($jenisSampahs as $jenisSampah)
                     @if (old('jenisSampah_id')==$jenisSampah->id)
                     <option value="{{$jenisSampah->id}}" selected>{{$jenisSampah->name}}</option>
@@ -264,23 +254,6 @@
                 </div>
                 <button type="submit" class="btn btn-primary mt-3 rounded-0">Tambahkan Item</button>
               </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modal Pop-Up -->
-      <div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="modalDetailLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalDetail{{$transaksi->id}}Label">Detail Transaksi</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="modalDetailContent">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             </div>
           </div>
         </div>

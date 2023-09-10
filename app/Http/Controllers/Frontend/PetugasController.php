@@ -161,4 +161,16 @@ class PetugasController extends Controller
 
     return redirect('/petugas');
   }
+
+  public function detailItem(Request $request, $id)
+  {
+    $perPage = $request->query('perPage', 10);
+    $itemTransaksi = ItemTransaksi::where('transaksi_id', $id)
+      ->orderBy('updated_at', 'desc')
+      ->paginate($perPage);
+    return view('frontend.detail_item', [
+      'itemTransaksis' => $itemTransaksi,
+      'perPage' => $perPage
+    ]);
+  }
 }

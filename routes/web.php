@@ -26,23 +26,6 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\PetugasController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
-
 Route::middleware(['afterLogin'])->group(function () {
   Route::get('/login', [AuthController::class, 'index_login'])->name('login');
   Route::post('/login', [AuthController::class, 'login']);
@@ -50,8 +33,6 @@ Route::middleware(['afterLogin'])->group(function () {
   Route::post('/registrasi', [AuthController::class, 'register']);
 });
 Route::post('logout', [AuthController::class, 'logout']);
-
-
 
 Route::middleware(['role:SuperAdmin,Admin', 'auth'])->group(function () {
   // Data Referensi
@@ -119,6 +100,7 @@ Route::middleware(['role:Petugas','auth'])->group(function (){
   Route::get('/petugas',[PetugasController::class,'index']);
   Route::post('/petugas-proses',[PetugasController::class,'store']);
   Route::post('tambah-item', [PetugasController::class, 'tambahItem']);
+  Route::get('detail-item/{id}', [PetugasController::class, 'detailItem']);
   
 });
 
