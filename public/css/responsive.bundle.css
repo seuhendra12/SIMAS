@@ -151,4 +151,10 @@
     font-size: 12px;
     width: 100%;
   }
+  img.icons-pop-up{
+    width: 40%;
+  }
+}
+img.icons-pop-up{
+  width: 40%;
 }

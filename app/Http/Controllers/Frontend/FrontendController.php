@@ -101,7 +101,7 @@ class FrontendController extends Controller
       'tempat_lahir' => $request->input('tempat_lahir'),
       'tanggal_lahir' => $request->input('tanggal_lahir'),
       'jenis_kelamin' => $request->input('jenis_kelamin'),
-      'no_telepon' => $request->input('no_telepon'),
+      'no_wa' => $request->input('no_telepon'),
       'alamat' => $request->input('alamat'),
       'rt_id' => $request->input('rt'),
       'rw_id' => $request->input('rw'),
@@ -181,6 +181,7 @@ class FrontendController extends Controller
     $selectedMonth = $request->query('month');
     $selectedYear = $request->query('year');
     // Ambil data item_transaksi berdasarkan user yang login melalui join dengan tabel transaksi
+    if($transaksiSampah){
     $itemTransaksis = ItemTransaksi::with('jenisSampah')
       ->where('transaksi_id', $transaksiSampah->id)
       ->when($selectedMonth, function ($query, $selectedMonth) {
@@ -192,6 +193,11 @@ class FrontendController extends Controller
       })
       ->orderBy('updated_at', 'desc')
       ->paginate($perPage);
+    }
+    else{
+      Session::flash('errorMessage', 'Maaf kamu belum melakukan transaksi apapun');
+      return redirect()->back();
+    }
 
     return view('frontend.histori', [
       'historiTransaksis' => $itemTransaksis,

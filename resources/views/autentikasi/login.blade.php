@@ -37,7 +37,7 @@
 								<div class="modal-content text-center w-50 mx-auto">
 									<div class="modal-body text-center">
 										<div class="mb-5">
-											<img alt="Logo" src="{!! asset('/img/icon/success.png') !!}" class="h-60px h-lg-75px" />
+											<img alt="Logo" src="{!! asset('/img/icon/success.png') !!}" class="icons-pop-up" />
 											<H5 class="mt-1 fw-bold">SUKSES</H5>
 										</div class="mb-2">
 										{{ Session::get('success') }}
@@ -63,7 +63,7 @@
 								<div class="modal-content text-center w-50 mx-auto">
 									<div class="modal-body text-center">
 										<div class="mb-5">
-											<img alt="Logo" src="{!! asset('/img/icon/wrong.png') !!}" class="h-60px h-lg-75px" />
+											<img alt="Logo" src="{!! asset('/img/icon/wrong.png') !!}" class="icons-pop-up" />
 											<H5 class="mt-1 fw-bold">ERROR</H5>
 										</div class="mb-2">
 										{{ session('errorLogin') }}

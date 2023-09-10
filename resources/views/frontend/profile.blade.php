@@ -11,7 +11,7 @@
 
   <!-- ICON LOCALHOST -->
   <link rel="icon" type="image/x-icon" href="{{ asset('img/logo/logo_sim_min.png') }}">
-  
+
   <!-- Styling buatan sendiri -->
   <link href="{!! asset('/css/style.css') !!}" rel="stylesheet" type="text/css" />
   <link href="{!! asset('/css/responsive.bundle.css') !!}" rel="stylesheet" type="text/css" />
@@ -95,7 +95,7 @@
               <div class="mb-3 row">
                 <label for="no_telepon" class="col-sm-4 col-form-label">No telepon</label>
                 <div class="col-sm-7">
-                  <input type="text" value="{{ Auth::user()->profile->no_telepon }}" class="form-control" id="no_telepon" placeholder="Tambahkan No Telepon" name="no_telepon">
+                  <input type="number" value="{{ Auth::user()->profile->no_wa }}" class="form-control" id="no_telepon" placeholder="Tambahkan No Telepon" name="no_telepon">
                 </div>
               </div>
               <div class="mb-3 row">
